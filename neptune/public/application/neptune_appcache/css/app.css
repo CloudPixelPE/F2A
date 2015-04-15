@@ -1,0 +1,8 @@
+.NeptuneListItem {
+    border-bottom: none;
+}
+.NeptuneTop {
+    z-index: 999 !important;
+    min-width: 0px !important;
+    top: 40px !important;
+}

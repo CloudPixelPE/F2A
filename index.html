@@ -1,13 +1,14 @@
 <!DOCTYPE html><html>
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <title>AppCache - Mobile</title>
 <script id="sap-ui-bootstrap" type="text/javascript" src="neptune/server/openui5/resources/sap-ui-core.js"
+data-sap-ui-noDuplicateIds="false"
 data-sap-ui-preload="sync"
 data-sap-ui-theme="sap_bluecrystal"
 data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.commons,sap.ui.unified,sap.ui.ux3,sap.ui.table,sap.suite.ui.commons,sap.m,sap.me"></script>
@@ -44,13 +45,24 @@ data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.commons,sap.ui.unified,sap.ui.ux3
 
         document.addEventListener("pause", onPause, false);
         document.addEventListener("resume", onResume, false);
+        document.addEventListener("backbutton", onBackButton, false);
+        document.addEventListener("menubutton", onMenuButton, false);
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("online", onOnline, false);
+
+        // WinPhone DB Open
+        if (typeof device !== "undefined") {
+            if (device.platform === "Win32NT") {
+                window.openDatabase = function() {};
+            }
+        }
 
         // Start AppCache
         AppCache.Startup();
 
         // Splashscreen
         setTimeout(function() {
-            if (typeof navigator.splashscreen != 'undefined') {
+            if (typeof navigator.splashscreen !== 'undefined') {
                 navigator.splashscreen.hide();
             }
         }, 100);
@@ -68,29 +80,60 @@ data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.commons,sap.ui.unified,sap.ui.ux3
         }
     }
 
-    // Event: onPause
-    function onPause() {
-        if (AppCache.enableEncryption === true && AppCache.enablePasscode === true) {
-            AppCache.encryptDB();
+    function onOffline() {
+        AppCache.isOffline = true;
+        if (typeof onOfflineCustom === 'function') {
+            onOfflineCustom();
+            return;
         }
     }
 
-    // Event: onResume
+    function onOnline() {
+        AppCache.isOffline = false;
+        if (typeof onOnlineCustom === 'function') {
+            onOnlineCustom();
+            return;
+        }
+    }
+
+    function onPause() {
+        if (typeof onPauseCustom === 'function') {
+            onPauseCustom();
+            return;
+        }
+    }
+
     function onResume() {
         setTimeout(function() {
-            if (AppCache.enableEncryption === true && AppCache.enablePasscode === true) {
-                AppCache.decryptDB();
+            if (typeof onResumeCustom === 'function') {
+                onResumeCustom();
+                return;
             }
         }, 100);
     }
+
+    function onBackButton() {
+
+        if (typeof onBackButtonCustom === 'function') {
+            onBackButtonCustom();
+            return;
+        }
+
+        if (AppCache.CurrentApp === AppCache.StartApp && AppCache.enablePasscode === true) {
+            AppCache.Lock();
+        }
+
+    }
+
+    function onMenuButton() {
+
+        if (typeof onMenuButtonCustom === 'function') {
+            onMenuButtonCustom();
+            return;
+        }
+
+    }
 </script>
-
-
-
-
-
-
-
 <link href="neptune/public/application/neptune_appcache/css/app.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="neptune/server/pdfview/PDFView-3.0.css" />
 <script src="neptune/server/pdfview/compatibility.js"></script>
@@ -101,7 +144,7 @@ data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.commons,sap.ui.unified,sap.ui.ux3
 <script src="neptune/server/neptune/js/SignaturePad-3.0.js"></script>
 <script src="neptune/server/neptune/js/ModelData-3.0.js"></script>
 
-<script src="phonegap.js"></script>
+<script src="cordova.js"></script>
 <script src="barcodescanner.js"></script>
 <script src="GAPlugin.js"></script>
 </head>
@@ -144,7 +187,11 @@ if (modelAppCacheUsers.oData.length === 1) {
 }
 }});
 AppCache_barLogon.addContentLeft(AppCache_butSelect); 
- var AppCache_butLogon = new sap.m.Button("AppCache_butLogon",{icon:"sap-icon://accept",text:"Logon",type:"Accept",press: function(oEvent) {AppCache.Logon();}});
+ var AppCache_butLogon = new sap.m.Button("AppCache_butLogon",{icon:"sap-icon://accept",text:"Logon",type:"Accept",press: function(oEvent) {
+var userName = AppCache_inUsername.getValue();
+AppCache_inUsername.setValue(userName.trim());
+AppCache.Logon();
+}});
 AppCache_barLogon.addContentRight(AppCache_butLogon); 
  var AppCache_boxPassword = new sap.m.VBox("AppCache_boxPassword",{visible:false});
 AppCache_boxPassword.placeAt("body"); 
@@ -154,11 +201,11 @@ AppCache_boxPassword.addItem(AppCache_formPassword);
 AppCache_formPassword.addContent(AppCache_lblPassOld); 
  var AppCache_inPassOld = new sap.m.Input("AppCache_inPassOld",{valueLiveUpdate:true,type:"Password",change: function(oEvent) {AppCache_inPassword.focus();}});
 AppCache_formPassword.addContent(AppCache_inPassOld); 
- var AppCache_lblPassNew = new sap.m.Label("AppCache_lblPassNew",{text:"New Passord"});
+ var AppCache_lblPassNew = new sap.m.Label("AppCache_lblPassNew",{text:"New Password"});
 AppCache_formPassword.addContent(AppCache_lblPassNew); 
  var AppCache_inPassNew = new sap.m.Input("AppCache_inPassNew",{valueLiveUpdate:true,type:"Password"});
 AppCache_formPassword.addContent(AppCache_inPassNew); 
- var AppCache_lblPassRepeat = new sap.m.Label("AppCache_lblPassRepeat",{text:"Repeat Passord"});
+ var AppCache_lblPassRepeat = new sap.m.Label("AppCache_lblPassRepeat",{text:"Repeat Password"});
 AppCache_formPassword.addContent(AppCache_lblPassRepeat); 
  var AppCache_inPassRepeat = new sap.m.Input("AppCache_inPassRepeat",{valueLiveUpdate:true,type:"Password"});
 AppCache_formPassword.addContent(AppCache_inPassRepeat); 
@@ -172,11 +219,11 @@ AppCache_boxPasscode.placeAt("body");
 AppCache_boxPasscode.addItem(AppCache_formPasscode); 
  var AppCache_lblPasscode1 = new sap.m.Label("AppCache_lblPasscode1",{text:"Set Pin Code"});
 AppCache_formPasscode.addContent(AppCache_lblPasscode1); 
- var AppCache_inPasscode1 = new sap.m.Input("AppCache_inPasscode1",{valueLiveUpdate:true,type:"Tel",placeholder:"Numeric",maxLength:4,change: function(oEvent) {AppCache_inPasscode2.focus();}});
+ var AppCache_inPasscode1 = new sap.m.Input("AppCache_inPasscode1",{valueLiveUpdate:true,type:"Tel",placeholder:"Numeric only",maxLength:4,change: function(oEvent) {AppCache_inPasscode2.focus();}});
 AppCache_formPasscode.addContent(AppCache_inPasscode1); 
  var AppCache_lblPasscode2 = new sap.m.Label("AppCache_lblPasscode2",{text:"Repeat Pin Code"});
 AppCache_formPasscode.addContent(AppCache_lblPasscode2); 
- var AppCache_inPasscode2 = new sap.m.Input("AppCache_inPasscode2",{valueLiveUpdate:true,maxLength:4,placeholder:"Numeric",type:"Tel"});
+ var AppCache_inPasscode2 = new sap.m.Input("AppCache_inPasscode2",{valueLiveUpdate:true,maxLength:4,placeholder:"Numeric only",type:"Tel"});
 AppCache_formPasscode.addContent(AppCache_inPasscode2); 
  var AppCache_lblPasscode3 = new sap.m.Label("AppCache_lblPasscode3",{});
 AppCache_formPasscode.addContent(AppCache_lblPasscode3); 
@@ -293,7 +340,7 @@ if (!modelAppCacheUsers.getData().length) {
 }
 }});
 AppCache_barUserAction.addContentRight(AppCache_butDelete); 
- var AppCache_HTML = new sap.ui.core.HTML("AppCache_HTML",{content:"<div id='AppCache_Wrapper'><div id='MobileContent' ajaxError='sap.ui.core.BusyIndicator.hide();' ajaxSuccess='Anonymous Function' setEnableCache='true' showNoData='false'></div></div>"});
+ var AppCache_HTML = new sap.ui.core.HTML("AppCache_HTML",{content:"<div id='AppCache_Wrapper'><div id='MobileContent'></div></div>"});
 AppCache_HTML.placeAt("body"); 
  var AppCache_butTwoFactorCancel = new sap.m.Button("AppCache_butTwoFactorCancel",{icon:"sap-icon://decline",text:"Cancel",type:"Reject",press: function(oEvent) {AppCache_popTwoFactor.close();}}); 
  var AppCache_butTwoFactorSend = new sap.m.Button("AppCache_butTwoFactorSend",{icon:"sap-icon://accept",text:"Send",type:"Accept",press: function(oEvent) {
@@ -323,12 +370,15 @@ AppCacheUpdate.setModel(modelAppCacheUpdate);
  var AppCache_txt6 = new sap.m.Text("AppCache_txt6",{text:"Repeat Pin Code"}); 
  var AppCache_txt7 = new sap.m.Text("AppCache_txt7",{text:"Pin Code do not match"}); 
  var AppCache_txt8 = new sap.m.Text("AppCache_txt8",{text:"Password do not match"}); 
- var AppCache_txt9 = new sap.m.Text("AppCache_txt9",{text:"Passcode to short, min 4 chars"}); 
+ var AppCache_txt9 = new sap.m.Text("AppCache_txt9",{text:"Pin code to short, min 4 chars"}); 
  var AppCache_txt10 = new sap.m.Text("AppCache_txt10",{text:"No valid APPLID or other Error"}); 
  var AppCache_txt11 = new sap.m.Text("AppCache_txt11",{text:"Wrong Activation Code"}); 
  var AppCache_txt12 = new sap.m.Text("AppCache_txt12",{text:"Wrong username/password"}); 
+ var AppCache_txt13 = new sap.m.Text("AppCache_txt13",{text:"Error downloading new version"}); 
+ var AppCache_txt14 = new sap.m.Text("AppCache_txt14",{text:"App updated. New logon required"}); 
+ var AppCache_txt15 = new sap.m.Text("AppCache_txt15",{text:"No CurrentConfig"}); 
  var AppCacheBusyEncrypt = new sap.m.BusyDialog("AppCacheBusyEncrypt",{text:"Encrypting Database...",title:"Please Wait"}); 
- var AppCacheBusyDecrypt = new sap.m.BusyDialog("AppCacheBusyDecrypt",{title:"Please Wait",text:"Decrypting Database..."});
+ var AppCacheBusyDecrypt = new sap.m.BusyDialog("AppCacheBusyDecrypt",{text:"Decrypting Database...",title:"Please Wait"});
 var AppCacheText = {
     noConnection: AppCache_txt1.getText(),
     userLogout: AppCache_txt2.getText(),
@@ -393,7 +443,7 @@ if (htmlStart == '<!DOCTYPE html>') {
         AppCache.Logout();
 
         jQuery.sap.require("sap.m.MessageToast");
-        sap.m.MessageToast.show("App updated. New logon required");
+        sap.m.MessageToast.show(AppCache_txt14.getText());
         return;
     }
 
@@ -546,7 +596,7 @@ if (modelAppCacheUpdate.oData.RELEASED === true && modelAppCacheUpdate.oData.PG_
         function(error) {
             AppCache_diaDownload.close();
             jQuery.sap.require("sap.m.MessageToast");
-            sap.m.MessageToast.show("Error downloading new version");
+            sap.m.MessageToast.show(AppCache_txt13.getText());
         },
         true, {
 
@@ -635,37 +685,8 @@ if (data.TWOFACTOR == 'confirmed') {
 function getCacheAppCacheUpdate() { _AppCache_GetCache("NEPTUNE_APPCACHE_AppCacheUpdate",modelAppCacheUpdate,"LS","","");}
 function setCacheAppCacheUpdate() { _AppCache_SetCache("NEPTUNE_APPCACHE_AppCacheUpdate",modelAppCacheUpdate,"LS");}
 
-// APP STORAGE
-function _AppCache_GetCache_LS(id,model,online,event) {
-$.sap.require("jquery.sap.storage");
-var lStorage = $.sap.storage(jQuery.sap.storage.Type.local);
-var lData = lStorage.get(id);
-if (online && !lData) { window[online](); }
-if (!lData) {
-if (typeof eval(event) === "function"){ eval(event)();}
-return; }
-model.setData(lData);
-if (typeof eval(event) === "function"){ eval(event)();}}
-function _AppCache_SetCache_LS(id,model) {
-$.sap.require("jquery.sap.storage");
-var lStorage = $.sap.storage(jQuery.sap.storage.Type.local);
-var modelData = model.getData();
-lStorage.remove(id);
-lStorage.put(id,modelData);
-}
-function _AppCache_GetCache(id,model,type,online,event){
-if (window.openDatabase && type == "DB") {
-_AppCache_GetCache_DB(id,model,online,event)
-} else {
-_AppCache_GetCache_LS(id,model,online,event)
-}}
-function _AppCache_SetCache(id,model,type){
-if (window.openDatabase && type == "DB") {
-_AppCache_SetCache_DB(id,model)
-} else {
-_AppCache_SetCache_LS(id,model)
-}}
-
+//DATABASE & CACHE
+function _AppCache_GetCache(e,a,t,o,n){window.openDatabase&&"DB"==t?_AppCache_GetCache_DB(e,a,o,n):_AppCache_GetCache_LS(e,a,o,n)}function _AppCache_SetCache(e,a,t){window.openDatabase&&"DB"==t?_AppCache_SetCache_DB(e,a):_AppCache_SetCache_LS(e,a)}function _AppCache_GetCache_LS(id,model,online,event){$.sap.require("jquery.sap.storage");var lStorage=$.sap.storage(jQuery.sap.storage.Type.local),lData=lStorage.get(id);return online&&!lData&&window[online](),lData?(model.setData(lData),void("function"==typeof eval(event)&&eval(event)())):void("function"==typeof eval(event)&&eval(event)())}function _AppCache_SetCache_LS(e,a){$.sap.require("jquery.sap.storage");var t=$.sap.storage(jQuery.sap.storage.Type.local),o=a.getData();t.remove(e),t.put(e,o)}function _AppCache_GetCache_DB(e,a){try{AppDB.transaction(function(t){t.executeSql("SELECT * FROM model WHERE KEY=?",[e],function(e,t){for(var o=0;o<t.rows.length;o++){var n=t.rows.item(o).VALUE,p=JSON.parse(n);a.setData(p)}},null)})}catch(t){return void console.log("Error processing SQL: "+t.message)}}function _AppCache_SetCache_DB(e,a){var t=a.getJSON();try{AppDB.transaction(function(a){a.executeSql("INSERT OR REPLACE INTO model (KEY,VALUE) VALUES (?,?)",[e,t])})}catch(o){return void console.log("Error processing SQL: "+o.message)}}window.openDatabase&&("undefined"==typeof AppDB&&(AppDB=window.openDatabase("AppCache","1.0","AppCache",5e7)),AppDB.transaction(function(e){e.executeSql("CREATE TABLE IF NOT EXISTS model (KEY VARCHAR PRIMARY KEY, VALUE VARCHAR)")}));
 //INIT
 sap.ui.getCore().attachInit(function() {
 setTimeout(function(){
@@ -680,6 +701,7 @@ jQuery(function() { jQuery("form").submit(function(event) { event.preventDefault
 </script>
 <script src="neptune/server/neptune/js/aes.js"></script>
 <script src="neptune/server/neptune/js/AppCache-3.1.js"></script>
+<script src="neptune/server/neptune/js/AppSync-3.1.js"></script>
 
 <script>
 AppCache.StartApp = "NEPTUNE_APPCACHE_MENU";
@@ -688,7 +710,7 @@ AppCache.numPasscode = "5";
 AppCache.Client = "500";
 AppCache.Url = "http://192.10.10.145:8000/neptune/";
 AppCache.CurrentConfig = "APPVENDITECOLSAM";
-AppCache.AppVersion = "1.0";
+AppCache.AppVersion = "1.0.1";
 AppCache.enablePasscode = true;
 AppCache.enableTwoFactor = false;
 AppCache.enableMocana = false;

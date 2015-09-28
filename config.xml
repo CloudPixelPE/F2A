@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.colsam.appvenditecolsam" versionCode="101" version="1.0.1">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.colsam.appvenditecolsam" versionCode="103" version="1.0.3">
 <name>CS Agents - SVI</name>
 <description>App Vendite Colorificio Sammarinese</description>
 <gap:plugin name="cordova-sqlite-storage" source="npm" />
@@ -47,6 +47,6 @@
 <gap:plugin name="cordova-plugin-network-information" source="npm" />
 <gap:plugin name="cordova-plugin-dialogs" source="npm" />
 <gap:plugin name="cordova-plugin-vibration" source="npm" />
-<gap:plugin name="io.github.pwlin.cordova.plugins.fileopener2" version="1.0.11" />
+<gap:plugin name="cordova-plugin-file-opener2" source="npm" version="2.0.0" />
 <access origin="*" subdomains="true"/>
 </widget>

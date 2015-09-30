@@ -23,6 +23,7 @@
 <preference name="SplashScreenDelay" value="20000" />
 <preference name="auto-hide-splash-screen" value="false" />
 <preference name="AutoHideSplashScreen" value="false" />
+<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 <feature name="http://api.phonegap.com/1.0/battery"/>
 <feature name="http://api.phonegap.com/1.0/camera"/>
 <feature name="http://api.phonegap.com/1.0/contacts"/>

@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.colsam.saleorder" versionCode="101" version="1.0.1">
-<name>SALESORDER2</name>
-<gap:plugin name="cordova-sqlite-storage" source="npm" spec="~1.2.1" />
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.colsam.saleorder" versionCode="100" version="1.0.0">
+<name>SAP-SVI</name>
+<description>App Vendite Colorificio Sammarinese</description>
+<gap:plugin name="cordova-sqlite-storage" source="npm" spec="~1.2.1"/>
 <gap:plugin name="cordova-plugin-file-opener2" source="npm" version="2.0.0" />
 <gap:platform name="android" />
 <gap:platform name="ios" />
 <gap:platform name="winphone" />
-<icon src="icon.png" />
+<icon src="icon.png  />
+<icon src="icons/ios/icon.png" gap:platform="ios" width="57" height="57" />
+<icon src="icons/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+<icon src="icons/ios/icon_at_2x.png" gap:platform="ios" width="114" height="114" />
+<icon src="icons/ios/icon-72_at_2x.png" gap:platform="ios" width="144" height="144" />
 <gap:splash src="splash.png" />
+<gap:splash src="splash/ios/Retina.png" gap:platform="ios" width="640" height="960" />
+<gap:splash src="splash/ios/Default-Landscape.png" gap:platform="ios" width="1024" height="768" />
+<gap:splash src="splash/ios/iPhone5.png" gap:platform="ios" width="640" height="1136" />
+<gap:splash src="splash/ios/Default-Portrait_2x.png" gap:platform="ios" width="2048" height="1536" />
 <gap:plugin name="com.phonegap.plugins.barcodescanner" />
 <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
+<gap:plugin name="com.adobe.plugins.gaplugin" />
 <gap:plugin name="nl.x-services.plugins.calendar" />
-<preference name="orientation" value="landscape" />
+<gap:plugin name="com.chariotsolutions.nfc.plugin" />
+<gap:plugin name="nl.x-services.plugins.sslcertificatechecker" />
 <preference name="phonegap-version" value="3.7.0" />
-<preference name="fullscreen" value="true" />
 <platform name="winphone">
 <preference name="fullscreen" value="true" />
 </platform>
@@ -45,6 +55,5 @@
 <gap:plugin name="cordova-plugin-network-information" source="npm" />
 <gap:plugin name="cordova-plugin-dialogs" source="npm" />
 <gap:plugin name="cordova-plugin-vibration" source="npm" />
-<gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.0.0" />
 <access origin="*" subdomains="true"/>
 </widget>

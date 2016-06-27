@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.colsam.saleorder" versionCode="101" version="1.0.1">
 <name>SALESORDER2</name>
-<gap:plugin name="cordova-sqlite-storage" source="npm" spec="~0.8.5"/>
+<gap:plugin name="cordova-sqlite-storage" source="npm" spec="~1.2.1" />
 <gap:plugin name="cordova-plugin-file-opener2" source="npm" version="2.0.0" />
 <gap:platform name="android" />
 <gap:platform name="ios" />
@@ -11,7 +11,9 @@
 <gap:plugin name="com.phonegap.plugins.barcodescanner" />
 <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
 <gap:plugin name="nl.x-services.plugins.calendar" />
+<preference name="orientation" value="landscape" />
 <preference name="phonegap-version" value="cli-5.2.0" />
+<preference name="fullscreen" value="true" />
 <platform name="winphone">
 <preference name="fullscreen" value="true" />
 </platform>

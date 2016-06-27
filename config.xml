@@ -12,7 +12,7 @@
 <gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
 <gap:plugin name="nl.x-services.plugins.calendar" />
 <preference name="orientation" value="landscape" />
-<preference name="phonegap-version" value="cli-5.2.0" />
+<preference name="phonegap-version" value="cli-5.1.1" />
 <preference name="fullscreen" value="true" />
 <platform name="winphone">
 <preference name="fullscreen" value="true" />

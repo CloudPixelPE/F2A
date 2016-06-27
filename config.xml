@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.colsam.saleorder" versionCode="100" version="1.0.0">
-<name>SAP-SVI</name>
+<name>CS Agents - SVI</name>
 <description>App Vendite Colorificio Sammarinese</description>
 <gap:plugin name="cordova-sqlite-storage" source="npm" spec="~1.2.1"/>
 <gap:plugin name="cordova-plugin-file-opener2" source="npm" version="2.0.0" />

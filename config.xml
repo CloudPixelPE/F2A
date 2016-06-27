@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.colsam.appvenditecolsam" versionCode="104" version="1.0.4">
-<name>CS Agents - SVI</name>
-<description>App Vendite Colorificio Sammarinese</description>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.colsam.saleorder" versionCode="101" version="1.0.1">
+<name>SALESORDER2</name>
 <gap:plugin name="cordova-sqlite-storage" source="npm" />
+<gap:plugin name="cordova-plugin-file-opener2" source="npm" version="2.0.0" />
 <gap:platform name="android" />
 <gap:platform name="ios" />
 <gap:platform name="winphone" />
 <icon src="icon.png" />
-<icon src="icons/ios/icon_at_2x.png" gap:platform="ios" width="114" height="114" />
 <gap:splash src="splash.png" />
 <gap:plugin name="com.phonegap.plugins.barcodescanner" />
-<gap:plugin name="com.adobe.plugins.gaplugin" />
+<gap:plugin name="com.pushwoosh.plugins.pushwoosh" />
 <gap:plugin name="nl.x-services.plugins.calendar" />
-<gap:plugin name="com.chariotsolutions.nfc.plugin" />
-<gap:plugin name="nl.x-services.plugins.sslcertificatechecker" />
-<preference name="phonegap-version" value="3.7.0" />
+<preference name="phonegap-version" value="cli-5.2.0" />
 <platform name="winphone">
 <preference name="fullscreen" value="true" />
 </platform>
@@ -23,7 +20,6 @@
 <preference name="SplashScreenDelay" value="20000" />
 <preference name="auto-hide-splash-screen" value="false" />
 <preference name="AutoHideSplashScreen" value="false" />
-<preference name="AndroidPersistentFileLocation" value="Compatibility" />
 <feature name="http://api.phonegap.com/1.0/battery"/>
 <feature name="http://api.phonegap.com/1.0/camera"/>
 <feature name="http://api.phonegap.com/1.0/contacts"/>
@@ -47,6 +43,6 @@
 <gap:plugin name="cordova-plugin-network-information" source="npm" />
 <gap:plugin name="cordova-plugin-dialogs" source="npm" />
 <gap:plugin name="cordova-plugin-vibration" source="npm" />
-<gap:plugin name="cordova-plugin-file-opener2" source="npm" version="2.0.0" />
+<gap:plugin name="cordova-plugin-whitelist" source="npm" version="1.0.0" />
 <access origin="*" subdomains="true"/>
 </widget>

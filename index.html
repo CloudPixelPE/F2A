@@ -146,12 +146,12 @@ data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.commons,sap.ui.unified,sap.ui.ux3
 
 <script src="cordova.js"></script>
 <script src="barcodescanner.js"></script>
-<script src="GAPlugin.js"></script>
+<script src="PushNotification.js"></script>
 </head>
 <body  class="sapUiBody" id="body">
 <script>
 //GLOBALS
-if (typeof AppCache == "undefined") { var sapUname = "SVLADM"; } else { var sapUname = AppCache.CurrentUname }
+if (typeof AppCache == "undefined") { var sapUname = "GDIFLUMERI"; } else { var sapUname = AppCache.CurrentUname }
  
  var AppCacheData = new sap.m.List("AppCacheData",{showNoData:false});
 var modelAppCacheData = new sap.ui.model.json.JSONModel();
@@ -426,7 +426,7 @@ function getOnlineAppCacheContent(value) {
 $.ajax({
 datatype: "HTML",
 type: "GET",
-url: "http://192.10.10.145:8000/neptune//neptune/native/neptune_ajax?sap-client=500&ajax_id=GET_APP_CONTENT&ajax_applid=NEPTUNE_APPCACHE&field_id=00025&xhr-source=MobileContent&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_APP_CONTENT&ajax_applid=NEPTUNE_APPCACHE&field_id=00025&xhr-source=MobileContent&ajax_value=" + value + "",
 headers: {"X-Requested-With": "XMLHttpRequest"},
 success: function (data) {
 
@@ -513,7 +513,7 @@ $("#AppCache_Wrapper").html(data).trigger('create');
 function getOnlineAppCacheData(value) {
 $.ajax({
 type: "POST",
-url: "http://192.10.10.145:8000/neptune//neptune/native/neptune_ajax?sap-client=500&ajax_id=GET_APP_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00006&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_APP_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00006&ajax_value=" + value + "",
 dataType: "json",
 data: encodeURIComponent(modelAppCacheData.getJSON()),
 success: function (data) {
@@ -617,7 +617,7 @@ function setCacheAppCacheData() { _AppCache_SetCache("NEPTUNE_APPCACHE_AppCacheD
 function getOnlineAppCacheUsers(value) {
 $.ajax({
 type: "POST",
-url: "http://192.10.10.145:8000/neptune//neptune/native/neptune_ajax?sap-client=500&ajax_id=GET_USER_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00098&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_USER_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00098&ajax_value=" + value + "",
 dataType: "json",
 data: encodeURIComponent(modelAppCacheUsers.getJSON()),
 success: function (data) {
@@ -658,7 +658,7 @@ function setCacheAppCacheUsers() { _AppCache_SetCache("NEPTUNE_APPCACHE_AppCache
 function getOnlineAppCache_popTwoFactor(value) {
 $.ajax({
 type: "POST",
-url: "http://192.10.10.145:8000/neptune//neptune/native/neptune_ajax?sap-client=500&ajax_id=CHECK_TWO_FACTOR&ajax_applid=NEPTUNE_APPCACHE&field_id=00146&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=CHECK_TWO_FACTOR&ajax_applid=NEPTUNE_APPCACHE&field_id=00146&ajax_value=" + value + "",
 dataType: "json",
 success: function (data) {
 modelAppCache_popTwoFactor.setData(data.modelAppCache_popTwoFactorData);
@@ -704,18 +704,23 @@ jQuery(function() { jQuery("form").submit(function(event) { event.preventDefault
 <script src="neptune/server/neptune/js/AppSync-3.1.js"></script>
 
 <script>
-AppCache.StartApp = "NEPTUNE_APPCACHE_MENU";
+AppCache.StartApp = "CSM_SALES_ORDER";
 AppCache.PasscodeApp = "NEPTUNE_APPCACHE_PASSCODE";
 AppCache.numPasscode = "5";
-AppCache.Client = "500";
-AppCache.Url = "http://192.10.10.145:8000/neptune/";
-AppCache.CurrentConfig = "APPVENDITECOLSAM";
-AppCache.AppVersion = "1.0.4";
+AppCache.Client = "100";
+AppCache.Url = "http://sap-svi.colorsam.local:8003/neptune/";
+AppCache.CurrentConfig = "SALESORDER";
+AppCache.AppVersion = "1.0.1";
 AppCache.enablePasscode = true;
 AppCache.enableTwoFactor = false;
 AppCache.enableMocana = false;
 AppCache.enableSMP = false;
 AppCache.enablePortal = false;
+AppCache.enablePush = true;
+AppCache.GoogleID = "408956739192";
+AppCache.pushProvider = "PushWoosh";
+AppCache.PushWooshID = "18DA2-285AF";
+AppCache.AppID = "com.colsam.saleorder";
 </script>
 </body>
 </html>

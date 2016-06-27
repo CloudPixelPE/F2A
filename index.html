@@ -427,7 +427,7 @@ function getOnlineAppCacheContent(value) {
 $.ajax({
 datatype: "HTML",
 type: "GET",
-url: "https://sap-svi.colorsam.local:44303/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_APP_CONTENT&ajax_applid=NEPTUNE_APPCACHE&field_id=00025&xhr-source=MobileContent&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_APP_CONTENT&ajax_applid=NEPTUNE_APPCACHE&field_id=00025&xhr-source=MobileContent&ajax_value=" + value + "",
 headers: {"X-Requested-With": "XMLHttpRequest"},
 success: function (data) {
 
@@ -514,7 +514,7 @@ $("#AppCache_Wrapper").html(data).trigger('create');
 function getOnlineAppCacheData(value) {
 $.ajax({
 type: "POST",
-url: "https://sap-svi.colorsam.local:44303/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_APP_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00006&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_APP_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00006&ajax_value=" + value + "",
 dataType: "json",
 data: encodeURIComponent(modelAppCacheData.getJSON()),
 success: function (data) {
@@ -618,7 +618,7 @@ function setCacheAppCacheData() { _AppCache_SetCache("NEPTUNE_APPCACHE_AppCacheD
 function getOnlineAppCacheUsers(value) {
 $.ajax({
 type: "POST",
-url: "https://sap-svi.colorsam.local:44303/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_USER_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00098&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_USER_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00098&ajax_value=" + value + "",
 dataType: "json",
 data: encodeURIComponent(modelAppCacheUsers.getJSON()),
 success: function (data) {
@@ -659,7 +659,7 @@ function setCacheAppCacheUsers() { _AppCache_SetCache("NEPTUNE_APPCACHE_AppCache
 function getOnlineAppCache_popTwoFactor(value) {
 $.ajax({
 type: "POST",
-url: "https://sap-svi.colorsam.local:44303/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=CHECK_TWO_FACTOR&ajax_applid=NEPTUNE_APPCACHE&field_id=00146&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=CHECK_TWO_FACTOR&ajax_applid=NEPTUNE_APPCACHE&field_id=00146&ajax_value=" + value + "",
 dataType: "json",
 success: function (data) {
 modelAppCache_popTwoFactor.setData(data.modelAppCache_popTwoFactorData);
@@ -705,12 +705,12 @@ jQuery(function() { jQuery("form").submit(function(event) { event.preventDefault
 <script src="neptune/server/neptune/js/AppSync-3.1.js"></script>
 
 <script>
-AppCache.StartApp = "NEPTUNE_APPCACHE_MENU";
+AppCache.StartApp = "CSM_SALES_ORDER";
 AppCache.PasscodeApp = "NEPTUNE_APPCACHE_PASSCODE";
 AppCache.numPasscode = "5";
 AppCache.Client = "100";
-AppCache.Url = "https://sap-svi.colorsam.local:44303/neptune/";
-AppCache.CurrentConfig = "SAP-SVI";
+AppCache.Url = "http://sap-svi.colorsam.local:8003/neptune/";
+AppCache.CurrentConfig = "CSAGENTS-SVI";
 AppCache.AppVersion = "1.0.0";
 AppCache.enablePasscode = true;
 AppCache.enableTwoFactor = false;

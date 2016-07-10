@@ -2,9 +2,11 @@
 <Library name="sap.me" xmlns="http://www.sap.com/ui5/ide/templates/xmlview">
 <Template name="sap.me.Calendar" alias="Calendar">
 	<jsTemplate><![CDATA[new sap.me.Calendar({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	visible: true, // boolean
 	hideNavControls: false, // boolean
 	hideMonthTitles: false, // boolean
@@ -28,6 +30,9 @@
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	tapOnDate: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -40,9 +45,11 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<Calendar xmlns="sap.me"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	visible="true"
 	hideNavControls="false"
 	hideMonthTitles="false"
@@ -63,6 +70,7 @@
 	width="100%"
 	days=""
 	months=""
+	validateFieldGroup=""
 	tapOnDate=""
 	changeCurrentDate=""
 	changeRange="">
@@ -73,9 +81,11 @@
 </Template>
 <Template name="sap.me.CalendarLegend" alias="CalendarLegend,Legend">
 	<jsTemplate><![CDATA[new sap.me.CalendarLegend({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	legendForType00: undefined, // string
 	legendForType01: undefined, // string
 	legendForType04: undefined, // string
@@ -93,13 +103,18 @@
 	design: sap.me.CalendarDesign.Approval, // sap.me.CalendarDesign
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
-	dependents: [] // sap.ui.core.Control, since 1.19
+	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<CalendarLegend xmlns="sap.me"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	legendForType00=""
 	legendForType01=""
 	legendForType04=""
@@ -114,7 +129,8 @@
 	width="auto"
 	legendWidth="12.5rem"
 	visible="true"
-	design="Approval">
+	design="Approval"
+	validateFieldGroup="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </CalendarLegend>
@@ -122,9 +138,11 @@
 </Template>
 <Template name="sap.me.OverlapCalendar" alias="OverlapCalendar,Calendar">
 	<jsTemplate><![CDATA[new sap.me.OverlapCalendar({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	startDate: undefined, // string
 	weeksPerRow: 2, // int
 	firstDayOffset: 0, // int
@@ -136,6 +154,9 @@
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	calendarEvents: [], // sap.me.OverlapCalendarEvent
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	endOfData: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -145,9 +166,11 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<OverlapCalendar xmlns="sap.me"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	startDate=""
 	weeksPerRow="2"
 	firstDayOffset="0"
@@ -155,6 +178,7 @@
 	visible="true"
 	swipeToNavigate="true"
 	width="100%"
+	validateFieldGroup=""
 	endOfData=""
 	changeDate="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -165,6 +189,7 @@
 </Template>
 <Template name="sap.me.OverlapCalendarEvent" alias="OverlapCalendarEvent,Event">
 	<jsTemplate><![CDATA[new sap.me.OverlapCalendarEvent({
+	id: "${id}", // sap.ui.core.ID
 	startDay: undefined, // string
 	endDay: undefined, // string
 	relevant: undefined, // boolean
@@ -179,6 +204,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<OverlapCalendarEvent xmlns="sap.me"
+	id="${id}"
 	startDay=""
 	endDay=""
 	relevant=""
@@ -194,9 +220,11 @@
 </Template>
 <Template name="sap.me.ProgressIndicator" alias="ProgressIndicator,Indicator">
 	<jsTemplate><![CDATA[new sap.me.ProgressIndicator({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	visible: true, // boolean
 	enabled: true, // boolean
 	barColor: sap.ui.core.BarColor.NEUTRAL, // sap.ui.core.BarColor
@@ -206,20 +234,26 @@
 	width: "100%", // sap.ui.core.CSSSize
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
-	dependents: [] // sap.ui.core.Control, since 1.19
+	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ProgressIndicator xmlns="sap.me"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	visible="true"
 	enabled="true"
 	barColor="NEUTRAL"
 	displayValue="0%"
 	percentValue="0"
 	showValue="true"
-	width="100%">
+	width="100%"
+	validateFieldGroup="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ProgressIndicator>
@@ -227,9 +261,11 @@
 </Template>
 <Template name="sap.me.TabContainer" alias="TabContainer,Container">
 	<jsTemplate><![CDATA[new sap.me.TabContainer({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	selectedTab: undefined, // int
 	badgeInfo: undefined, // int
 	badgeNotes: undefined, // int
@@ -245,6 +281,9 @@
 	contentAttachments: undefined, // sap.ui.core.Control
 	contentNotes: undefined, // sap.ui.core.Control
 	contentPeople: undefined, // sap.ui.core.Control
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	select: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -257,9 +296,11 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<TabContainer xmlns="sap.me"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	selectedTab=""
 	badgeInfo=""
 	badgeNotes=""
@@ -268,6 +309,7 @@
 	expandable="true"
 	expanded="true"
 	visible="true"
+	validateFieldGroup=""
 	select=""
 	expand=""
 	collapse="">

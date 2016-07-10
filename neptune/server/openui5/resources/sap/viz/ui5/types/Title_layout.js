@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
- * 
- * (c) Copyright 2009-2014 SAP SE. All rights reserved
+
+(c) Copyright 2009-2016 SAP SE. All rights reserved
  */
-jQuery.sap.declare("sap.viz.ui5.types.Title_layout");jQuery.sap.require("sap.viz.library");jQuery.sap.require("sap.viz.ui5.core.BaseStructuredType");sap.viz.ui5.core.BaseStructuredType.extend("sap.viz.ui5.types.Title_layout",{metadata:{deprecated:true,library:"sap.viz",properties:{"position":{type:"string",group:"",defaultValue:'right'},"priority":{type:"int",group:"",defaultValue:0,deprecated:true}}}});
+sap.ui.define(['sap/viz/library','sap/viz/ui5/core/BaseStructuredType'],function(l,B){"use strict";var T=B.extend("sap.viz.ui5.types.Title_layout",{metadata:{library:"sap.viz",properties:{position:{type:"string",defaultValue:'right'},priority:{type:"int",defaultValue:0,deprecated:true}}}});return T;});

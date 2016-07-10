@@ -1,34 +1,40 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<title>AppCache - Mobile</title>
+<title>Neptune Launchpad Mobile</title>
+<link rel="stylesheet" type="text/css" href="neptune/server/pdfview/PDFView-3.0.css" />
+<script src="neptune/server/pdfview/compatibility.js"></script>
+<script src="neptune/server/pdfview/pdf.js"></script>
+<script src="neptune/server/pdfview/iscroll.js"></script>
+<script src="neptune/server/pdfview/PDFView-3.0.js"></script>
+<script>PDFJS.workerSrc = "neptune/server/pdfview/pdf.worker.js";</script>
 <script id="sap-ui-bootstrap" type="text/javascript" src="neptune/server/openui5/resources/sap-ui-core.js"
 data-sap-ui-noDuplicateIds="false"
 data-sap-ui-preload="sync"
 data-sap-ui-theme="sap_bluecrystal"
-data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.commons,sap.ui.unified,sap.ui.ux3,sap.ui.table,sap.suite.ui.commons,sap.m,sap.me"></script>
+data-sap-ui-libs="sap.ui.layout,sap.ui.unified,sap.m"></script>
+<link rel="shortcut icon" href="neptune/public/application/neptune/preview/favicon.png" type="image/x-icon" />
+<script src="neptune/server/neptune/js/aes.js"></script>
+<script src="neptune/server/neptune/js/AppSync.js"></script>
+
+
 <script>
+    // Declare Neptune Namespace
+    sap.n = {};
+    sap.n.Shell = {};
+    sap.n.Launchpad = {};
+    sap.n.Phonegap = {};
+    sap.n.PDF = {};
+    sap.n.Apps = {};
+
     var AppDB;
     var fileTransfer;
-    var AppCacheText = {
-        noConnection: '',
-        userLogout: '',
-        enterUsername: '',
-        enterPassword: '',
-        enterNewPasscode: '',
-        enterRepeatPasscode: '',
-        noPasscodeMatch: '',
-        newPasswordNoMatch: '',
-        PasscodeToShort: '',
-        wrongResponse: '',
-        wrongCode: '',
-        wrongUserPass: ''
-    };
 
     // Phonegap Startup
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -67,46 +73,53 @@ data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.commons,sap.ui.unified,sap.ui.ux3
             }
         }, 100);
 
-        // PushNotification
-        if (AppCache.enablePush === true) {
-
-            if (AppCache.pushProvider === 'PushWoosh') {
-                initPushWoosh();
-            }
-
-            if (AppCache.pushProvider === 'SMP') {
-                initPushSMP();
-            }
-        }
     }
 
     function onOffline() {
         AppCache.isOffline = true;
-        if (typeof onOfflineCustom === 'function') {
-            onOfflineCustom();
+        AppCacheShellNetwork.setVisible(true);
+        AppCache_butLogon.setEnabled(false);
+
+        if (sap.n.Launchpad) {
+            if (sap.n.Launchpad.BuildMenu) {
+                sap.n.Launchpad.BuildMenu();
+            }
+        }
+
+        if (typeof sap.n.Phonegap.onOfflineCustom === 'function') {
+            sap.n.Phonegap.onOfflineCustom();
             return;
         }
     }
 
     function onOnline() {
         AppCache.isOffline = false;
-        if (typeof onOnlineCustom === 'function') {
-            onOnlineCustom();
+        AppCacheShellNetwork.setVisible(false);
+        AppCache_butLogon.setEnabled(true);
+
+        if (sap.n.Launchpad) {
+            if (sap.n.Launchpad.BuildMenu) {
+                sap.n.Launchpad.BuildMenu();
+            }
+        }
+
+        if (typeof sap.n.Phonegap.onOnlineCustom === 'function') {
+            sap.n.Phonegap.onOnlineCustom();
             return;
         }
     }
 
     function onPause() {
-        if (typeof onPauseCustom === 'function') {
-            onPauseCustom();
+        if (typeof sap.n.Phonegap.onPauseCustom === 'function') {
+            sap.n.Phonegap.onPauseCustom();
             return;
         }
     }
 
     function onResume() {
         setTimeout(function() {
-            if (typeof onResumeCustom === 'function') {
-                onResumeCustom();
+            if (typeof sap.n.Phonegap.onResumeCustom === 'function') {
+                sap.n.Phonegap.onResumeCustom();
                 return;
             }
         }, 100);
@@ -114,8 +127,8 @@ data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.commons,sap.ui.unified,sap.ui.ux3
 
     function onBackButton() {
 
-        if (typeof onBackButtonCustom === 'function') {
-            onBackButtonCustom();
+        if (typeof sap.n.Phonegap.onBackButtonCustom === 'function') {
+            sap.n.Phonegap.onBackButtonCustom();
             return;
         }
 
@@ -127,128 +140,184 @@ data-sap-ui-libs="sap.ui.layout,sap.viz,sap.ui.commons,sap.ui.unified,sap.ui.ux3
 
     function onMenuButton() {
 
-        if (typeof onMenuButtonCustom === 'function') {
-            onMenuButtonCustom();
+        if (typeof sap.n.Phonegap.onMenuButtonCustom === 'function') {
+            sap.n.Phonegap.onMenuButtonCustom();
             return;
         }
 
     }
 </script>
-<link href="neptune/public/application/neptune_appcache/css/app.css" type="text/css" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="neptune/server/pdfview/PDFView-3.0.css" />
-<script src="neptune/server/pdfview/compatibility.js"></script>
-<script src="neptune/server/pdfview/pdf.js"></script>
-<script src="neptune/server/pdfview/iscroll.js"></script>
-<script src="neptune/server/pdfview/PDFView-3.0.js"></script>
-<script>PDFJS.workerSrc = "neptune/server/pdfview/pdf.worker.js";</script>
-<script src="neptune/server/neptune/js/SignaturePad-3.0.js"></script>
-<script src="neptune/server/neptune/js/ModelData-3.0.js"></script>
+<link href="neptune/public/application/neptune_launchpad_mobile/css/app.css" type="text/css" rel="stylesheet" />
+<script src="neptune/server/neptune/js/SignaturePad.js"></script>
+<script src="neptune/server/neptune/js/ModelData.js"></script>
 
-<script src="cordova.js"></script>
+<script src="phonegap.js"></script>
 <script src="barcodescanner.js"></script>
 <script src="PushNotification.js"></script>
 <script src="GAPlugin.js"></script>
 </head>
-<body  class="sapUiBody" id="body">
+<body  class="sapUiBody" id="body"><form><div id="MobileContent"></div><input type="hidden" name="applid" value="NEPTUNE_LAUNCHPAD_MOBILE"></form><div id="AppCacheInLineStyle"></div><div id="AppCacheInLineHtml"></div><div id="AppCacheInLineStyleMenu" style="display:none;"></div><div id="AppCacheInLineHtmlMenu" style="display:none;"></div><div id="AppCacheInLineStyleDialog"></div><div id="AppCacheInLineHtmlDialog"></div><div id="AppCacheInLineStyleSplit1"></div><div id="AppCacheInLineStyleSplit2"></div><div id="AppCacheInLineHtmlSplit1"></div><div id="AppCacheInLineHtmlSplit2"></div>
 <script>
-//GLOBALS
-if (typeof AppCache == "undefined") { var sapUname = "GDIFLUMERI"; } else { var sapUname = AppCache.CurrentUname }
+var JSONH,jsonh=JSONH=function(n,r){function t(r){for(var t,e,u=r.length,o=l(u?r[0]:{}),c=o.length,f=n(u*c),i=0,h=0;u>i;++i)for(e=r[i],t=0;c>t;f[h++]=e[o[t++]]);return a.call([c],o,f)}function e(r){if("object"==typeof r[0])return r;for(var t,e,u=r.length,o=r[0],c=n((u-o-1)/o||0),f=1+o,i=0;u>f;)for(c[i++]=e={},t=0;o>t;e[r[++t]]=r[f++]);return c}function u(n){return n.length?t(n):n}function o(n){return n.length?e(n):n}function c(n,r,t,e){return h(u(n,e),r,t)}function f(n,r,t){return o(s(n,r),t)}var i=[],a=i.concat,l=Object.keys||function(n){var r,t=[];for(r in n)n.hasOwnProperty(r)&&t.push(r);return t},h=(n.isArray||function(n,r){return r=n.call(i),function(t){return n.call(t)==r}}({}.toString),i.map||function(r,t){for(var e=this,u=e.length,o=n(u);u--;o[u]=r.call(t,e[u],u,e));return o},r.stringify),s=r.parse;return{pack:u,parse:f,stringify:c,unpack:o}}(Array,JSON);
+var localAppID = "NEPTUNE_LAUNCHPAD_MOBILE";
+if (typeof AppCache === "undefined") { var sapUname = "GDIFLUMERI"; } else { var sapUname = AppCache.CurrentUname; }
  
- var AppCacheData = new sap.m.List("AppCacheData",{showNoData:false});
-var modelAppCacheData = new sap.ui.model.json.JSONModel();
-AppCacheData.setModel(modelAppCacheData); 
- var AppCache_boxLogon = new sap.m.VBox("AppCache_boxLogon",{visible:false});
-AppCache_boxLogon.placeAt("body"); 
- var AppCache_formLogon = new sap.ui.layout.form.SimpleForm("AppCache_formLogon",{title:"LOGON",labelMinWidth:100,editable:true});
-AppCache_boxLogon.addItem(AppCache_formLogon); 
+ var AppCacheShell = new sap.ui.unified.Shell("AppCacheShell",{visible:true,showPane:false,searchVisible:true,headerVisible:true,headerHiding:false}); 
+ var AppCacheShellMenu = new sap.ui.unified.ShellHeadItem("AppCacheShellMenu",{visible:false,startsSection:false,showSeparator:true,showMarker:false,selected:false,icon:"sap-icon://menu2",press: function(oEvent) {
+if (AppCacheShellMenuPop.isOpen()) {
+    AppCacheShellMenuPop.close();
+} else {
+    AppCacheShellMenuPop.openBy(this);
+}
+}});
+AppCacheShell.addHeadItem(AppCacheShellMenu); 
+ var AppCacheShellNetwork = new sap.ui.unified.ShellHeadItem("AppCacheShellNetwork",{visible:false,startsSection:false,showSeparator:false,showMarker:false,selected:false,icon:"sap-icon://feed"});
+AppCacheShell.addHeadEndItem(AppCacheShellNetwork); 
+ var AppCacheShellDebug = new sap.ui.unified.ShellHeadItem("AppCacheShellDebug",{visible:false,startsSection:false,showSeparator:true,showMarker:false,selected:false,icon:"sap-icon://dishwasher",press: function(oEvent) {sap.n.Debug.OpenDialog();}});
+AppCacheShell.addHeadEndItem(AppCacheShellDebug); 
+ var AppCacheShellNotif = new sap.ui.unified.ShellHeadItem("AppCacheShellNotif",{icon:"sap-icon://email",selected:false,showMarker:false,showSeparator:true,startsSection:false,visible:false,press: function(oEvent) {
+AppCache.Load(AppCache.NotifApp);
+this.setVisible(false);
+}});
+AppCacheShell.addHeadEndItem(AppCacheShellNotif); 
+ var AppCacheShellUser = new sap.ui.unified.ShellHeadUserItem("AppCacheShellUser",{image:"sap-icon://account",press: function(oEvent) {
+if (sap.n.Launchpad.currentTile && !sap.n.Launchpad.currentTile.SUB_MENU && AppCache.CurrentApp !== AppCache.PasscodeApp) {
+
+    if (sap.ui.Device.system.phone) {
+
+        AppCacheUserActionMClose.setVisible(true);
+
+        // Documentation
+        if (sap.n.Launchpad.currentTile.DOC_URL !== "") {
+            AppCacheUserActionMDoc.setVisible(true);
+        } else {
+            AppCacheUserActionMDoc.setVisible(false);
+        }
+
+        // Action
+        var rec = ModelData.Find(AppCacheShellListFav, "GUID", sap.n.Launchpad.currentTile.GUID);
+
+        if (rec.length) {
+            AppCacheUserActionMFavAdd.setVisible(false);
+            AppCacheUserActionMFavDel.setVisible(true);
+        } else {
+            AppCacheUserActionMFavAdd.setVisible(true);
+            AppCacheUserActionMFavDel.setVisible(false);
+        }
+
+    }
+
+} else {
+    AppCacheUserActionMFavAdd.setVisible(false);
+    AppCacheUserActionMFavDel.setVisible(false);
+    AppCacheUserActionMClose.setVisible(false);
+    AppCacheUserActionMDoc.setVisible(false);
+}
+
+currSettings = JSON.stringify(modelAppCacheDiaSettings.oData);
+currNotif = JSON.stringify(modelAppCacheNotifTime.oData);
+AppCacheUserAction.openBy(this);
+}});
+AppCacheShell.setUser(AppCacheShellUser); 
+ var AppCacheToolbar = new sap.m.OverflowToolbar("AppCacheToolbar",{active:false,enabled:true,visible:true});
+AppCacheShell.setSearch(AppCacheToolbar); 
+ var AppCacheShellTitleTxt = new sap.m.Text("AppCacheShellTitleTxt",{wrapping:true,visible:true});
+AppCacheToolbar.addContent(AppCacheShellTitleTxt); 
+ var AppCacheToolbarSpacer = new sap.m.ToolbarSpacer("AppCacheToolbarSpacer",{});
+AppCacheToolbar.addContent(AppCacheToolbarSpacer); 
+ var AppCacheNav = new sap.m.NavContainer("AppCacheNav",{width:"100%",visible:true,height:"100%",defaultTransitionName:"slide"});
+AppCacheShell.addContent(AppCacheNav); 
+ var AppCachePageEmpty = new sap.m.Page("AppCachePageEmpty",{backgroundDesign:"Transparent",enableScrolling:true,showFooter:false,showHeader:false,showNavButton:false,visible:true});
+AppCacheNav.addPage(AppCachePageEmpty); 
+ var AppCache_boxURL = new sap.m.Page("AppCache_boxURL",{visible:true,showNavButton:false,showHeader:false,showFooter:false,enableScrolling:false,backgroundDesign:"Transparent"});
+AppCacheNav.addPage(AppCache_boxURL); 
+ var AppCacheShellURL = new sap.m.Shell("AppCacheShellURL",{appWidthLimited:true,backgroundOpacity:1,backgroundRepeat:false,showLogout:true,visible:true,title:""});
+AppCache_boxURL.addContent(AppCacheShellURL); 
+ var AppCacheAppURL = new sap.m.App("AppCacheAppURL",{width:"100%",visible:true,height:"100%",defaultTransitionName:"slide",backgroundRepeat:false,backgroundOpacity:1});
+AppCacheShellURL.setApp(AppCacheAppURL); 
+ var AppCachePageURL = new sap.m.Page("AppCachePageURL",{backgroundDesign:"Standard",enableScrolling:false,showFooter:false,showHeader:false,showNavButton:false,visible:true});
+AppCacheAppURL.addPage(AppCachePageURL); 
+ var AppCache_urlHTML = new sap.ui.core.HTML("AppCache_urlHTML",{content:"<div id='AppCache_URLDiv' style='height:100%;width:100%;'></div>",preferDOM:true,sanitizeContent:false,visible:true});
+AppCachePageURL.addContent(AppCache_urlHTML); 
+ var AppCache_boxLogon = new sap.m.Page("AppCache_boxLogon",{visible:true,showNavButton:false,showHeader:false,showFooter:false,enableScrolling:true,backgroundDesign:"Transparent"});
+AppCacheNav.addPage(AppCache_boxLogon); 
+ var AppCache_formLogon = new sap.ui.layout.form.SimpleForm("AppCache_formLogon",{editable:true,labelSpanL:12,labelSpanM:12,labelSpanS:12,"layout":"ResponsiveGridLayout"});
+AppCache_boxLogon.addContent(AppCache_formLogon); 
+ var AppCache_titleLogon = new sap.ui.core.Title("AppCache_titleLogon",{emphasized:false,level:"H1",text:"Logon"});
+AppCache_formLogon.addContent(AppCache_titleLogon); 
  var AppCache_lblUsername = new sap.m.Label("AppCache_lblUsername",{text:"Username"});
 AppCache_formLogon.addContent(AppCache_lblUsername); 
- var AppCache_inUsername = new sap.m.Input("AppCache_inUsername",{valueLiveUpdate:true,width:"100%",change: function(oEvent) {AppCache_inPassword.focus();}});
+ var AppCache_inUsername = new sap.m.Input("AppCache_inUsername",{width:"100%",change: function(oEvent) {AppCache_inPassword.focus();}});
 AppCache_formLogon.addContent(AppCache_inUsername); 
  var AppCache_lblPassword = new sap.m.Label("AppCache_lblPassword",{text:"Password"});
 AppCache_formLogon.addContent(AppCache_lblPassword); 
- var AppCache_inPassword = new sap.m.Input("AppCache_inPassword",{valueLiveUpdate:true,type:"Password",width:"100%"});
+ var AppCache_inPassword = new sap.m.Input("AppCache_inPassword",{type:"Password",width:"100%"});
 AppCache_formLogon.addContent(AppCache_inPassword); 
- var AppCache_barLogon = new sap.m.Bar("AppCache_barLogon",{});
-AppCache_boxLogon.addItem(AppCache_barLogon); 
- var AppCache_butSelect = new sap.m.Button("AppCache_butSelect",{icon:"sap-icon://locked",visible:false,press: function(oEvent) {
-if (modelAppCacheUsers.oData.length === 1) {
-    AppCache.setEnableLogonScreen(false);
-    AppCache_listStatus.setVisible(false);
-    AppCache.Load(AppCache.PasscodeApp);
-    AppCache.Encrypted = modelAppCacheUsers.oData[0].AUTH;
-    AppCache.CurrentUser = modelAppCacheUsers.oData[0].NAME;
-    AppCache.CurrentUname = modelAppCacheUsers.oData[0].UNAME;
-} else {
-    AppCache_inUsername.setValue();
-    AppCache_inPassword.setValue();
-    AppCache.setEnableLogonScreen(false);
-    AppCache.setEnableUsersScreen(true);
-    AppCache_listStatus.setVisible(false);
-}
-}});
-AppCache_barLogon.addContentLeft(AppCache_butSelect); 
- var AppCache_butLogon = new sap.m.Button("AppCache_butLogon",{icon:"sap-icon://accept",text:"Logon",type:"Accept",press: function(oEvent) {
+ var AppCache_butLogon = new sap.m.Button("AppCache_butLogon",{text:"Log On",type:"Emphasized",press: function(oEvent) {
 var userName = AppCache_inUsername.getValue();
 AppCache_inUsername.setValue(userName.trim());
 AppCache.Logon();
 }});
-AppCache_barLogon.addContentRight(AppCache_butLogon); 
- var AppCache_boxPassword = new sap.m.VBox("AppCache_boxPassword",{visible:false});
-AppCache_boxPassword.placeAt("body"); 
- var AppCache_formPassword = new sap.ui.layout.form.SimpleForm("AppCache_formPassword",{editable:true,labelMinWidth:120,title:"CHANGE PASSWORD"});
-AppCache_boxPassword.addItem(AppCache_formPassword); 
- var AppCache_lblPassOld = new sap.m.Label("AppCache_lblPassOld",{text:"Old Password"});
+AppCache_formLogon.addContent(AppCache_butLogon); 
+ var AppCache_resetPassword = new sap.m.Link("AppCache_resetPassword",{wrapping:false,visible:false,text:"Forgot Password",subtle:false,enabled:true,emphasized:false,press: function(oEvent) {
+window.open(AppCache.passUrlReset, "_system");
+}});
+AppCache_formLogon.addContent(AppCache_resetPassword); 
+ var AppCache_listStatus = new sap.m.List("AppCache_listStatus",{visible:true,backgroundDesign:"Solid"});
+AppCache_boxLogon.addContent(AppCache_listStatus); 
+ var AppCache_statusItem = new sap.m.StandardListItem("AppCache_statusItem",{});
+AppCache_listStatus.addItem(AppCache_statusItem); 
+ var AppCache_boxPassword = new sap.m.Page("AppCache_boxPassword",{backgroundDesign:"Transparent",enableScrolling:true,showFooter:false,showHeader:false,showNavButton:false,visible:true});
+AppCacheNav.addPage(AppCache_boxPassword); 
+ var AppCache_formPassword = new sap.ui.layout.form.SimpleForm("AppCache_formPassword",{editable:true,labelSpanL:12,labelSpanM:12,labelSpanS:12,"layout":"ResponsiveGridLayout"});
+AppCache_boxPassword.addContent(AppCache_formPassword); 
+ var AppCache_titlePassword = new sap.ui.core.Title("AppCache_titlePassword",{emphasized:false,level:"H1",text:"Change Password"});
+AppCache_formPassword.addContent(AppCache_titlePassword); 
+ var AppCache_lblPassOld = new sap.m.Label("AppCache_lblPassOld",{text:"Old"});
 AppCache_formPassword.addContent(AppCache_lblPassOld); 
- var AppCache_inPassOld = new sap.m.Input("AppCache_inPassOld",{valueLiveUpdate:true,type:"Password",change: function(oEvent) {AppCache_inPassword.focus();}});
+ var AppCache_inPassOld = new sap.m.Input("AppCache_inPassOld",{type:"Password",change: function(oEvent) {AppCache_inPassword.focus();}});
 AppCache_formPassword.addContent(AppCache_inPassOld); 
- var AppCache_lblPassNew = new sap.m.Label("AppCache_lblPassNew",{text:"New Password"});
+ var AppCache_lblPassNew = new sap.m.Label("AppCache_lblPassNew",{text:"New"});
 AppCache_formPassword.addContent(AppCache_lblPassNew); 
- var AppCache_inPassNew = new sap.m.Input("AppCache_inPassNew",{valueLiveUpdate:true,type:"Password"});
+ var AppCache_inPassNew = new sap.m.Input("AppCache_inPassNew",{type:"Password"});
 AppCache_formPassword.addContent(AppCache_inPassNew); 
- var AppCache_lblPassRepeat = new sap.m.Label("AppCache_lblPassRepeat",{text:"Repeat Password"});
+ var AppCache_lblPassRepeat = new sap.m.Label("AppCache_lblPassRepeat",{text:"Repeat"});
 AppCache_formPassword.addContent(AppCache_lblPassRepeat); 
- var AppCache_inPassRepeat = new sap.m.Input("AppCache_inPassRepeat",{valueLiveUpdate:true,type:"Password"});
+ var AppCache_inPassRepeat = new sap.m.Input("AppCache_inPassRepeat",{type:"Password"});
 AppCache_formPassword.addContent(AppCache_inPassRepeat); 
- var AppCache_barPassword = new sap.m.Bar("AppCache_barPassword",{});
-AppCache_boxPassword.addItem(AppCache_barPassword); 
- var AppCache_butPassword = new sap.m.Button("AppCache_butPassword",{icon:"sap-icon://accept",text:"Confirm",type:"Accept",press: function(oEvent) {AppCache.SetPassword();}});
-AppCache_barPassword.addContentRight(AppCache_butPassword); 
- var AppCache_boxPasscode = new sap.m.VBox("AppCache_boxPasscode",{visible:false});
-AppCache_boxPasscode.placeAt("body"); 
- var AppCache_formPasscode = new sap.ui.layout.form.SimpleForm("AppCache_formPasscode",{editable:true,labelMinWidth:100,title:"PIN CODE"});
-AppCache_boxPasscode.addItem(AppCache_formPasscode); 
- var AppCache_lblPasscode1 = new sap.m.Label("AppCache_lblPasscode1",{text:"Set Pin Code"});
+ var AppCache_butPassword = new sap.m.Button("AppCache_butPassword",{text:"Confirm",type:"Emphasized",press: function(oEvent) {AppCache.SetPassword();}});
+AppCache_formPassword.addContent(AppCache_butPassword); 
+ var AppCache_boxPasscode = new sap.m.Page("AppCache_boxPasscode",{backgroundDesign:"Transparent",enableScrolling:true,showFooter:false,showHeader:false,showNavButton:false,visible:true});
+AppCacheNav.addPage(AppCache_boxPasscode); 
+ var AppCache_formPasscode = new sap.ui.layout.form.SimpleForm("AppCache_formPasscode",{"layout":"ResponsiveGridLayout",labelSpanS:12,labelSpanM:12,labelSpanL:12,editable:true});
+AppCache_boxPasscode.addContent(AppCache_formPasscode); 
+ var AppCache_titlePasscode = new sap.ui.core.Title("AppCache_titlePasscode",{emphasized:false,level:"H1",text:"Pin Code"});
+AppCache_formPasscode.addContent(AppCache_titlePasscode); 
+ var AppCache_lblPasscode1 = new sap.m.Label("AppCache_lblPasscode1",{text:"Set Pin"});
 AppCache_formPasscode.addContent(AppCache_lblPasscode1); 
- var AppCache_inPasscode1 = new sap.m.Input("AppCache_inPasscode1",{valueLiveUpdate:true,type:"Tel",placeholder:"Numeric only",maxLength:4,change: function(oEvent) {AppCache_inPasscode2.focus();}});
+ var AppCache_inPasscode1 = new sap.m.Input("AppCache_inPasscode1",{visible:true,valueHelpOnly:false,type:"Tel",startSuggestion:1,showValueStateMessage:true,showValueHelp:false,showTableSuggestionValueHelp:true,showSuggestion:false,placeholder:"Numeric only",maxLength:4,filterSuggests:true,fieldWidth:"50%",enabled:true,editable:true});
 AppCache_formPasscode.addContent(AppCache_inPasscode1); 
- var AppCache_lblPasscode2 = new sap.m.Label("AppCache_lblPasscode2",{text:"Repeat Pin Code"});
+ var AppCache_lblPasscode2 = new sap.m.Label("AppCache_lblPasscode2",{text:"Repeat Pin"});
 AppCache_formPasscode.addContent(AppCache_lblPasscode2); 
- var AppCache_inPasscode2 = new sap.m.Input("AppCache_inPasscode2",{valueLiveUpdate:true,maxLength:4,placeholder:"Numeric only",type:"Tel"});
+ var AppCache_inPasscode2 = new sap.m.Input("AppCache_inPasscode2",{editable:true,enabled:true,fieldWidth:"50%",filterSuggests:true,maxLength:4,placeholder:"Numeric only",showSuggestion:false,showTableSuggestionValueHelp:true,showValueHelp:false,showValueStateMessage:true,startSuggestion:1,type:"Tel",valueHelpOnly:false,visible:true});
 AppCache_formPasscode.addContent(AppCache_inPasscode2); 
- var AppCache_lblPasscode3 = new sap.m.Label("AppCache_lblPasscode3",{});
-AppCache_formPasscode.addContent(AppCache_lblPasscode3); 
- var AppCache_txtPinCode = new sap.m.Text("AppCache_txtPinCode",{text:"Set your private Pin Code"});
-AppCache_formPasscode.addContent(AppCache_txtPinCode); 
- var AppCache_barPasscode = new sap.m.Bar("AppCache_barPasscode",{});
-AppCache_boxPasscode.addItem(AppCache_barPasscode); 
- var AppCache_butPasscode = new sap.m.Button("AppCache_butPasscode",{icon:"sap-icon://accept",text:"Confirm",type:"Accept",press: function(oEvent) {AppCache.SetPasscode();}});
-AppCache_barPasscode.addContentRight(AppCache_butPasscode); 
- var AppCache_boxCaptcha = new sap.m.VBox("AppCache_boxCaptcha",{visible:false});
-AppCache_boxCaptcha.placeAt("body"); 
- var AppCache_formCaptcha = new sap.ui.layout.form.SimpleForm("AppCache_formCaptcha",{editable:true,labelMinWidth:120,title:"CAPTCHA"});
-AppCache_boxCaptcha.addItem(AppCache_formCaptcha); 
+ var AppCache_butPasscode = new sap.m.Button("AppCache_butPasscode",{text:"Confirm",type:"Emphasized",press: function(oEvent) {AppCache.SetPasscode();}});
+AppCache_formPasscode.addContent(AppCache_butPasscode); 
+ var AppCache_boxCaptcha = new sap.m.Page("AppCache_boxCaptcha",{backgroundDesign:"Transparent",enableScrolling:true,showFooter:false,showHeader:false,showNavButton:false,visible:true});
+AppCacheNav.addPage(AppCache_boxCaptcha); 
+ var AppCache_formCaptcha = new sap.ui.layout.form.SimpleForm("AppCache_formCaptcha",{editable:true,labelMinWidth:120});
+AppCache_boxCaptcha.addContent(AppCache_formCaptcha); 
+ var AppCache_titleCaptcha = new sap.ui.core.Title("AppCache_titleCaptcha",{text:"Captcha",level:"H1",emphasized:false});
+AppCache_formCaptcha.addContent(AppCache_titleCaptcha); 
  var AppCache_lblCaptcha = new sap.m.Label("AppCache_lblCaptcha",{text:"Captcha Code"});
 AppCache_formCaptcha.addContent(AppCache_lblCaptcha); 
  var AppCache_boxCaptchaCode = new sap.m.VBox("AppCache_boxCaptchaCode",{});
 AppCache_formCaptcha.addContent(AppCache_boxCaptchaCode); 
- var AppCache_inCaptcha = new sap.m.Input("AppCache_inCaptcha",{valueLiveUpdate:true});
+ var AppCache_inCaptcha = new sap.m.Input("AppCache_inCaptcha",{});
 AppCache_boxCaptchaCode.addItem(AppCache_inCaptcha); 
  var AppCache_imgCaptcha = new sap.m.Image("AppCache_imgCaptcha",{});
 AppCache_boxCaptchaCode.addItem(AppCache_imgCaptcha); 
- var AppCache_barCaptcha = new sap.m.Bar("AppCache_barCaptcha",{});
-AppCache_boxCaptcha.addItem(AppCache_barCaptcha); 
- var AppCache_butSendCaptcha = new sap.m.Button("AppCache_butSendCaptcha",{type:"Accept",text:"Send",icon:"sap-icon://accept",press: function(oEvent) {
+ var AppCache_butSendCaptcha = new sap.m.Button("AppCache_butSendCaptcha",{type:"Emphasized",icon:"sap-icon://accept",press: function(oEvent) {
 $.ajax(
 {
     type:"POST",
@@ -284,29 +353,41 @@ $.ajax(
 );
 
 }});
-AppCache_barCaptcha.addContentRight(AppCache_butSendCaptcha); 
- var AppCache_listStatus = new sap.m.List("AppCache_listStatus",{backgroundDesign:"Transparent",visible:false});
-AppCache_listStatus.placeAt("body"); 
- var AppCache_statusItem = new sap.m.StandardListItem("AppCache_statusItem",{infoState:"Error"});
-AppCache_listStatus.addItem(AppCache_statusItem); 
- var AppCache_boxUsers = new sap.m.VBox("AppCache_boxUsers",{visible:false});
-AppCache_boxUsers.placeAt("body"); 
- var AppCacheUsers = new sap.m.List("AppCacheUsers",{showNoData:false,rememberSelections:false,mode:"MultiSelect",headerText:"SELECT USER"});
-AppCache_boxUsers.addItem(AppCacheUsers);
+AppCache_boxCaptchaCode.addItem(AppCache_butSendCaptcha); 
+ var AppCache_boxUsers = new sap.m.Page("AppCache_boxUsers",{backgroundDesign:"Transparent",enableScrolling:true,showFooter:false,showHeader:false,showNavButton:false,visible:true});
+AppCacheNav.addPage(AppCache_boxUsers); 
+ var AppCacheUsers = new sap.m.List("AppCacheUsers",{showNoData:false,rememberSelections:false,mode:"Delete",inset:true,headerText:"Users",delete: function(oEvent) {
+var deleteItem = oEvent.getParameter("listItem");
+var context = deleteItem.getBindingContext();
+var value = context.getProperty("UNAME");
+
+ModelData.Delete(AppCacheUsers,"UNAME",value);
+setCacheAppCacheUsers();
+
+// No User -> Logon Screen
+if (!modelAppCacheUsers.getData().length) {
+    AppCache.Logout();
+}
+}});
+AppCache_boxUsers.addContent(AppCacheUsers);
 var modelAppCacheUsers = new sap.ui.model.json.JSONModel();
 AppCacheUsers.setModel(modelAppCacheUsers); 
- var AppCache_itemUsers = new sap.m.StandardListItem("AppCache_itemUsers",{description:{parts:["TRDAT","LTIME"]},infoState:"Success",selected:"{SELECTED}",title:"{NAME}",type:"Navigation",press: function(oEvent) {
-
+ var AppCache_itemUsers = new sap.m.StandardListItem("AppCache_itemUsers",{description:{parts:["TRDAT","LTIME"]},infoState:"Success",selected:"{SELECTED}",title:"{NAME}",type:"Active",press: function(oEvent) {
 var context = oEvent.oSource.getBindingContext();
 AppCache.Encrypted = context.getProperty("AUTH");
 AppCache.CurrentUser = context.getProperty("NAME");
 AppCache.CurrentUname = context.getProperty("UNAME");
+AppCache.CurrentLanguage = context.getProperty("LANGU_NAD");
+sapUname = AppCache.CurrentUname;
 
-// Show Users Screen
-AppCache.setEnableLogonScreen(false);
-AppCache.setEnablePasswordScreen(false);
-AppCache.setEnableUsersScreen(false);
-AppCache_listStatus.setVisible(false);
+var userImage = context.getProperty("USER_IMAGE");
+
+if (userImage) {
+    AppCacheShellUser.setImage(userImage);
+}
+
+// Translation
+AppCache.translate();
 
 // Unselect
 AppCacheUsers.removeSelections();
@@ -316,33 +397,444 @@ setCacheAppCacheUsers();
 AppCache.Load(AppCache.PasscodeApp);
 }});
 AppCacheUsers.bindAggregation("items", "/",AppCache_itemUsers); 
- var AppCache_barUserAction = new sap.m.Bar("AppCache_barUserAction",{});
-AppCache_boxUsers.addItem(AppCache_barUserAction); 
- var AppCache_butChangeUser = new sap.m.Button("AppCache_butChangeUser",{icon:"sap-icon://collaborate",press: function(oEvent) {AppCache.Logout();}});
-AppCache_barUserAction.addContentLeft(AppCache_butChangeUser); 
- var AppCache_butDelete = new sap.m.Button("AppCache_butDelete",{icon:"sap-icon://delete",text:"Delete",type:"Reject",press: function(oEvent) {
-// Delete Selected Entries
-var dataModel = modelAppCacheUsers.getData();
-var dataUsers = modelAppCacheUsers.getData();
+ var AppCacheShellTranslation = new sap.m.Page("AppCacheShellTranslation",{visible:false,showNavButton:false,showHeader:true,showFooter:true,enableScrolling:true,backgroundDesign:"Standard"}); 
+ var AppCache_tNoConnection = new sap.m.Text("AppCache_tNoConnection",{text:"No connection"}); 
+ var AppCache_tUserLogout = new sap.m.Text("AppCache_tUserLogout",{text:"User logged out"}); 
+ var AppCache_tEnterUsername = new sap.m.Text("AppCache_tEnterUsername",{text:"Enter username"}); 
+ var AppCache_tEnterPassword = new sap.m.Text("AppCache_tEnterPassword",{text:"Enter password"}); 
+ var AppCache_tEnterNewPasscode = new sap.m.Text("AppCache_tEnterNewPasscode",{text:"Enter new pin code"}); 
+ var AppCache_tEnterRepeatPasscode = new sap.m.Text("AppCache_tEnterRepeatPasscode",{text:"Repeat pin code"}); 
+ var AppCache_tNoPasscodeMatch = new sap.m.Text("AppCache_tNoPasscodeMatch",{text:"Pin code do not match"}); 
+ var AppCache_tNewPasswordNoMatch = new sap.m.Text("AppCache_tNewPasswordNoMatch",{text:"Password do not match"}); 
+ var AppCache_tPasscodeToShort = new sap.m.Text("AppCache_tPasscodeToShort",{text:"Pin code too short, min 4 digits"}); 
+ var AppCache_tWrongResponse = new sap.m.Text("AppCache_tWrongResponse",{text:"No valid APPLID or other Error"}); 
+ var AppCache_tWrongActivationCode = new sap.m.Text("AppCache_tWrongActivationCode",{text:"Wrong Activation Code"}); 
+ var AppCache_tWrongUserNamePass = new sap.m.Text("AppCache_tWrongUserNamePass",{text:"Wrong username/password"}); 
+ var AppCache_tErrorDownloading = new sap.m.Text("AppCache_tErrorDownloading",{text:"Error downloading new version"}); 
+ var AppCache_tDownloading = new sap.m.Text("AppCache_tDownloading",{text:"Downloading new version"}); 
+ var AppCache_tAppUpdated = new sap.m.Text("AppCache_tAppUpdated",{text:"App updated. New logon required"}); 
+ var AppCache_tNoCurrentConfig = new sap.m.Text("AppCache_tNoCurrentConfig",{text:"No bundle ID selected"}); 
+ var AppCache_tLastLogon = new sap.m.Text("AppCache_tLastLogon",{text:"Last Logon"}); 
+ var AppCache_tMaxFileSize = new sap.m.Text("AppCache_tMaxFileSize",{text:"File is too large.  Allowed max file size is 200kb"}); 
+ var AppCache_tAppNotFound = new sap.m.Text("AppCache_tAppNotFound",{text:"App not found or no policy"}); 
+ var AppCacheShellHidden = new sap.m.Page("AppCacheShellHidden",{backgroundDesign:"Standard",enableScrolling:true,showFooter:true,showHeader:true,showNavButton:false,visible:false}); 
+ var AppCacheUserAction = new sap.m.ActionSheet("AppCacheUserAction",{placement:"Bottom",showCancelButton:true}); 
+ var AppCacheUserActionSettings = new sap.m.Button("AppCacheUserActionSettings",{icon:"sap-icon://settings",iconDensityAware:true,iconFirst:true,enabled:false,text:"Settings",visible:true,press: function(oEvent) {
+// Build Version Info - General
+var arrInfo = new Array();
+var rec = {};
+rec.APPLID = 'UI5 Version';
+rec.OBJECT = sap.ui.version;
+arrInfo.push(rec);
 
-for (var i = dataModel.length - 1; i >= 0; i--) {
-    if (dataModel[i].SELECTED == true) {
-        dataModel.splice(i, 1);
-    }
+// Build Version Info - Phone
+if (typeof device !== "undefined") {
+
+    var rec = {};
+    rec.APPLID = 'Phone Type';
+    rec.OBJECT = device.platform;
+    arrInfo.push(rec);
+
+    var rec = {};
+    rec.APPLID = 'Phone Version';
+    rec.OBJECT = device.version;
+    arrInfo.push(rec);
+
+    var rec = {};
+    rec.APPLID = 'Phone Model';
+    rec.OBJECT = device.model;
+    arrInfo.push(rec);
+
+    var rec = {};
+    rec.APPLID = 'Cordova Version';
+    rec.OBJECT = device.cordova;
+    arrInfo.push(rec);
+
+    var rec = {};
+    rec.APPLID = 'App Version';
+    rec.OBJECT = AppCache.AppVersion;
+    arrInfo.push(rec);
+
 }
 
-modelAppCacheUsers.setData(dataModel);
-AppCacheUsers.removeSelections();
-setCacheAppCacheUsers();
+modelAppCacheTabVer.setData(arrInfo);
+AppCacheDiaSettings.open();
+}});
+AppCacheUserAction.addButton(AppCacheUserActionSettings); 
+ var AppCacheUserActionLock = new sap.m.Button("AppCacheUserActionLock",{visible:false,text:"Lock",iconFirst:true,iconDensityAware:true,icon:"sap-icon://locked",enabled:false,press: function(oEvent) {AppCache.Lock();}});
+AppCacheUserAction.addButton(AppCacheUserActionLock); 
+ var AppCacheUserActionLogout = new sap.m.Button("AppCacheUserActionLogout",{enabled:true,icon:"sap-icon://log",iconDensityAware:true,iconFirst:true,text:"Logout",visible:true,press: function(oEvent) {AppCache.Logout();}});
+AppCacheUserAction.addButton(AppCacheUserActionLogout); 
+ var AppCacheUserActionMClose = new sap.m.Button("AppCacheUserActionMClose",{enabled:true,icon:"sap-icon://sys-cancel",iconDensityAware:true,iconFirst:true,text:"Close",visible:false,press: function(oEvent) {
+// Destroy current App or URL
+if (sap.n.Launchpad.currentTile.URL_EXTERNAL || sap.n.Launchpad.currentTile.SAP_TRANS) {
+    var iframe = $("#iFrame" + sap.n.Launchpad.currentTile.GUID)
+    iframe[0].parentNode.removeChild(iframe[0]);
+} else {
+    AppCache.View[sap.n.Launchpad.currentTile.APPLID] = null;
+    sap.n.currentView.removeAllContent();
+    sap.n.currentView.destroy();
+}
 
-// No User -> Logon Screen
-if (!modelAppCacheUsers.getData().length) {
-    AppCache.Logout();
+// Navigate Home
+AppCache.Load(AppCache.StartApp);
+sap.n.Launchpad.SetHeader();
+}});
+AppCacheUserAction.addButton(AppCacheUserActionMClose); 
+ var AppCacheUserActionMFavAdd = new sap.m.Button("AppCacheUserActionMFavAdd",{visible:false,text:"Favorite",iconFirst:true,iconDensityAware:true,icon:"sap-icon://add-favorite",enabled:true,press: function(oEvent) {
+ModelData.Update(AppCacheShellListFav,"GUID",sap.n.Launchpad.currentTile.GUID,sap.n.Launchpad.currentTile);
+setCacheAppCacheShellListFav();
+}});
+AppCacheUserAction.addButton(AppCacheUserActionMFavAdd); 
+ var AppCacheUserActionMFavDel = new sap.m.Button("AppCacheUserActionMFavDel",{enabled:true,icon:"sap-icon://unfavorite",iconDensityAware:true,iconFirst:true,text:"Unfavorite",visible:false,press: function(oEvent) {
+ModelData.Delete(AppCacheShellListFav,"GUID",sap.n.Launchpad.currentTile.GUID);
+setCacheAppCacheShellListFav();
+}});
+AppCacheUserAction.addButton(AppCacheUserActionMFavDel); 
+ var AppCacheUserActionMDoc = new sap.m.Button("AppCacheUserActionMDoc",{visible:false,text:"Documentation",iconFirst:true,iconDensityAware:true,icon:"sap-icon://document-text",enabled:true,press: function(oEvent) {
+AppCacheDiaDoc.open();
+
+setTimeout(function() {
+    $("#AppCacheShellDociFrame").attr('src', sap.n.Launchpad.currentTile.DOC_URL);
+}, 10);
+}});
+AppCacheUserAction.addButton(AppCacheUserActionMDoc); 
+ var AppCacheAppAction = new sap.m.ActionSheet("AppCacheAppAction",{placement:"Bottom",showCancelButton:true}); 
+ var AppCacheUserActionClose = new sap.m.Button("AppCacheUserActionClose",{enabled:true,icon:"sap-icon://sys-cancel",iconDensityAware:true,iconFirst:true,text:"Close",visible:true,press: function(oEvent) {
+// Turn off
+$.each(AppCacheToolbar.getContent(), function(i, data) {
+    if (data.setType) {
+        data.setType("Transparent");
+    }
+});
+
+// Destroy current App or URL
+if (sap.n.Launchpad.currentTile.URL_EXTERNAL || sap.n.Launchpad.currentTile.SAP_TRANS) {
+    var iframe = $("#iFrame" + sap.n.Launchpad.currentTile.GUID)
+    iframe[0].parentNode.removeChild(iframe[0]);
+} else {
+    AppCache.View[sap.n.Launchpad.currentTile.APPLID] = null;
+    sap.n.currentView.removeAllContent();
+    sap.n.currentView.destroy();
+}
+
+// Destroy Button
+var navBut = sap.ui.getCore().byId("but" + sap.n.Launchpad.currentTile.GUID);
+navBut.destroy();
+
+// Navigate Home
+AppCache.Load(AppCache.StartApp);
+sap.n.Launchpad.SetHeader();
+}});
+AppCacheAppAction.addButton(AppCacheUserActionClose); 
+ var AppCacheUserActionFavAdd = new sap.m.Button("AppCacheUserActionFavAdd",{visible:true,text:"Favorite",iconFirst:true,iconDensityAware:true,icon:"sap-icon://add-favorite",enabled:true,press: function(oEvent) {
+ModelData.Update(AppCacheShellListFav,"GUID",sap.n.Launchpad.currentTile.GUID,sap.n.Launchpad.currentTile);
+setCacheAppCacheShellListFav();
+}});
+AppCacheAppAction.addButton(AppCacheUserActionFavAdd); 
+ var AppCacheUserActionFavDel = new sap.m.Button("AppCacheUserActionFavDel",{enabled:true,icon:"sap-icon://unfavorite",iconDensityAware:true,iconFirst:true,text:"Unfavorite",visible:true,press: function(oEvent) {
+ModelData.Delete(AppCacheShellListFav,"GUID",sap.n.Launchpad.currentTile.GUID);
+setCacheAppCacheShellListFav();
+}});
+AppCacheAppAction.addButton(AppCacheUserActionFavDel); 
+ var AppCacheUserActionDoc = new sap.m.Button("AppCacheUserActionDoc",{visible:true,text:"Documentation",iconFirst:true,iconDensityAware:true,icon:"sap-icon://document-text",enabled:true,press: function(oEvent) {
+AppCacheDiaDoc.open();
+
+setTimeout(function() {
+    $("#AppCacheShellDociFrame").attr('src', sap.n.Launchpad.currentTile.DOC_URL);
+}, 10);
+}});
+AppCacheAppAction.addButton(AppCacheUserActionDoc); 
+ var AppCacheShellMenuPop = new sap.m.Popover("AppCacheShellMenuPop",{contentHeight:"100%",contentWidth:"350px",enableScrolling:false,horizontalScrolling:false,offsetX:0,offsetY:0,placement:"Bottom",showHeader:false,verticalScrolling:true}); 
+ var AppCacheShellMenuNav = new sap.m.NavContainer("AppCacheShellMenuNav",{width:"100%",visible:true,height:"100%",defaultTransitionName:"slide"});
+AppCacheShellMenuPop.addContent(AppCacheShellMenuNav); 
+ var AppCacheShellMenuPageStart = new sap.m.Page("AppCacheShellMenuPageStart",{backgroundDesign:"Standard",enableScrolling:true,showFooter:false,showHeader:false,showNavButton:false,visible:true});
+AppCacheShellMenuNav.addPage(AppCacheShellMenuPageStart); 
+ var AppCacheShellMenuListAction = new sap.m.List("AppCacheShellMenuListAction",{width:"100%",visible:true,showUnread:false,showSeparators:"None",showNoData:false,rememberSelections:true,modeAnimationOn:true,inset:true,includeItemInSelection:false,growingThreshold:20,growingScrollToLoad:false,growing:false});
+AppCacheShellMenuPageStart.addContent(AppCacheShellMenuListAction); 
+ var AppCacheShellMenuListAction1 = new sap.m.StandardListItem("AppCacheShellMenuListAction1",{visible:true,unread:false,type:"Active",title:"Home",selected:false,iconInset:true,iconDensityAware:true,icon:"sap-icon://home",adaptTitleSize:true,press: function(oEvent) {
+AppCache.Home();
+AppCacheShellMenuPop.close();
+}});
+AppCacheShellMenuListAction.addItem(AppCacheShellMenuListAction1); 
+ var AppCacheShellMenuListAction2 = new sap.m.StandardListItem("AppCacheShellMenuListAction2",{visible:true,unread:false,type:"Active",title:"All apps",selected:false,iconInset:true,iconDensityAware:true,icon:"sap-icon://alphabetical-order",adaptTitleSize:true,press: function(oEvent) {
+AppCacheShellMenuNav.to(AppCacheShellMenuPageAll);
+}});
+AppCacheShellMenuListAction.addItem(AppCacheShellMenuListAction2); 
+ var AppCacheShellMenuListAction3 = new sap.m.StandardListItem("AppCacheShellMenuListAction3",{adaptTitleSize:true,icon:"sap-icon://menu2",iconDensityAware:true,iconInset:true,selected:false,title:"All menus",type:"Active",unread:false,visible:true,press: function(oEvent) {
+AppCacheShellMenuNav.to(AppCacheShellMenuPageMen);
+}});
+AppCacheShellMenuListAction.addItem(AppCacheShellMenuListAction3); 
+ var AppCacheShellTab = new sap.m.IconTabBar("AppCacheShellTab",{applyContentPadding:true,expandable:false,expanded:true,showSelection:true,stretchContentHeight:false,upperCase:false,visible:true});
+AppCacheShellMenuPageStart.addContent(AppCacheShellTab); 
+ var AppCacheShellTabRun = new sap.m.IconTabFilter("AppCacheShellTabRun",{visible:true,text:"Most used",showAll:false,iconDensityAware:true,enabled:true});
+AppCacheShellTab.addItem(AppCacheShellTabRun); 
+ var AppCacheShellListRun = new sap.m.List("AppCacheShellListRun",{inset:true,showNoData:false,showSeparators:"None",visible:true});
+AppCacheShellTabRun.addContent(AppCacheShellListRun);
+var modelAppCacheShellListRun = new sap.ui.model.json.JSONModel();
+AppCacheShellListRun.setModel(modelAppCacheShellListRun); 
+ var AppCacheShellItemRun = new sap.m.StandardListItem("AppCacheShellItemRun",{counter:"{TILE_NUMBER}",description:"{TILE_INFO}",icon:"{TILE_ICON}",iconDensityAware:true,iconInset:true,adaptTitleSize:true,title:"{TILE_TITLE}",type:"Active",unread:false,visible:true,press: function(oEvent) {
+var context = oEvent.oSource.getBindingContext();
+var data = context.getObject();
+
+AppCacheShellMenuPop.close();
+sap.n.Launchpad.HandleTilePress(data);
+
+}});
+AppCacheShellListRun.bindAggregation("items", "/",AppCacheShellItemRun); 
+ var AppCacheShellTabFav = new sap.m.IconTabFilter("AppCacheShellTabFav",{enabled:true,iconDensityAware:true,showAll:false,text:"Favorites",visible:true});
+AppCacheShellTab.addItem(AppCacheShellTabFav); 
+ var AppCacheShellListFav = new sap.m.List("AppCacheShellListFav",{visible:true,showSeparators:"None",showNoData:false,inset:true});
+AppCacheShellTabFav.addContent(AppCacheShellListFav);
+var modelAppCacheShellListFav = new sap.ui.model.json.JSONModel();
+AppCacheShellListFav.setModel(modelAppCacheShellListFav); 
+ var AppCacheShellItemFav = new sap.m.StandardListItem("AppCacheShellItemFav",{adaptTitleSize:true,counter:"{TILE_NUMBER}",description:"{TILE_INFO}",icon:"{TILE_ICON}",iconDensityAware:true,iconInset:true,title:"{TILE_TITLE}",type:"Active",unread:false,visible:true,press: function(oEvent) {
+var context = oEvent.oSource.getBindingContext();
+var data = context.getObject();
+
+AppCacheShellMenuPop.close();
+sap.n.Launchpad.HandleTilePress(data);
+
+}});
+AppCacheShellListFav.bindAggregation("items", "/",AppCacheShellItemFav); 
+ var AppCacheShellMenuPageAll = new sap.m.Page("AppCacheShellMenuPageAll",{visible:true,showNavButton:false,showHeader:false,showFooter:false,enableScrolling:true,backgroundDesign:"Standard"});
+AppCacheShellMenuNav.addPage(AppCacheShellMenuPageAll); 
+ var AppCacheShellMenuPageAllSub = new sap.m.Bar("AppCacheShellMenuPageAllSub",{visible:true,design:"Footer"});
+AppCacheShellMenuPageAll.setSubHeader(AppCacheShellMenuPageAllSub); 
+ var AppCacheShellMenuPageAllBack = new sap.m.Button("AppCacheShellMenuPageAllBack",{visible:true,iconFirst:true,iconDensityAware:true,icon:"sap-icon://nav-back",enabled:true,press: function(oEvent) {AppCacheShellMenuNav.back();}});
+AppCacheShellMenuPageAllSub.addContentLeft(AppCacheShellMenuPageAllBack); 
+ var AppCacheShellMenuSearchAll = new sap.m.SearchField("AppCacheShellMenuSearchAll",{width:"100%",visible:true,showSearchButton:true,showRefreshButton:false,showMagnifier:false,selectOnFocus:true,placeholder:" ",enabled:true,liveChange: function(oEvent) {
+var binding = AppCacheShellList.getBinding("items");
+var filter = new sap.ui.model.Filter("FILTER", "Contains", this.getValue());
+binding.filter([filter]);
+}});
+AppCacheShellMenuPageAllSub.addContentMiddle(AppCacheShellMenuSearchAll); 
+ var AppCacheShellMenuCloseAll = new sap.m.Button("AppCacheShellMenuCloseAll",{enabled:true,icon:"sap-icon://sys-cancel-2",iconDensityAware:true,iconFirst:true,visible:true,press: function(oEvent) {AppCacheShellMenuPop.close();}});
+AppCacheShellMenuPageAllSub.addContentRight(AppCacheShellMenuCloseAll); 
+ var AppCacheShellList = new sap.m.List("AppCacheShellList",{inset:true,showNoData:false,showSeparators:"All",visible:true});
+AppCacheShellMenuPageAll.addContent(AppCacheShellList);
+var modelAppCacheShellList = new sap.ui.model.json.JSONModel();
+AppCacheShellList.setModel(modelAppCacheShellList); 
+ var AppCacheShellItem = new sap.m.StandardListItem("AppCacheShellItem",{counter:"{TILE_NUMBER}",description:"{TILE_INFO}",icon:"{TILE_ICON}",iconDensityAware:true,iconInset:true,adaptTitleSize:true,title:"{TILE_TITLE}",type:"Active",unread:false,visible:true,press: function(oEvent) {
+var context = oEvent.oSource.getBindingContext();
+var data = context.getObject();
+
+AppCacheShellMenuPop.close();
+sap.n.Launchpad.HandleTilePress(data);
+}});
+AppCacheShellList.bindAggregation("items", "/",AppCacheShellItem); 
+ var AppCacheShellMenuPageMen = new sap.m.Page("AppCacheShellMenuPageMen",{backgroundDesign:"Standard",enableScrolling:true,showFooter:true,showHeader:false,showNavButton:false,visible:true});
+AppCacheShellMenuNav.addPage(AppCacheShellMenuPageMen); 
+ var AppCacheShellMenuPageMenSub = new sap.m.Bar("AppCacheShellMenuPageMenSub",{design:"Footer",visible:true});
+AppCacheShellMenuPageMen.setSubHeader(AppCacheShellMenuPageMenSub); 
+ var AppCacheShellMenuPageMenBack = new sap.m.Button("AppCacheShellMenuPageMenBack",{enabled:true,icon:"sap-icon://nav-back",iconDensityAware:true,iconFirst:true,visible:true,press: function(oEvent) {AppCacheShellMenuNav.back();}});
+AppCacheShellMenuPageMenSub.addContentLeft(AppCacheShellMenuPageMenBack); 
+ var AppCacheShellMenuSearchMen = new sap.m.SearchField("AppCacheShellMenuSearchMen",{width:"100%",visible:true,showSearchButton:true,showRefreshButton:false,showMagnifier:false,selectOnFocus:true,placeholder:" ",enabled:true,liveChange: function(oEvent) {
+var binding = AppCacheShellListMen.getBinding("items");
+var filter = new sap.ui.model.Filter("FILTER", "Contains", this.getValue());
+binding.filter([filter]);
+}});
+AppCacheShellMenuPageMenSub.addContentMiddle(AppCacheShellMenuSearchMen); 
+ var AppCacheShellMenuCloseMen = new sap.m.Button("AppCacheShellMenuCloseMen",{enabled:true,icon:"sap-icon://sys-cancel-2",iconDensityAware:true,iconFirst:true,visible:true,press: function(oEvent) {AppCacheShellMenuPop.close();}});
+AppCacheShellMenuPageMenSub.addContentRight(AppCacheShellMenuCloseMen); 
+ var AppCacheScrollSpacerMen = new sap.m.VBox("AppCacheScrollSpacerMen",{displayInline:false,fitContainer:false,height:"20px",visible:true});
+AppCacheShellMenuPageMen.addContent(AppCacheScrollSpacerMen); 
+ var AppCacheShellListMen = new sap.m.List("AppCacheShellListMen",{visible:true,showSeparators:"All",showNoData:false,inset:true});
+AppCacheShellMenuPageMen.addContent(AppCacheShellListMen);
+var modelAppCacheShellListMen = new sap.ui.model.json.JSONModel();
+AppCacheShellListMen.setModel(modelAppCacheShellListMen); 
+ var AppCacheShellItemMen = new sap.m.StandardListItem("AppCacheShellItemMen",{visible:true,unread:false,type:"Active",title:"{TILE_TITLE}",adaptTitleSize:true,description:"{TILE_INFO}",icon:"{TILE_ICON}",iconInset:true,iconDensityAware:true,press: function(oEvent) {
+var context = oEvent.oSource.getBindingContext();
+var data = context.getObject();
+
+AppCacheShellMenuPop.close();
+sap.n.Launchpad.HandleTilePress(data);
+
+if (AppCache.CurrentApp !== AppCache.StartApp) {
+    AppCache.Load(AppCache.StartApp);
 }
 }});
-AppCache_barUserAction.addContentRight(AppCache_butDelete); 
- var AppCache_HTML = new sap.ui.core.HTML("AppCache_HTML",{content:"<div id='AppCache_Wrapper'><div id='MobileContent'></div></div>"});
-AppCache_HTML.placeAt("body"); 
+AppCacheShellListMen.bindAggregation("items", "/",AppCacheShellItemMen); 
+ var AppCacheShellMenuPageSplit = new sap.m.Page("AppCacheShellMenuPageSplit",{visible:true,showNavButton:false,showHeader:false,showFooter:true,enableScrolling:true,backgroundDesign:"Standard"});
+AppCacheShellMenuNav.addPage(AppCacheShellMenuPageSplit); 
+ var AppCacheShellMenuPageSplitSub = new sap.m.Bar("AppCacheShellMenuPageSplitSub",{design:"Footer",visible:true});
+AppCacheShellMenuPageSplit.setSubHeader(AppCacheShellMenuPageSplitSub); 
+ var AppCacheShellMenuPageSplitlBac = new sap.m.Button("AppCacheShellMenuPageSplitlBac",{enabled:true,icon:"sap-icon://nav-back",iconDensityAware:true,iconFirst:true,visible:true,press: function(oEvent) {
+// CleanUp Style/HTML
+$("#AppCacheInLineStyleSplit1").html("").trigger('create');
+$("#AppCacheInLineStyleSplit2").html("").trigger('create');
+$("#AppCacheInLineHtmlSplit1").html("").trigger('create');
+$("#AppCacheInLineHtmlSplit2").html("").trigger('create');
+
+// Navigate
+AppCacheShellMenuPop.setModal(false);
+sap.n.Shell.SplitClose = true;
+AppCache.navNotif = false;
+AppCache.Load(AppCache.StartApp);
+
+AppCacheShellMenuNav.back();
+}});
+AppCacheShellMenuPageSplitSub.addContentLeft(AppCacheShellMenuPageSplitlBac); 
+ var AppCacheSplitFilter = new sap.m.SearchField("AppCacheSplitFilter",{visible:true,showSearchButton:true,showRefreshButton:false,showMagnifier:true,selectOnFocus:true,placeholder:" ",enabled:true,liveChange: function(oEvent) {
+var binding = AppCacheSplitList.getBinding("items");
+var filter = new sap.ui.model.Filter("FILTER", "Contains", this.getValue());
+binding.filter([filter]);
+}});
+AppCacheShellMenuPageSplitSub.addContentMiddle(AppCacheSplitFilter); 
+ var AppCacheShellMenuCloseSplit = new sap.m.Button("AppCacheShellMenuCloseSplit",{enabled:true,icon:"sap-icon://sys-cancel-2",iconDensityAware:true,iconFirst:true,visible:true,press: function(oEvent) {AppCacheShellMenuPop.close();}});
+AppCacheShellMenuPageSplitSub.addContentRight(AppCacheShellMenuCloseSplit); 
+ var AppCacheSplitList = new sap.m.List("AppCacheSplitList",{width:"100%",visible:true,showUnread:false,showNoData:true,rememberSelections:true,modeAnimationOn:true,inset:true,includeItemInSelection:false,growingThreshold:100,growingScrollToLoad:true,growing:true});
+AppCacheShellMenuPageSplit.addContent(AppCacheSplitList);
+var modelAppCacheSplitList = new sap.ui.model.json.JSONModel();
+AppCacheSplitList.setModel(modelAppCacheSplitList); 
+ var AppCacheSplitItem = new sap.m.StandardListItem("AppCacheSplitItem",{visible:true,unread:false,type:"Active",title:"{TILE_TITLE}",selected:false,iconInset:true,iconDensityAware:true,icon:"{TILE_ICON}",description:"{TILE_INFO}",adaptTitleSize:true,press: function(oEvent) {
+var context = oEvent.oSource.getBindingContext();
+var value = context.getProperty("APPLID");
+
+switch (AppCacheShellMenuPageSegBut.getSelectedButton()) {
+
+    case "AppCacheShellMenuPageSplitButL":
+        AppCacheShellMenuPageSegBut.setSelectedButton(AppCacheShellMenuPageSplitButR);
+        sap.n.Shell.SplitLeftLoad = value;
+        sap.n.Shell.SplitLeftApp = value
+        AppCache.Load(value);
+        break;
+
+    case "AppCacheShellMenuPageSplitButR":
+        AppCacheShellMenuPageSegBut.setSelectedButton(AppCacheShellMenuPageSplitButL);
+        sap.n.Shell.SplitRightLoad = value;
+        sap.n.Shell.SplitRightApp = value
+        AppCache.Load(value);
+        break;
+
+    default:
+        break;
+
+}
+
+
+}});
+AppCacheSplitList.bindAggregation("items", "/",AppCacheSplitItem); 
+ var AppCacheShellMenuPageSplitFot = new sap.m.Bar("AppCacheShellMenuPageSplitFot",{design:"Footer",visible:true});
+AppCacheShellMenuPageSplit.setFooter(AppCacheShellMenuPageSplitFot); 
+ var AppCacheShellMenuPageSegBut = new sap.m.SegmentedButton("AppCacheShellMenuPageSegBut",{enabled:true,visible:true,width:"100%",selectedButton:AppCacheShellMenuPageSplitButL});
+AppCacheShellMenuPageSplitFot.addContentMiddle(AppCacheShellMenuPageSegBut); 
+ var AppCacheShellMenuPageSplitButL = new sap.m.Button("AppCacheShellMenuPageSplitButL",{visible:true,text:"Left",iconFirst:true,iconDensityAware:true,enabled:true});
+AppCacheShellMenuPageSegBut.addButton(AppCacheShellMenuPageSplitButL); 
+ var AppCacheShellMenuPageSplitButR = new sap.m.Button("AppCacheShellMenuPageSplitButR",{enabled:true,iconDensityAware:true,iconFirst:true,text:"Right",visible:true});
+AppCacheShellMenuPageSegBut.addButton(AppCacheShellMenuPageSplitButR); 
+ var AppCacheData = new sap.m.List("AppCacheData",{showNoData:false});
+var modelAppCacheData = new sap.ui.model.json.JSONModel();
+AppCacheData.setModel(modelAppCacheData); 
+ var AppCacheNotifList = new sap.m.List("AppCacheNotifList",{width:"100%",visible:true,showUnread:false,showNoData:false,growing:true,growingScrollToLoad:true,growingThreshold:50,includeItemInSelection:false,rememberSelections:true,modeAnimationOn:true,inset:false});
+var modelAppCacheNotifList = new sap.ui.model.json.JSONModel();
+AppCacheNotifList.setModel(modelAppCacheNotifList); 
+ var AppCacheTranslation = new sap.m.List("AppCacheTranslation",{width:"100%",visible:true,showUnread:false,showNoData:false,rememberSelections:true,modeAnimationOn:true,inset:false,includeItemInSelection:false,growingThreshold:50,growingScrollToLoad:true,growing:true});
+var modelAppCacheTranslation = new sap.ui.model.json.JSONModel();
+AppCacheTranslation.setModel(modelAppCacheTranslation); 
+ var AppCacheNotifDelta = new sap.m.List("AppCacheNotifDelta",{width:"100%",visible:false,showUnread:false,showNoData:true,rememberSelections:true,modeAnimationOn:true,inset:true,includeItemInSelection:false});
+var modelAppCacheNotifDelta = new sap.ui.model.json.JSONModel();
+AppCacheNotifDelta.setModel(modelAppCacheNotifDelta); 
+ var AppCacheUpdate = new sap.m.Panel("AppCacheUpdate",{width:"100%",visible:true,expanded:false,expandable:false,expandAnimation:true});
+var modelAppCacheUpdate = new sap.ui.model.json.JSONModel();
+AppCacheUpdate.setModel(modelAppCacheUpdate); 
+ var AppCacheDiaSettingsOK = new sap.m.Button("AppCacheDiaSettingsOK",{visible:true,text:"OK",iconFirst:true,iconDensityAware:true,enabled:true,press: function(oEvent) {
+// Save
+setCacheAppCacheNotifTime();
+setCacheAppCacheDiaSettings();
+
+// Clear Old Interval
+clearInterval(sap.n.Notif.getDataInterval);
+
+// Set Notif Timer
+if (modelAppCacheNotifTime.oData.ENABLED) {
+    getOnlineAppCacheNotifDelta();
+}
+
+// Close
+AppCacheDiaSettings.close();
+}});
+AppCacheShellHidden.addContent(AppCacheDiaSettingsOK); 
+ var AppCacheDiaSettingsCancel = new sap.m.Button("AppCacheDiaSettingsCancel",{enabled:true,iconDensityAware:true,iconFirst:true,text:"Cancel",visible:true,press: function(oEvent) {
+modelAppCacheDiaSettings.setData(JSON.parse(currSettings));
+modelAppCacheNotifTime.setData(JSON.parse(currNotif));
+AppCacheDiaSettings.close();
+}});
+AppCacheShellHidden.addContent(AppCacheDiaSettingsCancel); 
+ var AppCacheDiaSettings = new sap.m.Dialog("AppCacheDiaSettings",{contentHeight:"500px",contentWidth:"500px",stretchOnPhone:true,title:"Settings",leftButton:AppCacheDiaSettingsOK,rightButton:AppCacheDiaSettingsCancel});
+var modelAppCacheDiaSettings = new sap.ui.model.json.JSONModel();
+AppCacheDiaSettings.setModel(modelAppCacheDiaSettings); 
+ var AppCacheBarSettings = new sap.m.IconTabBar("AppCacheBarSettings",{visible:true,upperCase:false,stretchContentHeight:false,showSelection:true,expanded:true,expandable:false,applyContentPadding:true});
+AppCacheDiaSettings.addContent(AppCacheBarSettings); 
+ var AppCacheBarSettingsGen = new sap.m.IconTabFilter("AppCacheBarSettingsGen",{enabled:true,icon:"sap-icon://hint",iconDensityAware:true,showAll:false,visible:true});
+AppCacheBarSettings.addItem(AppCacheBarSettingsGen); 
+ var AppCacheFormSettings = new sap.ui.layout.form.SimpleForm("AppCacheFormSettings",{visible:true,maxContainerCols:2,labelSpanS:12,labelSpanM:2,labelSpanL:4,labelMinWidth:192,emptySpanS:0,emptySpanM:0,emptySpanL:0,columnsM:1,columnsL:2,breakpointM:600,breakpointL:1024});
+AppCacheBarSettingsGen.addContent(AppCacheFormSettings); 
+ var AppCacheFormSettingsTitle = new sap.ui.core.Title("AppCacheFormSettingsTitle",{emphasized:false,level:"H5",text:"User profile"});
+AppCacheFormSettings.addContent(AppCacheFormSettingsTitle); 
+ var lblAppCacheFormSettingsTRAN = new sap.m.Label("lblAppCacheFormSettingsTRAN",{required:false,text:"Transitions",visible:true});
+AppCacheFormSettings.addContent(lblAppCacheFormSettingsTRAN); 
+ var inAppCacheFormSettingsTRAN = new sap.m.Select("inAppCacheFormSettingsTRAN",{title:"",autoAdjustWidth:false,enabled:true,maxWidth:"100%",selectedKey:"{/TRANSITION}",visible:true});
+AppCacheFormSettings.addContent(inAppCacheFormSettingsTRAN); 
+ var transitionMainNone = new sap.ui.core.Item("transitionMainNone",{enabled:true,text:"Default (None)"});
+inAppCacheFormSettingsTRAN.addItem(transitionMainNone); 
+ var transitionMainDoor = new sap.ui.core.Item("transitionMainDoor",{enabled:true,key:"door",text:"Door"});
+inAppCacheFormSettingsTRAN.addItem(transitionMainDoor); 
+ var transitionMainFade = new sap.ui.core.Item("transitionMainFade",{enabled:true,key:"fade",text:"Fade"});
+inAppCacheFormSettingsTRAN.addItem(transitionMainFade); 
+ var transitionMainFlip = new sap.ui.core.Item("transitionMainFlip",{enabled:true,key:"flip",text:"Flip"});
+inAppCacheFormSettingsTRAN.addItem(transitionMainFlip); 
+ var transitionMainSlide = new sap.ui.core.Item("transitionMainSlide",{text:"Slide",key:"slide",enabled:true});
+inAppCacheFormSettingsTRAN.addItem(transitionMainSlide); 
+ var lblAppCacheFormSettingsFAV = new sap.m.Label("lblAppCacheFormSettingsFAV",{required:false,text:"Most used",visible:true});
+AppCacheFormSettings.addContent(lblAppCacheFormSettingsFAV); 
+ var AppCacheButDeleteRun = new sap.m.Button("AppCacheButDeleteRun",{visible:true,text:"Clear",iconFirst:true,iconDensityAware:true,enabled:true,press: function(oEvent) {
+modelAppCacheShellListRun.setData([]);
+setCacheAppCacheShellListRun();
+}});
+AppCacheFormSettings.addContent(AppCacheButDeleteRun); 
+ var AppCacheBarSettingsNotif = new sap.m.IconTabFilter("AppCacheBarSettingsNotif",{enabled:true,icon:"sap-icon://email",iconDensityAware:true,showAll:false,visible:true});
+AppCacheBarSettings.addItem(AppCacheBarSettingsNotif); 
+ var AppCacheNotifTime = new sap.ui.layout.form.SimpleForm("AppCacheNotifTime",{visible:true,maxContainerCols:2,labelSpanS:12,labelSpanM:2,labelSpanL:4,labelMinWidth:192,emptySpanS:0,emptySpanM:0,emptySpanL:0,columnsM:1,columnsL:2,breakpointM:600,breakpointL:1024});
+AppCacheBarSettingsNotif.addContent(AppCacheNotifTime);
+var modelAppCacheNotifTime = new sap.ui.model.json.JSONModel();
+AppCacheNotifTime.setModel(modelAppCacheNotifTime); 
+ var AppCacheFormNotifTimeTitle = new sap.ui.core.Title("AppCacheFormNotifTimeTitle",{emphasized:false,level:"H4",text:"Notifications"});
+AppCacheNotifTime.addContent(AppCacheFormNotifTimeTitle); 
+ var lblAppCacheFormNotifTimeINT = new sap.m.Label("lblAppCacheFormNotifTimeINT",{required:false,text:"Interval",visible:true});
+AppCacheNotifTime.addContent(lblAppCacheFormNotifTimeINT); 
+ var inAppCacheFormNotifTimeINT = new sap.m.Select("inAppCacheFormNotifTimeINT",{title:"",visible:true,selectedKey:"{/INTERVAL}",maxWidth:"100%",enabled:true,autoAdjustWidth:false});
+AppCacheNotifTime.addContent(inAppCacheFormNotifTimeINT); 
+ var ajaxTimer0 = new sap.ui.core.Item("ajaxTimer0",{enabled:true,key:60000,text:"1 Min"});
+inAppCacheFormNotifTimeINT.addItem(ajaxTimer0); 
+ var ajaxTimer1 = new sap.ui.core.Item("ajaxTimer1",{enabled:true,key:300000,text:"5 Min"});
+inAppCacheFormNotifTimeINT.addItem(ajaxTimer1); 
+ var ajaxTimer2 = new sap.ui.core.Item("ajaxTimer2",{text:"10 Min",key:600000,enabled:true});
+inAppCacheFormNotifTimeINT.addItem(ajaxTimer2); 
+ var ajaxTimer3 = new sap.ui.core.Item("ajaxTimer3",{enabled:true,key:900000,text:"15 Min"});
+inAppCacheFormNotifTimeINT.addItem(ajaxTimer3); 
+ var ajaxTimer4 = new sap.ui.core.Item("ajaxTimer4",{enabled:true,key:1800000,text:"30 Min"});
+inAppCacheFormNotifTimeINT.addItem(ajaxTimer4); 
+ var lblAppCacheFormNotifTimeENABLE = new sap.m.Label("lblAppCacheFormNotifTimeENABLE",{required:false,text:"Enabled",visible:true});
+AppCacheNotifTime.addContent(lblAppCacheFormNotifTimeENABLE); 
+ var inAppCacheFormNotifTimeENABLE = new sap.m.Switch("inAppCacheFormNotifTimeENABLE",{enabled:true,state:"{/ENABLED}",visible:true});
+AppCacheNotifTime.addContent(inAppCacheFormNotifTimeENABLE); 
+ var AppCacheBarSettingsVer = new sap.m.IconTabFilter("AppCacheBarSettingsVer",{showAll:false,visible:true,iconDensityAware:true,icon:"sap-icon://sap-ui5",enabled:true});
+AppCacheBarSettings.addItem(AppCacheBarSettingsVer); 
+ var AppCacheTabVer = new sap.m.Table("AppCacheTabVer",{width:"100%",visible:true,showUnread:false,showOverlay:false,showNoData:false,rememberSelections:true,modeAnimationOn:true,inset:false,includeItemInSelection:false,headerText:"System",growingThreshold:20,growingScrollToLoad:false,growing:false,fixedLayout:false});
+AppCacheBarSettingsVer.addContent(AppCacheTabVer);
+var modelAppCacheTabVer = new sap.ui.model.json.JSONModel();
+AppCacheTabVer.setModel(modelAppCacheTabVer); 
+ var AppCacheColVerKey = new sap.m.Column("AppCacheColVerKey",{demandPopin:false,mergeDuplicates:false,visible:true});
+AppCacheTabVer.addColumn(AppCacheColVerKey); 
+ var AppCacheColVerValue = new sap.m.Column("AppCacheColVerValue",{demandPopin:false,mergeDuplicates:false,visible:true});
+AppCacheTabVer.addColumn(AppCacheColVerValue); 
+ var AppCacheItemVer = new sap.m.ColumnListItem("AppCacheItemVer",{visible:true,unread:false,selected:false});
+AppCacheTabVer.bindAggregation("items", "/",AppCacheItemVer); 
+ var AppCacheTxtVerKey = new sap.m.Text("AppCacheTxtVerKey",{text:"{APPLID}",visible:true,wrapping:true});
+AppCacheItemVer.addCell(AppCacheTxtVerKey); 
+ var AppCacheTxtVerValue = new sap.m.Text("AppCacheTxtVerValue",{text:"{OBJECT}",visible:true,wrapping:true});
+AppCacheItemVer.addCell(AppCacheTxtVerValue); 
  var AppCache_butTwoFactorCancel = new sap.m.Button("AppCache_butTwoFactorCancel",{icon:"sap-icon://decline",text:"Cancel",type:"Reject",press: function(oEvent) {AppCache_popTwoFactor.close();}}); 
  var AppCache_butTwoFactorSend = new sap.m.Button("AppCache_butTwoFactorSend",{icon:"sap-icon://accept",text:"Send",type:"Accept",press: function(oEvent) {
 getOnlineAppCache_popTwoFactor(AppCache_inTwoFactor.getValue());
@@ -354,51 +846,2964 @@ AppCache_popTwoFactor.setModel(modelAppCache_popTwoFactor);
 AppCache_popTwoFactor.addContent(AppCache_formTwoFactor); 
  var AppCache_lblTwoFactor = new sap.m.Label("AppCache_lblTwoFactor",{text:"Please check eMail"});
 AppCache_formTwoFactor.addItem(AppCache_lblTwoFactor); 
- var AppCache_inTwoFactor = new sap.m.Input("AppCache_inTwoFactor",{valueLiveUpdate:true,valueStateText:"Wrong activation code",value:"{/TWOFACTOR}",type:"Tel"});
+ var AppCache_inTwoFactor = new sap.m.Input("AppCache_inTwoFactor",{type:"Tel",value:"{/TWOFACTOR}",valueStateText:"Wrong activation code"});
 AppCache_formTwoFactor.addItem(AppCache_inTwoFactor); 
  var AppCache_errorTwoFactor = new sap.m.ObjectStatus("AppCache_errorTwoFactor",{iconDensityAware:true,state:"Error",text:"Wrong activation code",visible:false});
 AppCache_formTwoFactor.addItem(AppCache_errorTwoFactor); 
- var AppCacheUpdate = new sap.m.VBox("AppCacheUpdate",{});
-AppCacheUpdate.placeAt("body");
-var modelAppCacheUpdate = new sap.ui.model.json.JSONModel();
-AppCacheUpdate.setModel(modelAppCacheUpdate); 
- var AppCache_diaDownload = new sap.m.BusyDialog("AppCache_diaDownload",{cancelButtonText:"Cancel",customIconDensityAware:true,customIconRotationSpeed:1000,showCancelButton:true,text:"Downloading new version...",title:"Please wait",close: function(oEvent) {fileTransfer.abort();}}); 
- var AppCache_txt1 = new sap.m.Text("AppCache_txt1",{text:"No connection"}); 
- var AppCache_txt2 = new sap.m.Text("AppCache_txt2",{text:"User logged out"}); 
- var AppCache_txt3 = new sap.m.Text("AppCache_txt3",{text:"Enter username"}); 
- var AppCache_txt4 = new sap.m.Text("AppCache_txt4",{text:"Enter password"}); 
- var AppCache_txt5 = new sap.m.Text("AppCache_txt5",{text:"Set Pin Code"}); 
- var AppCache_txt6 = new sap.m.Text("AppCache_txt6",{text:"Repeat Pin Code"}); 
- var AppCache_txt7 = new sap.m.Text("AppCache_txt7",{text:"Pin Code do not match"}); 
- var AppCache_txt8 = new sap.m.Text("AppCache_txt8",{text:"Password do not match"}); 
- var AppCache_txt9 = new sap.m.Text("AppCache_txt9",{text:"Pin code to short, min 4 chars"}); 
- var AppCache_txt10 = new sap.m.Text("AppCache_txt10",{text:"No valid APPLID or other Error"}); 
- var AppCache_txt11 = new sap.m.Text("AppCache_txt11",{text:"Wrong Activation Code"}); 
- var AppCache_txt12 = new sap.m.Text("AppCache_txt12",{text:"Wrong username/password"}); 
- var AppCache_txt13 = new sap.m.Text("AppCache_txt13",{text:"Error downloading new version"}); 
- var AppCache_txt14 = new sap.m.Text("AppCache_txt14",{text:"App updated. New logon required"}); 
- var AppCache_txt15 = new sap.m.Text("AppCache_txt15",{text:"No CurrentConfig"}); 
- var AppCacheBusyEncrypt = new sap.m.BusyDialog("AppCacheBusyEncrypt",{text:"Encrypting Database...",title:"Please Wait"}); 
- var AppCacheBusyDecrypt = new sap.m.BusyDialog("AppCacheBusyDecrypt",{text:"Decrypting Database...",title:"Please Wait"});
-var AppCacheText = {
-    noConnection: AppCache_txt1.getText(),
-    userLogout: AppCache_txt2.getText(),
-    enterUsername: AppCache_txt3.getText(),
-    enterPassword: AppCache_txt4.getText(),
-    enterNewPasscode: AppCache_txt5.getText(),
-    enterRepeatPasscode: AppCache_txt6.getText(),
-    noPasscodeMatch: AppCache_txt7.getText(),
-    newPasswordNoMatch: AppCache_txt8.getText(),
-    PasscodeToShort: AppCache_txt9.getText(),
-    wrongResponse: AppCache_txt10.getText(),
-    wrongCode: AppCache_txt11.getText(),
-    wrongUserPass: AppCache_txt12.getText()
+ var AppCacheDiaDocClose = new sap.m.Button("AppCacheDiaDocClose",{iconDensityAware:true,iconFirst:true,enabled:true,text:"Close",visible:true,press: function(oEvent) {
+AppCacheDiaDoc.close();
+$("#AppCacheShellDociFrame").attr('src', "");
+}});
+AppCacheShellHidden.addContent(AppCacheDiaDocClose); 
+ var AppCacheDiaDoc = new sap.m.Dialog("AppCacheDiaDoc",{contentWidth:"1000px",horizontalScrolling:false,contentHeight:"80%",stretchOnPhone:true,title:"Documentation",verticalScrolling:false,rightButton:AppCacheDiaDocClose}); 
+ var AppCacheShellDocHtml = new sap.ui.core.HTML("AppCacheShellDocHtml",{content:"<iframe id='AppCacheShellDociFrame' height='100%' width='100%' style='border:none;'></iframe>",preferDOM:true,sanitizeContent:false,visible:true});
+AppCacheDiaDoc.addContent(AppCacheShellDocHtml); 
+ var AppCache_diaDownload = new sap.m.BusyDialog("AppCache_diaDownload",{title:"Please wait",text:"Downloading new version...",showCancelButton:true,customIconRotationSpeed:1000,customIconDensityAware:true,cancelButtonText:"Cancel",close: function(oEvent) {fileTransfer.abort();}});
+// Enable NameSpace
+sap.n.Notif = new Object();
+
+// Init Notification
+sap.n.Notif.Init = function() {
+
+    var app = ModelData.Find(AppCacheShellList, "APPLID", AppCache.NotifApp)[0];
+
+    if (!app) {
+        AppCacheBarSettingsNotif.setEnabled(false);
+        return;
+    } else {
+        AppCacheBarSettingsNotif.setEnabled(true);
+    }
+
+    // Get Cache
+    getCacheAppCacheNotifTime();
+
+    // Set Defaults
+    if (!modelAppCacheNotifTime.oData.INTERVAL) {
+        var rec = {};
+        rec.INTERVAL = '60000';
+        rec.ENABLED = true;
+        modelAppCacheNotifTime.setData(rec);
+        setCacheAppCacheNotifTime();
+    }
+
+    // Cordova Check
+    if (typeof cordova === "undefined") {
+        return;
+    }
+
+    // Permission
+    cordova.plugins.notification.local.hasPermission(function(granted) {
+        if (!granted) {
+            cordova.plugins.notification.local.registerPermission(function(granted) {});
+        }
+    });
+
+    // Event triggered
+    cordova.plugins.notification.local.on('trigger', function(notification) {
+
+    }, this);
+
+    // Event clicked
+    cordova.plugins.notification.local.on('click', function(notification) {
+
+        var dataNotif = JSON.parse(notification.data);
+
+        // Delete Notification if Pressed
+        ModelData.Delete(AppCacheNotifList, "GUID", dataNotif.GUID);
+
+        if (!dataNotif.APPLID) {
+            return;
+        }
+
+        AppCache.Load(dataNotif.APPLID);
+
+
+    }, this);
+
+}
+
+// Process Notification
+sap.n.Notif.showAlert = function(dataNotif) {
+
+    AppCacheShellNotif.setVisible(true);
+
+    // Cordova Check
+    if (typeof cordova === "undefined") {
+        return;
+    }
+
+    // Permission ?
+    cordova.plugins.notification.local.hasPermission(function(granted) {
+        if (!granted) {
+            return;
+        }
+    });
+
+    // Message
+    sap.n.Notif.showAlertDialog(dataNotif);
+
+}
+
+// Show Notification
+sap.n.Notif.showAlertDialog = function(dataNotif) {
+
+    // Cordova Check
+    if (typeof cordova === "undefined") {
+        return;
+    }
+
+    cordova.plugins.notification.local.schedule({
+        id: 1,
+        title: dataNotif.HEADER,
+        text: dataNotif.NAME + "\n" + dataNotif.DATE,
+        badge: dataNotif.COUNTER,
+        data: {
+            APPLID: dataNotif.APPLID,
+            GUID: dataNotif.GUID
+        }
+    });
+
+}
+// Enable NameSpace
+sap.n.Push = {};
+sap.n.Push.PushWoosh = {};
+sap.n.Push.SMP = {};
+
+// Common
+sap.n.Push.Subscribe = function() {
+
+    // Activated ?
+    if (!AppCache.enablePush) {
+        return;
+    }
+
+    if (typeof device === "undefined") {
+        return;
+    }
+
+    setTimeout(function() {
+
+        if (AppCache.pushProvider === 'PushWoosh') {
+            sap.n.Push.PushWoosh.Init();
+        }
+
+        if (AppCache.pushProvider === 'SMP') {
+            sap.n.Push.SMP.Init();
+        }
+
+    }, 7000);
+
+}
+
+
+// PushWoosh
+sap.n.Push.PushWoosh.Init = function() {
+
+    var pushNotification = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+
+    if (sap.ui.Device.os.name === "Android") {
+
+        // Handler
+        document.addEventListener('push-notification', function(event) {
+
+            var title = event.notification.title;
+
+            if (event.notification.foreground) {
+                navigator.notification.alert(title);
+            }
+
+            pushNotification.setApplicationIconBadgeNumber(0);
+        });
+
+        // Init
+        pushNotification.onDeviceReady({
+            projectid: AppCache.GoogleID,
+            appid: AppCache.PushWooshID
+        });
+
+        // Register
+        pushNotification.registerDevice(
+            function(status) {
+                AppCache.PhoneID = JSON.stringify(status);
+                sap.n.Push.PushWoosh.RegisterDevice();
+            },
+            function(status) {}
+        );
+
+        pushNotification.setApplicationIconBadgeNumber(0);
+
+
+    } else if (sap.ui.Device.os.name == "winphone") {
+
+        // Handler
+        document.addEventListener('push-notification', function(event) {
+            var title = event.notification.content;
+
+            if (event.notification.onStart === false) {
+                navigator.notification.alert(title.replace(/\+/g, " "));
+            }
+
+            pushNotification.setApplicationIconBadgeNumber(0);
+
+        });
+
+        // Init
+        pushNotification.onDeviceReady({
+            appid: AppCache.PushWooshID,
+            serviceName: ""
+        });
+
+        // Register
+        pushNotification.registerDevice(
+            function(status) {
+                AppCache.PhoneID = JSON.stringify(status);
+                sap.n.Push.PushWoosh.RegisterDevice();
+            },
+            function(status) {}
+        );
+
+        pushNotification.setApplicationIconBadgeNumber(0);
+
+
+    } else if (sap.ui.Device.os.name === "iOS") {
+
+        // Handler
+        document.addEventListener('push-notification', function(event) {
+            var notification = event.notification;
+
+            if (event.notification.foreground) {
+                navigator.notification.alert(notification.aps.alert);
+            }
+
+            pushNotification.setApplicationIconBadgeNumber(0);
+        });
+
+        // Init
+        pushNotification.onDeviceReady({
+            pw_appid: AppCache.PushWooshID
+        });
+
+        // Register
+        pushNotification.registerDevice(
+            function(status) {
+                var deviceToken = status['deviceToken'];
+                AppCache.PhoneID = deviceToken;
+                sap.n.Push.PushWoosh.RegisterDevice();
+            },
+            function(status) {}
+        );
+
+        pushNotification.setApplicationIconBadgeNumber(0);
+
+    }
+}
+
+sap.n.Push.PushWoosh.RegisterDevice = function() {
+
+    PushUrl = AppCache.UrlBase + '/neptune/native/neptune_login_ping.html';
+    formData = 'phone-os=' + sap.ui.Device.os.name + '&phone-id=' + AppCache.PhoneID + '&key=' + AppCache.CurrentConfig + '&phone-provider=' + AppCache.pushProvider;
+
+    $.ajax({
+        type: "POST",
+        url: PushUrl,
+        data: formData,
+        success: function(data, status, request) {},
+        error: function(result, status) {}
+    });
+}
+
+// SMP Push
+sap.n.Push.SMP.Init = function() {
+
+    var push = PushNotification.init({
+        "android": {
+            "senderID": AppCache.GoogleID
+        },
+        "ios": {
+            "alert": "true",
+            "badge": "true",
+            "sound": "true"
+        },
+        "windows": {}
+    });
+
+    push.on('registration', function(data) {
+
+        //Register SAP
+        sap.n.Push.SMP.RegisterDevice();
+        //Android
+        if (sap.ui.Device.os.name === 'Android') {
+            sap.n.Push.SMP.RegisterAndroid(data.registrationId);
+        }
+
+        // iOS
+        if (sap.ui.Device.os.name === 'iOS') {
+            sap.n.Push.SMP.RegisteriOS(data.registrationId);
+
+        }
+
+    });
+
+    push.on('notification', function(data) {
+        navigator.notification.alert(data.message);
+        if (sap.ui.Device.os.name === 'iOS') {
+            push.setApplicationIconBadgeNumber(function() {
+                console.log('success');
+            }, function() {
+                console.log('error');
+            }, data.count);
+        }
+
+        push.finish(function() {
+            console.log('finish successfully called');
+        });
+    });
+
+    push.on('error', function(e) {
+        console.log("push error");
+    });
+
+}
+
+sap.n.Push.SMP.RegisterDevice = function() {
+
+    PushUrl = AppCache.UrlBase + '/neptune/native/neptune_login_ping.html';
+    formData = 'phone-os=' + sap.ui.Device.os.name + '&phone-id=' + AppCache.deviceID + '&key=' + AppCache.CurrentConfig + '&phone-provider=' + AppCache.pushProvider;
+
+    $.ajax({
+        type: "POST",
+        url: PushUrl,
+        data: formData,
+        success: function(data, status, request) {},
+        error: function(result, status) {}
+    });
+
+}
+
+// SMP - Android - Register
+sap.n.Push.SMP.RegisterAndroid = function(phoneID) {
+
+    var formData = '<?xml version="1.0" encoding="UTF-8"?><entry xmlns="http://www.w3.org/2005/Atom" xmlns:m="http://schemas.microsoft.' +
+        'com/ado/2007/08/dataservices/metadata" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices">' +
+        '<content type="application/xml"><m:properties><d:AndroidGcmRegistrationId>' +
+        phoneID +
+        '</d:AndroidGcmRegistrationId ></m:properties></content></entry>';
+
+    var pushUrl = AppCache.Url + "/odata/applications/latest/" + AppCache.smpApplication + "/Connections('" + AppCache.deviceID + "')";
+
+    $.ajax({
+        type: "POST",
+        headers: {
+            "X-HTTP-METHOD": "MERGE",
+            "Content-Type": "application/atom+xml"
+        },
+        url: pushUrl,
+        data: formData
+    });
+}
+
+// SMP - iOS - Register
+sap.n.Push.SMP.RegisteriOS = function(phoneID) {
+
+    var formData =
+        '<?xml version="1.0" encoding="UTF-8"?> <entry xmlns="http://www.w3.org/2005/Atom" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices">' +
+        '<content type="application/xml"><m:properties><d:ApnsDeviceToken>' + phoneID + '</d:ApnsDeviceToken></m:properties></content></entry>';
+
+    var pushUrl = AppCache.Url + "/odata/applications/latest/" + AppCache.smpApplication + "/Connections('" + AppCache.deviceID + "')";
+
+    $.ajax({
+        type: "POST",
+        headers: {
+            "X-HTTP-METHOD": "MERGE",
+            "Content-Type": "application/atom+xml"
+        },
+        url: pushUrl,
+        data: formData
+    });
+}
+// Shell Placement
+AppCacheShell._setStrongBackground(true);
+AppCacheShell.placeAt("body");
+
+// Globals
+var currSettings;
+var currNotif;
+
+// Wrapper for OnInit Event
+sap.ui.getCore().attachInit(function() {
+    setTimeout(function() {
+
+        // Sorter for AppList
+        var oSorter1 = new sap.ui.model.Sorter("CATEGORY", false, true);
+        var oSorter2 = new sap.ui.model.Sorter("TILE_TITLE", false, false);
+        var binding = AppCacheShellList.getBinding("items");
+        binding.sort([oSorter1, oSorter2]);
+
+        // Sorter for AppList Fav
+        var oSorter1 = new sap.ui.model.Sorter("SORT", true, false);
+        var binding = AppCacheShellListRun.getBinding("items");
+        binding.sort([oSorter1]);
+
+    }, 200);
+
+});
+
+// Set Language from URL
+var params = {};
+if (location.search) {
+    var parts = location.search.substring(1).split('&');
+
+    for (var i = 0; i < parts.length; i++) {
+        var nv = parts[i].split('=');
+        if (!nv[0]) continue;
+        params[nv[0]] = nv[1];
+    }
+
+}
+
+if (params["sap-language"]) {
+    $.ajaxSetup({
+        headers: {
+            "sap-language": params["sap-language"]
+        }
+    });
+}
+// Event - attachInit
+sap.n.Shell.attachInit = function(func) {
+
+    var applid = AppCache.CurrentApp.replace(/\//g, "");
+
+    if (!sap.n.Apps[applid].init) {
+        sap.n.Apps[applid].init = new Array();
+    }
+
+    sap.n.Apps[applid].init.push(func);
+}
+
+// Event - attachBeforeDisplay
+sap.n.Shell.attachBeforeDisplay = function(func) {
+
+    var applid = AppCache.CurrentApp.replace(/\//g, "");
+
+    if (!sap.n.Apps[applid].beforeDisplay) {
+        sap.n.Apps[applid].beforeDisplay = new Array();
+    }
+
+    sap.n.Apps[applid].beforeDisplay.push(func);
+
+}
+
+// Event - createLink
+sap.n.Shell.attachCreateLink = function(func) {
+
+    var applid = AppCache.CurrentApp.replace(/\//g, "");
+
+    if (!sap.n.Apps[applid].createLink) {
+        sap.n.Apps[applid].createLink = new Array();
+    }
+
+    sap.n.Apps[applid].createLink.push(func);
+
+}
+
+sap.n.Shell.openUrl = function(url, options) {
+
+    // Load Defaults
+    options = options || {};
+    LoadOptions = {};
+    LoadOptions.dialogHeight = options.dialogHeight || "90%";
+    LoadOptions.dialogWidth = options.dialogWidth || "1200px";
+    LoadOptions.dialogTitle = options.dialogTitle || "";
+    LoadOptions.dialogModal = options.dialogModal || false;
+
+    var contHeight = LoadOptions.dialogHeight;
+    var contWidth = LoadOptions.dialogWidth;
+    var diaTitle = LoadOptions.dialogTitle;
+    var screenWidth = $(window).width();
+
+    // Less Than 1200px
+    if (screenWidth < 1200) {
+        contWidth = (screenWidth * 0.9) + "px";
+    }
+
+    // On Mobile
+    if (!sap.ui.Device.system.desktop) {
+        contWidth = "100%";
+        contHeight = "100%";
+    }
+
+    // Create Dialog
+    var dia = new sap.ui.commons.Dialog({
+        applyContentPadding: false,
+        width: contWidth,
+        height: contHeight,
+        keepInWindow: false,
+        modal: LoadOptions.dialogModal,
+        resizable: true,
+        title: diaTitle,
+        closed: function(oEvent) {
+            dia.destroyContent();
+            dia = null;
+        }
+    });
+
+    dia.addContent(new sap.ui.core.HTML({
+        content: "<iframe frameborder='0' height='100%' width='100%' src='" + url + "'></iframe>",
+        visible: true,
+        sanitizeContent: false,
+        preferDOM: false
+    }));
+
+    dia.open();
+
+}
+var AppCache = {
+
+    // AppCache Variables
+    Initialized: false,
+    Encrypted: '',
+    CurrentUname: '',
+    CurrentApp: '',
+    CurrentConfig: '',
+    CurrentLanguage: '',
+    AppVersion: '',
+    StartApp: '',
+    NotifApp: "/NEPTUNE/NOTIF_CLIENT",
+    navNotif: false,
+    Url: '',
+    UrlBase: '',
+    Client: '',
+    Passcode: '',
+    Auth: '',
+    enablePasscode: true,
+    enableMocana: false,
+    enableSMP: false,
+    enableSMPCaptcha: false,
+    enablePush: false,
+    enablePortal: false,
+    enableTwoFactor: false,
+    enableEncryption: false,
+    enablePrincipal: false,
+    enableSAML: false,
+    alwaysTwoFactor: false,
+    pushProvider: '',
+    numPasscode: 5,
+    PasscodeApp: '',
+    deviceType: '',
+    deviceID: '',
+    smpApplication: '',
+    GoogleID: '',
+    PushWooshID: '',
+    PhoneID: '',
+    AppID: '',
+    xmlString: '',
+    PortalUrl: '',
+    PortalLogoffUrl: '',
+    PortalSalt: '',
+    isOffline: false,
+    isRestricted: true,
+    inLogon: false,
+    lockTimer: '',
+    useMenu: true,
+    View: new Array(),
+    doOnboard: false,
+    samlUrlLogon: '',
+    samlUrlLogoff: '',
+    samlUserField: 'UserName',
+    samlPasswordField: 'Password',
+    diaView: '',
+    passUrlReset: '',
+    loadQueue: new Array(),
+    loadRunning: false,
+
+    _loadQueue: function() {
+        this.loadRunning = false;
+
+        var appData = this.loadQueue[0];
+
+        if (appData) {
+            this.loadQueue.splice(0, 1);
+            this.Load(appData.APPLID, appData.OPTIONS);
+        }
+
+    },
+
+    // AppCache Methods
+    restrictedEnable: function() {
+
+        // Passcode Clear
+        if (AppCache.enablePasscode) {
+            sap.n.Launchpad.initMenu = false;
+        }
+
+        // Turn off
+        if (!sap.ui.Device.system.phone) {
+            $.each(AppCacheToolbar.getContent(), function(i, data) {
+                if (data.setType) {
+                    data.destroy();
+                }
+            });
+        }
+
+        // Shell Properties
+        AppCacheShell.setShowPane(false);
+        modelAppCacheShellList.setData([]);
+        modelAppCacheNotifList.setData([]);
+        modelAppCacheDiaSettings.setData([]);
+        AppCacheShellTitleTxt.setText();
+        AppCacheShellUser.setUsername();
+        AppCacheShellMenu.setVisible(false);
+        AppCacheUserActionSettings.setEnabled(false);
+        AppCacheShellMenuNav.to(AppCacheShellMenuPageStart, "show");
+        AppCacheShellMenuSearchAll.setValue();
+        AppCacheShellMenuSearchAll.fireLiveChange();
+        AppCacheShellMenuSearchMen.setValue();
+        AppCacheShellMenuSearchMen.fireLiveChange();
+        AppCacheShellNotif.setVisible(false);
+        AppCacheUserActionMClose.setVisible(false);
+        AppCacheUserActionMFavAdd.setVisible(false);
+        AppCacheUserActionMFavDel.setVisible(false);
+        AppCacheUserActionMDoc.setVisible(false);
+
+        // Clear Pages
+        $.each(AppCacheNav.getPages(), function(i, data) {
+            if (data.sId === 'AppCachePageEmpty' ||
+                data.sId === 'AppCache_boxURL' ||
+                data.sId === 'AppCache_boxLogon' ||
+                data.sId === 'AppCache_boxPassword' ||
+                data.sId === 'AppCache_boxPasscode' ||
+                data.sId === 'AppCache_boxCaptcha' ||
+                data.sId === 'AppCache_boxUsers'
+            ) {} else {
+                AppCacheNav.removePage(data.sId);
+            }
+        });
+
+        // Clear external URL
+        var elem = document.getElementById("AppCache_URLDiv");
+        if (elem) {
+            elem.innerHTML = "";
+        }
+
+        // Clear Views
+        AppCache.View = new Array();
+
+        // Clear Timers - Tiles
+        if (sap.n.Launchpad.DeleteTimers) {
+            sap.n.Launchpad.DeleteTimers();
+        }
+
+        // Clear Timers - Notification
+        if (sap.n.Notif.getDataInterval) {
+            clearInterval(sap.n.Notif.getDataInterval);
+            sap.n.Notif.getDataInterval = null;
+        }
+
+        sap.n.Launchpad.currentTile = null;
+        AppCache.isRestricted = true;
+
+        // Reinitialize NavContainer
+        AppCacheNav.init();
+        AppCacheNav.rerender();
+
+    },
+
+    restrictedDisable: function() {
+        AppCacheUserActionSettings.setEnabled(true);
+
+        if (AppCache.useMenu) {
+            AppCacheShellMenu.setVisible(true);
+        }
+
+        // Get User Data
+        getCacheAppCacheNotifTime();
+        getCacheAppCacheShellListRun();
+        getCacheAppCacheShellListFav();
+
+        AppCache.isRestricted = false;
+
+    },
+
+    translate: function() {
+
+        getCacheAppCacheTranslation();
+
+        setTimeout(function() {
+            $.each(modelAppCacheTranslation.oData, function(i, data) {
+                var object = sap.ui.getCore().byId(data.FIELD_NAME);
+                if (object) {
+                    var jsFunction = data.FIELD_NAME + '.' + data.ATTRIBUTE + '("' + data.FIELD_LABEL + '");';
+                    eval(jsFunction);
+                }
+            });
+        }, 200);
+
+    },
+
+    Load: function(value, options) {
+
+        // Check Queue - Put in queue of working
+        if (this.loadRunning) {
+            var appData = {
+                "APPLID": value,
+                "OPTIONS": options || {}
+            };
+            this.loadQueue.push(appData);
+            return;
+        }
+
+        this.loadRunning = true;
+
+        // Translate
+        value = value.toUpperCase();
+
+        // Format ID
+        var applid = value.replace(/\//g, "");
+
+        // Set Current App
+        AppCache.CurrentApp = value;
+
+        // Load Defaults
+        options = options || {};
+        AppCache.LoadOptions = {};
+        AppCache.LoadOptions.dialogShow = options.dialogShow || false;
+        AppCache.LoadOptions.dialogHeight = options.dialogHeight || "90%";
+        AppCache.LoadOptions.dialogWidth = options.dialogWidth || "1200px";
+        AppCache.LoadOptions.dialogTitle = options.dialogTitle || "";
+        AppCache.LoadOptions.dialogModal = options.dialogModal || false;
+        AppCache.LoadOptions.load = options.load || "";
+        AppCache.LoadOptions.parentObject = options.parentObject || "";
+
+        // Busyindicator Handling
+        if (AppCache.LoadOptions.parentObject) {
+            if (typeof AppCache.LoadOptions.parentObject.setBusy === "function") {
+                AppCache.LoadOptions.parentObject.setBusy(true);
+            }
+        } else {
+            // sap.ui.core.BusyIndicator.show()
+        }
+
+        // Get App from Memory
+        if (!AppCache.LoadOptions.dialogShow) {
+            if (AppCache.View[applid]) {
+                AppCache.buildView(value);
+                return;
+            }
+        }
+
+        // Get App from DB
+        var viewName = 'AppCacheView_' + AppCache.CurrentLanguage + '_' + value;
+        if (window.openDatabase) {
+            AppDB.transaction(function(tx) {
+                tx.executeSql('SELECT * FROM model WHERE KEY = ?', [viewName],
+                    function(tx, results) {
+                        if (results.rows.length) {
+                            AppCache.initView(value, results.rows.item(0).VALUE);
+                        } else {
+                            AppCache.getView(value);
+                        }
+                    }, null);
+            });
+        } else {
+            $.sap.require("jquery.sap.storage");
+            var ls = $.sap.storage(jQuery.sap.storage.Type.local);
+            var data = ls.get(viewName);
+
+            if (data) {
+                AppCache.initView(value, data);
+            } else {
+                AppCache.getView(value);
+            }
+        }
+
+    },
+
+    initView: function(value, data) {
+
+        // Load Option: Download
+        if (AppCache.LoadOptions.load === "download") {
+            sap.ui.core.BusyIndicator.hide();
+            this._loadQueue();
+            return;
+        }
+
+        // Format ID
+        var applid = value.replace(/\//g, "");
+
+        // Check for
+        if (!data && value === AppCache.PasscodeApp) {
+            AppCache.Logout();
+            return;
+        }
+
+        eval(data);
+
+        if (!AppCache.LoadOptions.dialogShow && !AppCache.LoadOptions.parentObject) {
+            var oJSView = sap.ui.view(applid, {
+                viewName: value,
+                type: sap.ui.core.mvc.ViewType.JS
+            });
+            AppCache.View[applid] = oJSView;
+        } else {
+            AppCache.diaView = sap.ui.view({
+                viewName: value,
+                type: sap.ui.core.mvc.ViewType.JS
+            });
+        }
+
+        AppCache.buildView(value);
+
+    },
+
+    buildView: function(value) {
+
+        // Format ID
+        var applid = value.replace(/\//g, "");
+        var tempView = sap.n.currentView;
+
+        if (!AppCache.LoadOptions.parentObject && !AppCache.LoadOptions.dialogShow) {
+            sap.n.currentView = AppCache.View[applid];
+        }
+
+        // Turn off debug
+        AppCacheShellDebug.setVisible(false);
+
+        // Custom init
+        if (sap.n.Apps[applid].init) {
+            $.each(sap.n.Apps[applid].init, function(i, data) {
+                data();
+            });
+            sap.n.Apps[applid].init = null;
+        }
+
+        // Custom beforeDisplay
+        if (sap.n.Apps[applid].beforeDisplay) {
+            $.each(sap.n.Apps[applid].beforeDisplay, function(i, data) {
+                data();
+            });
+        }
+
+        // Load Option: Not full load
+        if (AppCache.LoadOptions.load !== "") {
+            sap.n.currentView = tempView;
+            sap.ui.core.BusyIndicator.hide();
+            this._loadQueue();
+            return;
+        }
+
+        // Dialog
+        if (AppCache.LoadOptions) {
+
+            if (AppCache.LoadOptions.dialogShow) {
+
+                var contHeight = AppCache.LoadOptions.dialogHeight;
+                var contWidth = AppCache.LoadOptions.dialogWidth;
+                var diaTitle = AppCache.LoadOptions.dialogTitle;
+                var screenWidth = $(window).width();
+
+                // Less Than 1200px
+                if (screenWidth < 1200) {
+                    contWidth = (screenWidth * 0.9) + "px";
+                }
+
+                // On Mobile
+                if (!sap.ui.Device.system.desktop) {
+                    contWidth = "100%";
+                    contHeight = "100%";
+                }
+
+                // Title from App
+                if (!diaTitle) {
+                    var app = ModelData.Find(AppCacheShellList, "APPLID", value)[0];
+
+                    if (app) {
+                        if (app.TILE_INFO) {
+                            diaTitle = app.TILE_TITLE + " - " + app.TILE_INFO;
+                        } else {
+                            diaTitle = app.TILE_TITLE;
+                        }
+                    }
+                }
+
+                // Create Dialog
+                var dia = new sap.ui.commons.Dialog({
+                    applyContentPadding: false,
+                    width: contWidth,
+                    height: contHeight,
+                    keepInWindow: true,
+                    resizable: true,
+                    modal: AppCache.LoadOptions.dialogModal,
+                    title: diaTitle,
+                    closed: function(oEvent) {
+                        dia.removeAllContent();
+                        dia.destroy();
+                        $("#AppCacheInLineStyleDialog").html("").trigger('create');
+                        $("#AppCacheInLineHtmlDialog").html("").trigger('create');
+                    }
+                });
+
+                dia.addContent(AppCache.diaView);
+
+                var oStyle = sap.ui.getCore().byId('oStyle' + applid);
+                var oHtml = sap.ui.getCore().byId('oHtml' + applid);
+
+                var idFrom = "#" + applid + "--";
+                var idTo = "#" + AppCache.diaView.sId + "--";
+                var regex = new RegExp(idFrom, 'g');
+
+                // Add Style / Html Code
+                if (oStyle) {
+                    var styleData = decodeURIComponent(oStyle.getContent()).replace(regex, idTo) + $("#AppCacheInLineStyle").html();
+                    $("#AppCacheInLineStyleDialog").html(styleData).trigger('create');
+                }
+
+                if (oHtml) {
+                    var htmlData = decodeURIComponent(oHtml.getContent()).replace(regex, idTo) + $("#AppCacheInLineHtml").html();
+                    $("#AppCacheInLineHtmlDialog").html(htmlData).trigger('create');
+                }
+
+                dia.open();
+                sap.ui.core.BusyIndicator.hide();
+                this._loadQueue();
+                return;
+
+            }
+
+        }
+
+        // ParentObject
+        if (AppCache.LoadOptions.parentObject) {
+
+            var oStyle = sap.ui.getCore().byId('oStyle' + applid);
+            var oHtml = sap.ui.getCore().byId('oHtml' + applid);
+
+            var idFrom = "#" + applid + "--";
+            var idTo = "#" + AppCache.diaView.sId + "--";
+            var regex = new RegExp(idFrom, 'g');
+
+            // Add Style / Html Code
+            if (oStyle) {
+                var styleData = decodeURIComponent(oStyle.getContent()).replace(regex, idTo) + $("#AppCacheInLineStyle").html();
+                $("#AppCacheInLineStyle").html(styleData).trigger('create');
+            }
+
+            if (oHtml) {
+                var htmlData = decodeURIComponent(oHtml.getContent()).replace(regex, idTo) + $("#AppCacheInLineHtml").html();
+                $("#AppCacheInLineHtml").html(htmlData).trigger('create');
+            }
+
+            if (AppCache.LoadOptions.parentObject.addContent) {
+                AppCache.LoadOptions.parentObject.removeAllContent();
+                AppCache.LoadOptions.parentObject.addContent(AppCache.diaView);
+                AppCache.LoadOptions.parentObject.rerender();
+            }
+
+            if (typeof AppCache.LoadOptions.parentObject.setBusy === "function") {
+                AppCache.LoadOptions.parentObject.setBusy(false);
+            }
+
+            this._loadQueue();
+            return;
+        }
+
+        // StartApp
+        if (value === AppCache.StartApp) {
+
+            // Clear currentTile
+            sap.n.Launchpad.currentTile = "";
+
+            // Turn off
+            $.each(AppCacheToolbar.getContent(), function(i, data) {
+                if (data.setType) {
+                    data.setType("Transparent");
+                }
+            });
+
+            // StartApp - First Time
+            if (!AppCacheNav.getPage(AppCache.StartApp)) {
+
+                AppCacheNav.addPage(sap.n.currentView);
+                AppCacheNav.to(AppCache.StartApp, modelAppCacheDiaSettings.oData.TRANSITION || "show");
+
+                // Apply Style
+                var oStyle = sap.ui.getCore().byId('oStyle' + applid);
+                var oHtml = sap.ui.getCore().byId('oHtml' + applid);
+
+                // Add Style / Html Code
+                if (oStyle) {
+                    var styleData = oStyle.getContent();
+                    $("#AppCacheInLineStyleMenu").html(decodeURIComponent(styleData)).trigger('create');
+                } else {
+                    $("#AppCacheInLineStyleMenu").html("").trigger('create');
+                }
+
+                if (oHtml) {
+                    var htmlData = oHtml.getContent();
+                    $("#AppCacheInLineHtmlMenu").html(decodeURIComponent(htmlData)).trigger('create');
+                } else {
+                    $("#AppCacheInLineHtmlMenu").html("").trigger('create');
+                }
+
+            } else {
+
+                // StartApp - Second Time
+                if (AppCacheNav.getCurrentPage().sId === AppCache.StartApp) {
+                    if (sap.n.Launchpad.BuildMenu) {
+                        sap.n.Launchpad.BuildMenu();
+                    }
+                } else {
+                    AppCacheNav.backToPage(AppCache.StartApp, modelAppCacheDiaSettings.oData.TRANSITION || "show");
+                    if (sap.n.Launchpad.BuildMenu && !sap.n.Launchpad.initMenu) {
+                        sap.n.Launchpad.BuildMenu();
+                    } else {
+                        sap.n.Launchpad.SetHeader();
+                    }
+                }
+
+            }
+
+
+        } else {
+
+            // Add page to navigation
+            if (!AppCacheNav.getPage(sap.n.currentView.sId)) {
+                AppCacheNav.addPage(sap.n.currentView);
+            }
+
+            // Navigate
+            if (AppCache.navNotif && value === AppCache.NotifApp) {
+                AppCacheNav.backToPage(sap.n.currentView, modelAppCacheDiaSettings.oData.TRANSITION || "show");
+            } else {
+                AppCacheNav.to(sap.n.currentView, modelAppCacheDiaSettings.oData.TRANSITION || "show");
+            }
+
+            // Apply Style
+            var oStyle = sap.ui.getCore().byId('oStyle' + applid);
+            var oHtml = sap.ui.getCore().byId('oHtml' + applid);
+
+            // Add Style / Html Code
+            if (oStyle) {
+                var styleData = oStyle.getContent();
+                $("#AppCacheInLineStyle").html(decodeURIComponent(styleData)).trigger('create');
+            } else {
+                $("#AppCacheInLineStyle").html("").trigger('create');
+            }
+
+            if (oHtml) {
+                var htmlData = oHtml.getContent();
+                $("#AppCacheInLineHtml").html(decodeURIComponent(htmlData)).trigger('create');
+            } else {
+                $("#AppCacheInLineHtml").html("").trigger('create');
+            }
+
+            // Set Shell Title
+            if (sap.n.Launchpad.SetHeader) {
+                sap.n.Launchpad.SetHeader();
+            }
+        }
+
+        // Rerender
+        sap.n.currentView.rerender();
+
+        // Set Shell Defaults
+        if (AppCache.CurrentApp === AppCache.StartApp) {
+            setTimeout(function() {
+                AppCacheShell.removeStyleClass("sapUiUfdShellHeadHidden");
+            }, 500);
+        }
+
+        // Set Shell Settings - Tiles
+        var dataTile = ModelData.Find(AppCacheShellList, "APPLID", value)[0];
+
+        if (dataTile) {
+
+            var hideHeader = false;
+
+            // Desktop
+            if (sap.ui.Device.system.desktop && dataTile.HIDE_HEADER_L) {
+                hideHeader = true;
+            }
+
+            // Tablet
+            if (sap.ui.Device.system.tablet && dataTile.HIDE_HEADER_M) {
+                hideHeader = true;
+            }
+
+            // Phone
+            if (sap.ui.Device.system.phone && dataTile.HIDE_HEADER_S) {
+                hideHeader = true;
+            }
+
+            if (!hideHeader) {
+                AppCacheShell.removeStyleClass("sapUiUfdShellHeadHidden");
+            } else {
+
+                setTimeout(function() {
+                    AppCacheShell.addStyleClass("sapUiUfdShellHeadHidden");
+                }, 500);
+
+                if (AppCacheShell.getShowPane()) {
+                    AppCacheShell.setShowPane(false);
+                    AppCacheShellMenu.setIcon("sap-icon://navigation-right-arrow");
+                }
+            }
+
+        }
+
+        sap.ui.core.BusyIndicator.hide();
+        this._loadQueue();
+
+    },
+
+    getView: function(value, option) {
+
+        var url = value + '.view.js';
+        url = url.replace(/\//, "");
+
+        $.ajax({
+            datatype: "HTML",
+            type: "POST",
+            url: AppCache.UrlBase + "/neptune/native/" + url,
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            },
+            success: function(data) {
+
+                // Check data received
+                if (data.substr(0, 15).indexOf('html') > -1) {
+                    sap.ui.core.BusyIndicator.hide();
+                    jQuery.sap.require("sap.m.MessageToast");
+                    sap.m.MessageToast.show(AppCache_tAppNotFound.getText());
+                    return;
+                }
+
+                // Save in DB/LocalStorage
+                var viewName = 'AppCacheView_' + AppCache.CurrentLanguage + '_' + value;
+
+                if (window.openDatabase) {
+                    AppDB.transaction(function(tx) {
+                        tx.executeSql("INSERT OR REPLACE INTO model (KEY,VALUE) VALUES (?,?)", [viewName, data]);
+                    });
+                } else {
+                    $.sap.require("jquery.sap.storage");
+                    var ls = $.sap.storage(jQuery.sap.storage.Type.local);
+                    ls.put(viewName, data);
+                }
+
+                var newApp = {};
+                newApp.APPLID = value;
+                newApp.UPDDAT = '';
+                newApp.UPDTIM = '';
+                ModelData.Update(AppCacheData, "APPLID", value, newApp);
+
+                // Update Application Data
+                setCacheAppCacheData();
+
+                AppCache.initView(value, data, option);
+
+                // Get Appliction Data
+                getOnlineAppCacheData();
+
+            }
+        });
+
+    },
+
+    Update: function() {
+
+        var PushUrl;
+        var formData;
+
+        AppCache.inLogon = false;
+        AppCache.restrictedDisable();
+        sap.ui.core.BusyIndicator.show(0);
+        getOnlineAppCacheData(AppCache.CurrentConfig);
+
+        // Get Notifications
+        getCacheAppCacheNotifList();
+
+    },
+
+    Home: function() {
+        AppCache.navNotif = false;
+        sap.n.Launchpad.initMenu = false;
+        AppCache.Load(AppCache.StartApp);
+    },
+
+    Back: function() {
+        if (AppCache.navNotif) {
+            AppCache.Load(AppCache.NotifApp);
+        } else {
+            AppCache.Load(AppCache.StartApp);
+        }
+    },
+
+    setEnableCaptchaScreen: function() {
+        AppCacheNav.to("AppCache_boxCaptcha", "show");
+        AppCache_statusItem.setTitle();
+        AppCache_boxCaptcha.addContent(AppCache_listStatus);
+    },
+
+    setEnablePasscodeScreen: function() {
+        AppCacheNav.to("AppCache_boxPasscode", "show");
+        AppCache_statusItem.setTitle();
+        AppCache_boxPasscode.addContent(AppCache_listStatus);
+    },
+
+    setEnablePasswordScreen: function() {
+        AppCacheNav.to("AppCache_boxPassword", "show");
+        AppCache_statusItem.setTitle();
+        AppCache_boxPassword.addContent(AppCache_listStatus);
+    },
+
+    setEnableUsersScreen: function() {
+        AppCacheShellUser.setImage("sap-icon://account");
+        AppCacheNav.to("AppCache_boxUsers", "show");
+        AppCache_statusItem.setTitle();
+        AppCacheUsers.removeSelections();
+    },
+
+    setEnableLogonScreen: function() {
+        AppCacheNav.to("AppCache_boxLogon", "show");
+        AppCache_statusItem.setTitle();
+        AppCache_boxLogon.addContent(AppCache_listStatus);
+    },
+
+    Logout: function() {
+
+        // Restricted Area
+        AppCache.restrictedEnable();
+
+        // Show Logon Screen
+        AppCacheShellUser.setImage("sap-icon://account");
+        AppCache.setEnableLogonScreen();
+        AppCache.Initialized = false;
+        NumPad.numPasscode = 0;
+        NumPad.numValue = '';
+        AppCache.Encrypted = '';
+        AppCache_inUsername.setValue();
+        AppCache_inPassword.setValue();
+        AppCacheShellUser.setUsername();
+
+        // Logoff SAML
+        if (AppCache.enableSAML) {
+            AppCacheLogonSAML.Logoff();
+            return;
+        }
+
+        // Logon Enterprise Portal
+        if (AppCache.enablePortal) {
+            AppCacheLogonPortal.Logoff();
+            return;
+        }
+
+        // Logon ABAP Stack
+        AppCacheLogonABAP.Logoff();
+
+    },
+
+    Logon: function() {
+
+        // Enable Screen
+        AppCache.setEnableLogonScreen();
+        AppCache.inLogon = true;
+
+        // Checks
+        if (AppCache_inUsername.getValue() === '') {
+            AppCache_statusItem.setTitle(AppCache_tEnterUsername.getText());
+
+            setTimeout(function() {
+                AppCache_inUsername.focus();
+            }, 400);
+            return;
+        }
+
+        if (AppCache_inPassword.getValue() === '') {
+            AppCache_statusItem.setTitle(AppCache_tEnterPassword.getText());
+
+            setTimeout(function() {
+                AppCache_inPassword.focus();
+            }, 400);
+            return;
+        }
+
+        // Logon SAML
+        if (AppCache.enableSAML) {
+            AppCacheLogonSAML.Logon();
+            return;
+        }
+
+        // Logon SMP/HCPms
+        if (AppCache.enableSMP) {
+            AppCacheLogonSMP.Logon();
+            return;
+        }
+
+        // Logon Enterprise Portal
+        if (AppCache.enablePortal) {
+            AppCacheLogonPortal.Logon();
+            return;
+        }
+
+        // Logon ABAP Stack
+        AppCacheLogonABAP.Logon();
+
+    },
+
+    AfterLogon: function() {
+
+        // Clear Login Screen
+        AppCache_inPassword.setValue();
+
+        // Start Mocana
+        if (AppCache.enableMocana) {
+            NumPad.Verify = true;
+            AppCache.CurrentUname = AppCache_inUsername.getValue().toUpperCase();
+            sapUname = AppCache.CurrentUname;
+            getOnlineAppCacheUsers(AppCache.CurrentConfig);
+            AppCache.Update();
+            return;
+        }
+
+        // Start Passcode or Logon
+        if (AppCache.enablePasscode) {
+            AppCache.setEnablePasscodeScreen();
+        } else {
+            NumPad.Verify = true;
+            AppCache.Update();
+        }
+
+    },
+
+
+    SetPassword: function() {
+
+        // New password match ?
+        if (AppCache_inPassNew.getValue() != AppCache_inPassRepeat.getValue()) {
+            AppCache_statusItem.setTitle(AppCache_tNewPasswordNoMatch.getText());
+            AppCache_inPassNew.setValue();
+            AppCache_inPassRepeat.setValue();
+            return;
+        }
+        var pwdUrl = "";
+        var formData = "";
+        if (AppCache.enablePortal) {
+            formData = "j_username=" + AppCache_inUsername.getValue() +
+                "&j_user=" + AppCache_inUsername.getValue() +
+                "&j_sap_current_password=" + AppCache_inPassOld.getValue() +
+                "&oldPassword=" + AppCache_inPassOld.getValue() +
+                "&j_sap_password=" + AppCache_inPassNew.getValue() +
+                "&j_password=" + AppCache_inPassNew.getValue() +
+                "&confirmNewPassword=" + AppCache_inPassRepeat.getValue() +
+                "&j_sap_again=" + AppCache_inPassRepeat.getValue();
+            pwdUrl = AppCache.PortalUrl;
+        } else {
+            formData = "sap-system-login-password=" + encodeURIComponent(AppCache_inPassOld.getValue()) +
+                "&sap-system-login-passwordnew=" + encodeURIComponent(AppCache_inPassNew.getValue()) +
+                "&sap-system-login-passwordrepeat=" + encodeURIComponent(AppCache_inPassRepeat.getValue()) +
+                "&sap-system-login-oninputprocessing=onDoChangePwd" + "&sap-system-login=onContinuePwd" +
+                "&sap-client=" + AppCache.Client;
+            pwdUrl = AppCache.UrlBase + '/neptune/native/neptune_login_ping.html';
+        }
+
+        $.ajax({
+            type: "POST",
+            url: pwdUrl,
+            data: formData,
+            success: function(data, status, request) {
+
+                AppCache_inPassword.setValue(AppCache_inPassNew.getValue());
+                AppCache_inPassNew.setValue();
+                AppCache_inPassRepeat.setValue();
+
+                var LoginText = request.getResponseHeader("SAPLoginMessage");
+                var LoginStatus = request.getResponseHeader("SAPLoginStatus");
+
+                if (AppCache.enablePortal && !LoginStatus) {
+                    var loginObj = AppCacheLogonPortal.ParseResponse(request);
+                    LoginStatus = loginObj.LoginStatus;
+                    LoginText = loginObj.LoginText;
+                }
+
+                switch (LoginStatus) {
+
+                    case "Password":
+                        AppCache_statusItem.setTitle(LoginText);
+                        AppCache_inPassNew.setValue();
+                        AppCache_inPassRepeat.setValue();
+                        setTimeout(function() {
+                            AppCache_inPassNew.focus();
+                        }, 400);
+                        break;
+
+                    default:
+                        AppCache.AfterLogon();
+                        break;
+                }
+            }
+        });
+    },
+
+    Lock: function() {
+
+        AppCache.restrictedEnable();
+
+        // Check Mocana
+        if (AppCache.enableMocana) {
+            return;
+        }
+
+        // Check PIN Code
+        if (!AppCache.enablePasscode) {
+            AppCache.Logout();
+            return;
+        }
+
+        // Clear NumPad
+        NumPad.numPasscode = 0;
+        NumPad.numValue = '';
+        NumPad.Verify = false;
+
+        // Start passcode if only One user
+        if (modelAppCacheUsers.getData().length > 1) {
+            AppCache.setEnableUsersScreen();
+        } else {
+            var dataUsers = modelAppCacheUsers.getData();
+            if (dataUsers) {
+                AppCache.Encrypted = dataUsers[0].AUTH;
+            }
+            AppCache.Load(AppCache.PasscodeApp);
+        }
+
+        // Logoff SAML
+        if (AppCache.enableSAML) {
+            AppCacheLogonSAML.Logoff();
+            return;
+        }
+
+        // Logon Enterprise Portal
+        if (AppCache.enablePortal) {
+            AppCacheLogonPortal.Logoff();
+            return;
+        }
+
+        // Logon ABAP Stack
+        AppCacheLogonABAP.Logoff();
+
+    },
+
+    RemoveAllCache: function() {
+        AppCache.Logout();
+        $.sap.require("jquery.sap.storage");
+        var ls = $.sap.storage(jQuery.sap.storage.Type.local);
+        ls.removeAll();
+
+        if (window.openDatabase) {
+            try {
+                AppDB.transaction(function(tx) {
+                    tx.executeSql('DELETE FROM model');
+                });
+            } catch (e) {
+                console.log("Error processing SQL: " + e.message);
+            }
+        }
+
+        modelAppCacheUsers.setData({});
+    },
+
+    SetPasscode: function() {
+
+        // Checks
+        if (AppCache_inPasscode1.getValue() === '') {
+            AppCache_statusItem.setTitle(AppCache_tEnterNewPasscode.getText());
+            setTimeout(function() {
+                AppCache_inPasscode1.focus();
+            }, 200);
+            return;
+        }
+
+        if (AppCache_inPasscode2.getValue() === '') {
+            AppCache_statusItem.setTitle(AppCache_tEnterRepeatPasscode.getText());
+            setTimeout(function() {
+                AppCache_inPasscode2.focus();
+            }, 200);
+            return;
+        }
+
+        if (AppCache_inPasscode2.getValue().length != 4) {
+            AppCache_statusItem.setTitle(AppCache_tPasscodeToShort.getText());
+            AppCache_inPasscode1.setValue();
+            AppCache_inPasscode2.setValue();
+            setTimeout(function() {
+                AppCache_inPasscode1.focus();
+            }, 200);
+            return;
+        }
+
+        if (AppCache_inPasscode1.getValue() !== AppCache_inPasscode2.getValue()) {
+            AppCache_statusItem.setTitle(AppCache_tNoPasscodeMatch.getText());
+            AppCache_inPasscode1.setValue();
+            AppCache_inPasscode2.setValue();
+            setTimeout(function() {
+                AppCache_inPasscode1.focus();
+            }, 200);
+            return;
+        }
+
+        // Clear Values
+        AppCache.Passcode = AppCache_inPasscode1.getValue();
+        setTimeout(function() {
+            AppCache_inPasscode1.setValue();
+            AppCache_inPasscode2.setValue();
+        }, 1000);
+
+        sap.ui.core.BusyIndicator.show();
+        getOnlineAppCacheUsers(encodeURIComponent(AppCache.CurrentConfig + "|" + AppCache_inUsername.getValue()));
+
+    },
+
+    //  UUID
+    genID: function() {
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+        });
+        return uuid;
+    },
+
+    updateDB: function(key, value) {
+        try {
+            AppDB.transaction(function(tx) {
+                tx.executeSql("INSERT OR REPLACE INTO model (KEY,VALUE) VALUES (?,?)", [key, value]);
+            });
+        } catch (e) {
+            console.log("Error processing SQL: " + e.message);
+            return;
+        }
+    },
+
+    Startup: function() {
+
+        // Check if CurrentConfig
+        if (AppCache.CurrentConfig === '') {
+            jQuery.sap.require("sap.m.MessageToast");
+            sap.m.MessageToast.show(AppCache_tNoConnection.getText());
+            return;
+        }
+
+        // Open Database
+        if (window.openDatabase) {
+            if (typeof window.sqlitePlugin === 'undefined') {
+                AppDB = window.openDatabase("AppCache", "1.0", "AppCache", 50000000);
+            } else {
+                AppDB = window.sqlitePlugin.openDatabase({
+                    name: "AppCache",
+                    location: 2
+                });
+            }
+            AppDB.transaction(function(tx) {
+                tx.executeSql("CREATE TABLE IF NOT EXISTS model (KEY VARCHAR PRIMARY KEY, VALUE VARCHAR)");
+            });
+        }
+
+        // Get Cache
+        getCacheAppCacheData();
+        getCacheAppCacheUsers();
+
+        // Reset Password Link
+        if (AppCache.passUrlReset) {
+            AppCache_resetPassword.setVisible(true);
+        }
+
+        // Logon SAML
+        if (AppCache.enableSAML) {
+            AppCacheLogonSAML.Init();
+        }
+
+        // Logon SMP/HCPms
+        if (AppCache.enableSMP) {
+            AppCacheLogonSMP.Init();
+        }
+
+        // Logon Enterprise Portal (EP)
+        if (AppCache.enablePortal) {
+            AppCacheLogonPortal.Init();
+        }
+
+        // Logon ABAP Stack
+        if (!AppCache.enableSAML && !AppCache.enableSMP && !AppCache.enablePortal) {
+            AppCacheLogonABAP.Init();
+        }
+
+        // Build URL
+        if (AppCache.enableSMP) {
+            AppCache.UrlBase = AppCache.Url + '/' + AppCache.smpApplication;
+        } else {
+            AppCache.UrlBase = AppCache.Url;
+        }
+
+        // Device Type
+        switch (sap.ui.Device.os.name) {
+            case 'win':
+                AppCache.deviceType = 'Windows';
+                break;
+
+            case 'winphone':
+                AppCache.deviceType = 'WinPhone8';
+                break;
+
+            case 'mac':
+                AppCache.deviceType = 'iOS';
+                break;
+
+            case 'bb':
+                AppCache.deviceType = 'Blackberry';
+                break;
+
+            default:
+                AppCache.deviceType = sap.ui.Device.os.name;
+        }
+
+
+        // Device ID
+        AppCache.deviceID = localStorage.getItem("AppCacheID");
+        if (!AppCache.deviceID) {
+            AppCache.deviceID = AppCache.genID();
+            localStorage.setItem("AppCacheID", AppCache.deviceID);
+        }
+
+        // SMP Onboard String
+        AppCache.xmlString = '<?xml version="1.0" encoding="utf-8"?>' +
+            '<entry xmlns="http://www.w3.org/2005/Atom" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns' +
+            ':m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">' +
+            '<title type="text"/><updated>2012-06-15T02:23:29Z</updated><author><name/>' +
+            '</author><category term="applications.Connection" scheme="http://schemas.microsoft.com/ado/2007/08/dataservices/scheme"/>' +
+            '<content type="application/xml"><m:properties><d:DeviceType>' + AppCache.deviceType + '</d:DeviceType></m:properties></content></entry>';
+
+        // Set ajaxheader
+        $.ajaxSetup({
+            headers: {
+                "sap-client": AppCache.Client,
+                "NeptuneServer": AppCache.UrlBase,
+                "Access-Control-Allow-Origin": "*",
+                "X-SMP-APPCID": AppCache.deviceID,
+                "X-SUP-APPCID": AppCache.deviceID
+            }
+        });
+
+        // Passcode or Logon
+        if (AppCache.enablePasscode) {
+
+            AppCacheUserActionLock.setVisible(true);
+
+            if (!modelAppCacheUsers.getData().length) {
+                AppCache.setEnableLogonScreen();
+                return;
+            }
+
+            AppCacheUserActionLock.setEnabled(true);
+
+            // Start if mocana enabled
+            if (AppCache.enableMocana) {
+                var dataUsers = modelAppCacheUsers.getData()[0];
+                AppCache.Encrypted = dataUsers.AUTH;
+                AppCache.CurrentUser = dataUsers.NAME;
+                AppCache.CurrentUname = dataUsers.UNAME;
+                AppCache.CurrentLanguage = dataUsers.LANGU_NAD;
+                sapUname = AppCache.CurrentUname;
+
+                // Build Auth
+                $.ajaxSetup({
+                    headers: {
+                        "Authorization": AppCache.Encrypted
+                    }
+                });
+
+                AppCache.Load(AppCache.StartApp);
+                AppCache.Update();
+                return;
+            }
+
+            // Start passcode if only One user
+            if (modelAppCacheUsers.getData().length > 1) {
+                AppCache.setEnableUsersScreen();
+                AppCacheUsers.removeSelections();
+            } else {
+                var dataUsers = modelAppCacheUsers.getData()[0];
+                AppCache.Encrypted = dataUsers.AUTH;
+                AppCache.CurrentUser = dataUsers.NAME;
+                AppCache.CurrentUname = dataUsers.UNAME;
+                AppCache.CurrentLanguage = dataUsers.LANGU_NAD;
+                sapUname = AppCache.CurrentUname;
+                AppCache.Load(AppCache.PasscodeApp);
+
+                // Translation
+                AppCache.translate();
+            }
+
+        } else {
+            AppCache.setEnableLogonScreen();
+        }
+
+    }
 };
 
-// Apply Styling
-AppCache_statusItem.addStyleClass("NeptuneListItem");
+var Base64 = {
+    _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+    encode: function(input) {
+        var output = "";
+        var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
+        var i = 0;
+        input = Base64._utf8_encode(input);
+        while (i < input.length) {
+            chr1 = input.charCodeAt(i++);
+            chr2 = input.charCodeAt(i++);
+            chr3 = input.charCodeAt(i++);
+            enc1 = chr1 >> 2;
+            enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+            enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+            enc4 = chr3 & 63;
+
+            if (isNaN(chr2)) {
+                enc3 = enc4 = 64;
+            } else if (isNaN(chr3)) {
+                enc4 = 64;
+            }
+
+            output = output +
+                this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
+                this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4);
+        }
+        return output;
+    },
+    _utf8_encode: function(string) {
+        string = string.replace(/\r\n/g, "\n");
+        var utftext = "";
+        for (var n = 0; n < string.length; n++) {
+            var c = string.charCodeAt(n);
+            if (c < 128) {
+                utftext += String.fromCharCode(c);
+            } else if ((c > 127) && (c < 2048)) {
+                utftext += String.fromCharCode((c >> 6) | 192);
+                utftext += String.fromCharCode((c & 63) | 128);
+            } else {
+                utftext += String.fromCharCode((c >> 12) | 224);
+                utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+        }
+        return utftext;
+    }
+};
+var AppCacheLogonSAML = {
+
+    inRelog: false,
+
+    Logon: function() {
+
+        sap.ui.core.BusyIndicator.show();
+
+        // Build Auth String
+        AppCache.Auth = {
+            "User": AppCache_inUsername.getValue(),
+            "Pass": AppCache_inPassword.getValue()
+        };
+        AppCache.Auth = JSON.stringify(AppCache.Auth);
+
+        // Build Form Data
+        var formData = AppCache.samlUserField + "=" +
+            AppCache_inUsername.getValue() +
+            "&" + AppCache.samlPasswordField + "=" +
+            encodeURIComponent(AppCache_inPassword.getValue()) +
+            "&AuthMethod=FormsAuthentication";
+
+        $.ajax({
+            type: "POST",
+            data: formData,
+            url: AppCache.samlUrlLogon,
+            success: function(data, status, request) {
+
+                var SAMLAction = "";
+
+                // Logged On
+                if ($(data).filter('Form').length > 0) {
+                    var aForm = $(data).filter('Form');
+
+                    // SAML Response
+                    var SAMLResponse = aForm.serializeArray();
+                    for (index = 0; index < SAMLResponse.length; ++index) {
+
+                        if (SAMLResponse[index].name === AppCache.samlUserField) {
+                            SAMLResponse[index].value = AppCache_inUsername.getValue();
+                        }
+
+                        if (SAMLResponse[index].name === AppCache.samlPasswordField) {
+                            SAMLResponse[index].value = encodeURIComponent(AppCache_inPassword.getValue());
+                        }
+
+                    }
+
+                    SAMLResponse = jQuery.param(SAMLResponse);
+
+                    // SAML Action
+                    SAMLAction = $(aForm).attr('action');
+
+                    if (SAMLAction.substring(0, 4).toLowerCase() !== "http") {
+                        SAMLAction = AppCache.samlUrlLogon.split('/')[0] + "//" + AppCache.samlUrlLogon.split('/')[2] + SAMLAction;
+                        $(aForm).attr('action', SAMLAction);
+                    }
+
+                    AppCacheLogonSAML.Redirect(SAMLResponse, SAMLAction);
+                }
+
+                // Not Logged On
+                if (!SAMLAction) {
+                    sap.ui.core.BusyIndicator.hide();
+
+                    var loginObj = AppCacheLogonSAML.ParseResponse(data);
+
+                    AppCache_statusItem.setTitle(loginObj.LoginText);
+                    AppCache_inUsername.setValue();
+                    AppCache_inPassword.setValue();
+                }
+
+            }
+
+        });
+
+    },
+
+    Logoff: function() {
+
+        // Clear SSO
+        var logoffUrl = AppCache.samlUrlLogoff;
+
+        if (navigator.onLine && AppCache.isOffline === false) {
+            $.ajax({
+                type: "POST",
+                url: logoffUrl,
+                success: function(data, status, request) {}
+            });
+        }
+
+        // Clear Auth
+        AppCache.Auth = '';
+        $.ajaxSetup({
+            headers: {
+                "Authorization": ""
+            }
+        });
+
+    },
+
+    Redirect: function(SAMLResponse, SAMLAction) {
+
+        $.ajax({
+            type: "POST",
+            data: SAMLResponse,
+            url: SAMLAction,
+            success: function(data, status, request) {
+
+                var SAMLAction = "";
+                var LoggedOnCheck = '<div id="ping"></div>';
+                var LoginStatus = "";
+
+                // Parse Response
+                var loginObj = AppCacheLogonSAML.ParseResponse(request.responseText);
+                LoginStatus = loginObj.LoginStatus;
+
+                // Check Response Header from SAP
+                if (!LoginStatus) {
+                    LoginStatus = request.getResponseHeader("SAPLoginStatus");
+                }
+
+                switch (LoginStatus) {
+
+                    case "Logon":
+                        AppCache_statusItem.setTitle(loginObj.LoginText);
+                        AppCache_inUsername.setValue();
+                        AppCache_inPassword.setValue();
+                        sap.ui.core.BusyIndicator.hide();
+                        return;
+
+                    case "Password":
+                        AppCache.setEnablePasswordScreen();
+                        AppCache_inPassOld.setValue(AppCache_inPassword.getValue());
+
+                        setTimeout(function() {
+                            AppCache_inPassNew.focus();
+                        }, 400);
+                        return;
+                }
+
+                // Redirect
+                if ($(data).filter('Form').length > 0) {
+                    var aForm = $(data).filter('Form');
+
+                    // SAML Response
+                    var SAMLResponse = aForm.serializeArray();
+                    for (index = 0; index < SAMLResponse.length; ++index) {
+
+                        if (SAMLResponse[index].name === AppCache.samlUserField) {
+                            SAMLResponse[index].value = AppCache_inUsername.getValue();
+                        }
+
+                        if (SAMLResponse[index].name === AppCache.samlPasswordField) {
+                            SAMLResponse[index].value = encodeURIComponent(AppCache_inPassword.getValue());
+                        }
+
+                    }
+
+                    SAMLResponse = jQuery.param(SAMLResponse);
+
+                    // SAML Action
+                    SAMLAction = $(aForm).attr('action');
+
+                    if (SAMLAction.substring(0, 4).toLowerCase() !== "http") {
+                        SAMLAction = AppCache.Url + SAMLAction;
+                        $(aForm).attr('action', SAMLAction);
+                    }
+
+                    AppCacheLogonSAML.Redirect(SAMLResponse, SAMLAction);
+                }
+
+                // Done Authentication
+                if (!SAMLAction && data.indexOf(LoggedOnCheck) > -1) {
+                    sap.ui.core.BusyIndicator.hide();
+
+                    // Handle Logon Successfull
+                    if (AppCacheLogonSAML.inRelog) {
+                        AppCacheLogonSAML.inRelog = false;
+                        AppCache.Update();
+                    } else {
+                        AppCache.AfterLogon();
+                    }
+
+                }
+
+            }
+
+        });
+
+    },
+
+    ParseResponse: function(data) {
+
+        var LoginText = "";
+        var LoginStatus = "";
+
+        // Get HTML Document
+        var tempDiv = document.createElement('div');
+        tempDiv.innerHTML = data;
+
+        // Check for Error - Labels
+        var error1 = tempDiv.getElementsByTagName("label");
+        $.each(error1, function(i, data) {
+            if (data.id === "errorText") {
+                LoginText = data.innerText;
+            }
+        });
+
+        // Check for Error - Class
+        var error2 = tempDiv.getElementsByClassName("errorMessage")[0];
+
+        if (error2) {
+            LoginStatus = "Logon";
+            LoginText = error2.innerText;
+        }
+
+        // No LoginText ?
+        if (!LoginText) {
+            LoginText = AppCache_tWrongUserNamePass.getText();
+        }
+
+        // Check for relog
+        var form = tempDiv.getElementsByTagName("form");
+        $.each(form, function(i, data) {
+            if (data.name === "idp") {
+                LoginStatus = "Logon";
+            }
+        });
+
+        return {
+            "LoginStatus": LoginStatus,
+            "LoginText": LoginText
+        };
+
+    },
+
+    Relog: function() {
+
+        sap.ui.core.BusyIndicator.show();
+
+        var LogonData = JSON.parse(AppCache.Auth);
+        AppCacheLogonSAML.inRelog = true;
+
+        // Build Form Data
+        var formData = AppCache.samlUserField + "=" +
+            LogonData.User +
+            "&" + AppCache.samlPasswordField + "=" +
+            encodeURIComponent(LogonData.Pass) +
+            "&AuthMethod=FormsAuthentication";
+
+        $.ajax({
+            type: "POST",
+            data: formData,
+            url: AppCache.samlUrlLogon,
+            success: function(data, status, request) {
+
+                var SAMLAction = "";
+
+                // Logged On
+                if ($(data).filter('Form').length > 0) {
+                    var aForm = $(data).filter('Form');
+
+                    // SAML Response
+                    var SAMLResponse = aForm.serializeArray();
+                    for (index = 0; index < SAMLResponse.length; ++index) {
+
+                        if (SAMLResponse[index].name === AppCache.samlUserField) {
+                            SAMLResponse[index].value = LogonData.User;
+                        }
+
+                        if (SAMLResponse[index].name === AppCache.samlPasswordField) {
+                            SAMLResponse[index].value = encodeURIComponent(LogonData.Pass);
+                        }
+
+                    }
+
+                    SAMLResponse = jQuery.param(SAMLResponse);
+
+                    // SAML Action
+                    SAMLAction = $(aForm).attr('action');
+
+                    if (SAMLAction.substring(0, 4).toLowerCase() !== "http") {
+                        SAMLAction = AppCache.samlUrlLogon.split('/')[0] + "//" + AppCache.samlUrlLogon.split('/')[2] + SAMLAction;
+                        $(aForm).attr('action', SAMLAction);
+                    }
+
+                    AppCacheLogonSAML.Redirect(SAMLResponse, SAMLAction);
+                }
+
+                // Not Logged On
+                if (!SAMLAction) {
+                    sap.ui.core.BusyIndicator.hide();
+                    AppCache.Logout();
+                }
+
+            }
+
+        });
+
+    },
+
+    Init: function() {
+
+        $(document).ajaxError(function(event, request, settings) {
+
+            sap.ui.core.BusyIndicator.hide();
+
+            switch (request.status) {
+
+                case 0:
+                    if (NumPad.Verify) {
+                        NumPad.Verify = false;
+                        var isWinJS = !!window.Windows && /^ms-appx:/.test(location.href);
+                        if (isWinJS) {
+                            if (request.statusText.indexOf("resource") > -1) {} else {
+                                if (AppCache.CurrentApp === AppCache.PasscodeApp) {
+                                    AppCache.Load(AppCache.StartApp);
+                                }
+                            }
+                        } else {
+                            if (AppCache.CurrentApp === AppCache.PasscodeApp) {
+                                AppCache.Load(AppCache.StartApp);
+                            }
+                        }
+                    } else {
+                        if (AppCacheNav.getCurrentPage().sId === "AppCache_boxLogon") {
+                            AppCache_statusItem.setTitle(AppCache_tNoConnection.getText());
+                        }
+                    }
+                    break;
+
+                case 401:
+                    if (AppCacheNav.getCurrentPage().sId !== "AppCache_boxLogon") {
+                        AppCache.Logout();
+                    } else {
+                        AppCache_statusItem.setTitle(AppCache_tWrongUserNamePass.getText());
+                    }
+                    break;
+
+                case 200:
+                    var LoginStatus = request.getResponseHeader("SAPLoginStatus");
+
+                    if (!LoginStatus) {
+                        var loginObj = AppCacheLogonSAML.ParseResponse(request.responseText);
+                        LoginStatus = loginObj.LoginStatus;
+                    }
+
+                    switch (LoginStatus) {
+                        case "Password":
+                            AppCache.Logout();
+                            break;
+                        case "Logon":
+                            AppCacheLogonSAML.Relog();
+                            break;
+                    }
+                    break;
+
+                default:
+                    jQuery.sap.require("sap.m.MessageToast");
+                    sap.m.MessageToast.show(request.status + " - " + request.statusText);
+            }
+
+        });
+
+    }
+
+}
+var AppCacheLogonABAP = {
+
+    Logon: function() {
+
+        sap.ui.core.BusyIndicator.show();
+
+        // Build Auth String
+        var tok = AppCache_inUsername.getValue() + ':' + AppCache_inPassword.getValue();
+        var hash = Base64.encode(tok);
+        AppCache.Auth = "Basic " + hash;
+
+        // Ajax Header Authorization
+        $.ajaxSetup({
+            headers: {
+                "Authorization": AppCache.Auth
+            }
+        });
+
+        // Build Form Data
+        formData = "sap-user=" + AppCache_inUsername.getValue() +
+            "&sap-password=" + encodeURIComponent(AppCache_inPassword.getValue()) +
+            "&sap-client=" + AppCache.Client;
 
 
+        $.ajax({
+            type: "POST",
+            url: AppCache.UrlBase + "/neptune/native/neptune_login_ping.html",
+            data: formData,
+            success: function(data, status, request) {
+
+                sap.ui.core.BusyIndicator.hide();
+
+                var LoginText = request.getResponseHeader("SAPLoginMessage");
+                var LoginStatus = request.getResponseHeader("SAPLoginStatus");
+
+                switch (LoginStatus) {
+
+                    case "Logon":
+                        AppCache_inPassword.setValue();
+                        AppCache_statusItem.setTitle(LoginText);
+
+                        setTimeout(function() {
+                            AppCache_inPassword.focus();
+                        }, 400);
+                        return;
+
+                    case "Password":
+                        AppCache.setEnablePasswordScreen();
+                        AppCache_inPassOld.setValue(AppCache_inPassword.getValue());
+
+                        setTimeout(function() {
+                            AppCache_inPassNew.focus();
+                        }, 400);
+                        return;
+                }
+
+                // Handle Logon Successfull
+                AppCache.AfterLogon();
+
+            }
+
+        });
+
+    },
+
+    Logoff: function() {
+
+        // Clear SSO
+        var logoffUrl = AppCache.UrlBase + '/neptune/native/neptune_login_ping.html?sap-clearsso2';
+
+        if (navigator.onLine && AppCache.isOffline === false) {
+            $.ajax({
+                type: "POST",
+                url: logoffUrl,
+                success: function(data, status, request) {}
+            });
+        }
+
+        // Clear Auth
+        AppCache.Auth = '';
+        $.ajaxSetup({
+            headers: {
+                "Authorization": ""
+            }
+        });
+
+    },
+
+    Init: function() {
+
+        $(document).ajaxError(function(event, request, settings) {
+
+            sap.ui.core.BusyIndicator.hide();
+
+            switch (request.status) {
+
+                case 0:
+                    if (NumPad.Verify) {
+                        NumPad.Verify = false;
+                        var isWinJS = !!window.Windows && /^ms-appx:/.test(location.href);
+                        if (isWinJS) {
+                            if (request.statusText.indexOf("resource") > -1) {} else {
+                                if (AppCache.CurrentApp === AppCache.PasscodeApp) {
+                                    AppCache.Load(AppCache.StartApp);
+                                }
+                            }
+                        } else {
+                            if (AppCache.CurrentApp === AppCache.PasscodeApp) {
+                                AppCache.Load(AppCache.StartApp);
+                            }
+                        }
+                    } else {
+                        if (AppCacheNav.getCurrentPage().sId === "AppCache_boxLogon") {
+                            AppCache_statusItem.setTitle(AppCache_tNoConnection.getText());
+                        }
+                    }
+                    break;
+
+                case 401:
+                    if (!AppCacheNav.getCurrentPage().sId === "AppCache_boxLogon") {
+                        AppCache.Logout();
+                    } else {
+                        AppCache_statusItem.setTitle(AppCache_tWrongUserNamePass.getText());
+                    }
+                    break;
+
+                case 200:
+                    var LoginStatus = request.getResponseHeader("SAPLoginStatus");
+
+                    switch (LoginStatus) {
+                        case "Password":
+                            AppCache.Logout();
+                            break;
+                        case "Logon":
+                            AppCache.Logout();
+                            break;
+                    }
+                    break;
+
+                default:
+                    jQuery.sap.require("sap.m.MessageToast");
+                    sap.m.MessageToast.show(request.status + " - " + request.statusText);
+            }
+
+        });
+
+    }
+
+}
+var AppCacheLogonPortal = {
+
+    Logon: function() {
+
+        sap.ui.core.BusyIndicator.show();
+
+        // Build Auth String
+        AppCache.Auth = "j_user=" + AppCache_inUsername.getValue() +
+            "&j_username=" + AppCache_inUsername.getValue() +
+            "&j_password=" + AppCache_inPassword.getValue();
+
+        var formData = AppCache.Auth + "&j_salt=" + AppCache.PortalSalt +
+            "&uidPasswordLogon=Log On&login_submit=on&login_do_redirect=1";
+
+        // Portal URL
+        if (AppCache.PortalSalt) {
+            var logonUrl = AppCache.PortalUrl + "/j_security_check";
+        } else {
+            var logonUrl = AppCache.PortalUrl;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: logonUrl,
+            data: formData,
+            success: function(data, status, request) {
+
+                sap.ui.core.BusyIndicator.hide();
+
+                var LoginText = request.getResponseHeader("SAPLoginMessage");
+                var LoginStatus = request.getResponseHeader("SAPLoginStatus");
+
+                if (!LoginStatus) {
+                    var loginObj = AppCacheLogonPortal.ParseResponse(request);
+                    LoginStatus = loginObj.LoginStatus;
+                    LoginText = loginObj.LoginText;
+                }
+
+                switch (LoginStatus) {
+
+                    case "Salt":
+                        AppCacheLogonPortal.Logon();
+                        return;
+
+                    case "Logon":
+
+                        if (!LoginText && AppCacheNav.getCurrentPage().sId === "AppCache_boxLogon") {
+                            LoginText = AppCache_tWrongUserNamePass.getText();
+                        }
+
+                        AppCache_inPassword.setValue();
+                        AppCache_statusItem.setTitle(LoginText);
+
+                        setTimeout(function() {
+                            AppCache_inPassword.focus();
+                        }, 400);
+                        return;
+
+                    case "Password":
+                        AppCache.setEnablePasswordScreen();
+                        AppCache_inPassOld.setValue(AppCache_inPassword.getValue());
+
+                        setTimeout(function() {
+                            AppCache_inPassNew.focus();
+                        }, 400);
+                        return;
+
+                    case "OK":
+                        AppCache.PortalSalt = "";
+                        AppCache.AfterLogon();
+
+                }
+
+                // Handle Logon Successfull
+                AppCache.PortalSalt = "";
+                AppCache.AfterLogon();
+
+            }
+
+        });
+
+    },
+
+    Logoff: function() {
+
+        // Clear SSO
+        var logoffUrl = AppCache.PortalLogoffUrl;
+
+        if (navigator.onLine && AppCache.isOffline === false) {
+            $.ajax({
+                type: "POST",
+                url: logoffUrl,
+                success: function(data, status, request) {}
+            });
+        }
+
+        // Clear Auth
+        AppCache.Auth = '';
+        $.ajaxSetup({
+            headers: {
+                "Authorization": ""
+            }
+        });
+
+    },
+
+    ParseResponse: function(request) {
+
+        var LoginStatus = "";
+        var LoginText = "";
+
+        // Get HTML Document
+        var tempDiv = document.createElement('div');
+        tempDiv.innerHTML = request.responseText;
+
+        // Portal response
+        if (request.responseText.indexOf("logonretypepassfield") > -1) {
+            LoginStatus = "Password";
+        }
+
+        if (request.responseText.indexOf("logonuidfield") > -1) {
+            LoginStatus = "Logon";
+
+            var elem = tempDiv.getElementsByClassName("mobileErrorMessageText")[0];
+            if (elem) {
+                LoginText = elem.innerHTML;
+            }
+
+            if (!LoginText) {
+                var elem = tempDiv.getElementsByClassName("urTxtMsg")[0];
+                if (elem) {
+                    LoginText = elem.innerHTML;
+                }
+            }
+
+        }
+
+        // SAP response
+        if (request.responseText.indexOf("NeptunePasswordForm") > -1) {
+            LoginStatus = "Password";
+        }
+        if (request.responseText.indexOf("NeptuneLoginForm") > -1) {
+            LoginStatus = "Logon";
+        }
+
+        // Portal - Check for SALT
+        if (!AppCache.PortalSalt) {
+            var form = tempDiv.getElementsByTagName("form")[0];
+            if (form) {
+                $.each(form.childNodes, function(i, data) {
+                    if (data.name === "j_salt") {
+                        LoginStatus = "Salt";
+                        AppCache.PortalSalt = data.value;
+                    }
+                });
+            }
+        }
+
+        // Logged On
+        if (request.responseText.indexOf("TicketIssuerResponse") > -1) {
+            LoginStatus = "OK";
+        }
+
+        return {
+            "LoginStatus": LoginStatus,
+            "LoginText": LoginText
+        };
+
+    },
+
+    Relog: function() {
+
+        var formData = AppCache.Auth + "&j_salt=" + AppCache.PortalSalt +
+            "&uidPasswordLogon=Log On&login_submit=on&login_do_redirect=1";
+
+        // Portal URL
+        if (AppCache.PortalSalt) {
+            var logonUrl = AppCache.PortalUrl + "/j_security_check";
+        } else {
+            var logonUrl = AppCache.PortalUrl;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: logonUrl,
+            data: formData,
+            success: function(data, status, request) {
+
+                var LoginStatus = request.getResponseHeader("SAPLoginStatus");
+
+                if (!LoginStatus) {
+                    var loginObj = AppCacheLogonPortal.ParseResponse(request);
+                    LoginStatus = loginObj.LoginStatus;
+                }
+
+                switch (LoginStatus) {
+
+                    case "Salt":
+                        AppCacheLogonPortal.Relog();
+                        break;
+
+                    case "Logon":
+                        AppCache.Logout();
+                        break;
+
+                    case "Password":
+                        AppCache.Logout();
+                        break;
+
+                    default:
+                        AppCache.PortalSalt = "";
+                        NumPad.Verify = true;
+                        AppCache.Update();
+                        break;
+                }
+            }
+
+        });
+
+    },
+
+    Init: function() {
+
+        $(document).ajaxError(function(event, request, settings) {
+
+            sap.ui.core.BusyIndicator.hide();
+
+            switch (request.status) {
+
+                case 0:
+                    if (NumPad.Verify) {
+                        NumPad.Verify = false;
+                        var isWinJS = !!window.Windows && /^ms-appx:/.test(location.href);
+                        if (isWinJS) {
+                            if (request.statusText.indexOf("resource") > -1) {} else {
+                                if (AppCache.CurrentApp == AppCache.PasscodeApp) {
+                                    AppCache.Load(AppCache.StartApp);
+                                }
+                            }
+                        } else {
+                            if (AppCache.CurrentApp == AppCache.PasscodeApp) {
+                                AppCache.Load(AppCache.StartApp);
+                            }
+                        }
+                    } else {
+                        if (AppCacheNav.getCurrentPage().sId === "AppCache_boxLogon") {
+                            AppCache_statusItem.setTitle(AppCache_tNoConnection.getText());
+                        }
+                    }
+                    break;
+
+                case 401:
+                    if (!AppCacheNav.getCurrentPage().sId === "AppCache_boxLogon") {
+                        AppCache.Logout();
+                    } else {
+                        AppCache_statusItem.setTitle(AppCache_tWrongUserNamePass.getText());
+                    }
+                    break;
+
+                case 200:
+                    var LoginStatus = request.getResponseHeader("SAPLoginStatus");
+
+                    if (!LoginStatus) {
+                        var loginObj = AppCacheLogonPortal.ParseResponse(request);
+                        LoginStatus = loginObj.LoginStatus;
+                    }
+
+                    switch (LoginStatus) {
+                        case "Password":
+                            AppCache.Logout();
+                            break;
+                        case "Logon":
+                            AppCacheLogonPortal.Relog();
+                            break;
+                    }
+                    break;
+
+                default:
+                    jQuery.sap.require("sap.m.MessageToast");
+                    sap.m.MessageToast.show(request.status + " - " + request.statusText);
+            }
+
+        });
+
+    }
+
+}
+var AppCacheLogonSMP = {
+
+    Logon: function() {
+
+        sap.ui.core.BusyIndicator.show();
+
+        // Build Auth String
+        var tok = AppCache_inUsername.getValue() + ':' + AppCache_inPassword.getValue();
+        var hash = Base64.encode(tok);
+        AppCache.Auth = "Basic " + hash;
+
+        // Ajax Header Authorization
+        $.ajaxSetup({
+            headers: {
+                "Authorization": AppCache.Auth
+            }
+        });
+
+        // Build Form Data
+        var formData = "sap-user=" + AppCache_inUsername.getValue() +
+            "&sap-password=" + encodeURIComponent(AppCache_inPassword.getValue()) +
+            "&sap-client=" + AppCache.Client;
+
+        // HCPms/SMP - Principal Propagation
+        if (AppCache.enablePrincipal) {
+            formData = "";
+        }
+
+        AppCache.doOnboard = true;
+
+        $.ajax({
+            type: "POST",
+            url: AppCache.UrlBase + '/neptune/native/neptune_login_ping.html',
+            data: formData,
+            statusCode: {
+                401: function(data) {
+                    AppCacheLogonSMP.Onboard();
+                },
+                404: function(data) {
+                    AppCacheLogonSMP.Onboard();
+
+                }
+            },
+            success: function(data, status, request) {
+
+                AppCache.doOnboard = false;
+                sap.ui.core.BusyIndicator.hide();
+
+                var LoginText = request.getResponseHeader("SAPLoginMessage");
+                var LoginStatus = request.getResponseHeader("SAPLoginStatus");
+
+                switch (LoginStatus) {
+
+                    case "Logon":
+
+                        if (!LoginText && AppCacheNav.getCurrentPage().sId === "AppCache_boxLogon") {
+                            LoginText = AppCache_tWrongUserNamePass.getText();
+                        }
+
+                        AppCache_inPassword.setValue();
+                        AppCache_statusItem.setTitle(LoginText);
+
+                        setTimeout(function() {
+                            AppCache_inPassword.focus();
+                        }, 400);
+                        return;
+
+                    case "Password":
+                        AppCache.setEnablePasswordScreen();
+                        AppCache_inPassOld.setValue(AppCache_inPassword.getValue());
+
+                        setTimeout(function() {
+                            AppCache_inPassNew.focus();
+                        }, 400);
+                        return;
+                }
+
+                // Handle Logon Successfull
+                AppCache.AfterLogon();
+            }
+
+        });
+
+    },
+
+    Onboard: function() {
+
+        if (AppCache.enableSMPCaptcha) {
+            AppCache.setEnableCaptchaScreen();
+        }
+
+        $.ajax({
+            type: "POST",
+            data: AppCache.xmlString,
+            contentType: "application/atom+xml",
+            url: AppCache.Url + "/odata/applications/latest/" + AppCache.smpApplication + "/Connections",
+            statusCode: {
+                201: function() {
+                    AppCache.Logon();
+                },
+                401: function(data) {
+                    AppCache.onBoard = false;
+                    sap.ui.core.BusyIndicator.hide();
+                    if (AppCache.enableSMPCaptcha) {
+                        AppCache_imgCaptcha.setSrc("data:image/jpeg;base64," + data.responseText);
+                    } else {
+                        AppCache_statusItem.setTitle(AppCache_tWrongUserNamePass.getText());
+                        AppCache_inUsername.setValue();
+                        AppCache_inPassword.setValue();
+                    }
+                },
+                404: function(data) {
+                    AppCache.onBoard = false;
+                    sap.ui.core.BusyIndicator.hide();
+                    if (AppCache.enableSMPCaptcha) {
+                        AppCache_imgCaptcha.setSrc("data:image/jpeg;base64," + data.responseText);
+                    } else {
+                        AppCache_statusItem.setTitle(AppCache_tNoConnection.getText());
+                        AppCache_inUsername.setValue();
+                        AppCache_inPassword.setValue();
+                    }
+                }
+            }
+        });
+    },
+
+    Init: function() {
+
+        // Global Ajax Error
+        $(document).ajaxError(function(event, request, settings) {
+
+            if (!AppCache.doOnboard) {
+                sap.ui.core.BusyIndicator.hide();
+            }
+
+            switch (request.status) {
+
+                case 0:
+                    if (NumPad.Verify) {
+                        NumPad.Verify = false;
+                        var isWinJS = !!window.Windows && /^ms-appx:/.test(location.href);
+                        if (isWinJS) {
+                            if (request.statusText.indexOf("resource") > -1) {} else {
+                                if (AppCache.CurrentApp == AppCache.PasscodeApp) {
+                                    AppCache.Load(AppCache.StartApp);
+                                }
+                            }
+                        } else {
+                            if (AppCache.CurrentApp == AppCache.PasscodeApp) {
+                                AppCache.Load(AppCache.StartApp);
+                            }
+                        }
+                    }
+                    break;
+
+                case 404:
+                    if (AppCache.inLogon === false && AppCache.enableSMPCaptcha) {
+                        AppCache.inLogon = true;
+                        ModelData.Delete(AppCacheUsers, "UNAME", AppCache.CurrentUname);
+                        setCacheAppCacheUsers();
+                        AppCache.Logout();
+                    }
+                    break;
+
+                case 200:
+                    var LoginStatus = request.getResponseHeader("SAPLoginStatus");
+
+                    switch (LoginStatus) {
+                        case "Password":
+                            AppCache.Logout();
+                            break;
+                        case "Logon":
+                            AppCache.Logout();
+                            break;
+                    }
+                    break;
+
+                case 500:
+                    sap.ui.core.BusyIndicator.hide();
+
+                case 501:
+                    sap.ui.core.BusyIndicator.hide();
+
+                case 503:
+                    sap.ui.core.BusyIndicator.hide();
+
+                default:
+                    jQuery.sap.require("sap.m.MessageToast");
+                    sap.m.MessageToast.show(request.status + " - " + request.statusText);
+            }
+
+        });
+
+
+    }
+
+}
+var NumPad = {
+    numValue: '',
+    Verify: false,
+    numPasscode: 0,
+    enterKey: function(keyValue) {
+
+        var view = sap.ui.getCore().byId(AppCache.PasscodeApp);
+        var Passcode1 = sap.ui.getCore().byId(view.createId("Passcode1"));
+        var Passcode2 = sap.ui.getCore().byId(view.createId("Passcode2"));
+        var Passcode3 = sap.ui.getCore().byId(view.createId("Passcode3"));
+        var Passcode4 = sap.ui.getCore().byId(view.createId("Passcode4"));
+        var boxNumpad02 = sap.ui.getCore().byId(view.createId("boxNumpad02"));
+
+        if (Passcode1.getSelected() === false) {
+            Passcode1.setSelected(true);
+            NumPad.numValue = NumPad.numValue + keyValue;
+            return;
+        }
+
+        if (Passcode2.getSelected() === false) {
+            Passcode2.setSelected(true);
+            NumPad.numValue = NumPad.numValue + keyValue;
+            return;
+        }
+
+        if (Passcode3.getSelected() === false) {
+            Passcode3.setSelected(true);
+            NumPad.numValue = NumPad.numValue + keyValue;
+            return;
+        }
+
+        if (Passcode4.getSelected() === false) {
+            Passcode4.setSelected(true);
+            NumPad.numValue = NumPad.numValue + keyValue;
+
+            setTimeout(function() {
+                NumPad.Logon();
+            }, 50);
+
+            NumPad.setPasscodeBusy();
+            return;
+        }
+    },
+
+    setPasscodeBusy: function() {
+        NumPad.setPasscodeEnabled(false);
+        setTimeout(function() {
+            NumPad.setPasscodeEnabled(true);
+        }, 500);
+    },
+
+    setPasscodeEnabled: function(enabled) {
+
+        var view = sap.ui.getCore().byId(AppCache.PasscodeApp);
+        var butNumpad1 = sap.ui.getCore().byId(view.createId("butNumpad1"));
+        var butNumpad2 = sap.ui.getCore().byId(view.createId("butNumpad2"));
+        var butNumpad3 = sap.ui.getCore().byId(view.createId("butNumpad3"));
+        var butNumpad4 = sap.ui.getCore().byId(view.createId("butNumpad4"));
+        var butNumpad5 = sap.ui.getCore().byId(view.createId("butNumpad5"));
+        var butNumpad6 = sap.ui.getCore().byId(view.createId("butNumpad6"));
+        var butNumpad7 = sap.ui.getCore().byId(view.createId("butNumpad7"));
+        var butNumpad8 = sap.ui.getCore().byId(view.createId("butNumpad8"));
+        var butNumpad9 = sap.ui.getCore().byId(view.createId("butNumpad9"));
+        var butNumpad0 = sap.ui.getCore().byId(view.createId("butNumpad0"));
+        var butNumpadClear = sap.ui.getCore().byId(view.createId("butNumpadClear"));
+
+        butNumpad1.setEnabled(enabled);
+        butNumpad2.setEnabled(enabled);
+        butNumpad3.setEnabled(enabled);
+        butNumpad4.setEnabled(enabled);
+        butNumpad5.setEnabled(enabled);
+        butNumpad6.setEnabled(enabled);
+        butNumpad7.setEnabled(enabled);
+        butNumpad8.setEnabled(enabled);
+        butNumpad9.setEnabled(enabled);
+        butNumpad0.setEnabled(enabled);
+        butNumpadClear.setEnabled(enabled);
+    },
+
+    Clear: function() {
+
+        var view = sap.ui.getCore().byId(AppCache.PasscodeApp);
+        var Passcode1 = sap.ui.getCore().byId(view.createId("Passcode1"));
+        var Passcode2 = sap.ui.getCore().byId(view.createId("Passcode2"));
+        var Passcode3 = sap.ui.getCore().byId(view.createId("Passcode3"));
+        var Passcode4 = sap.ui.getCore().byId(view.createId("Passcode4"));
+        var butNumpadLogin = sap.ui.getCore().byId(view.createId("butNumpadLogin"));
+
+        NumPad.numValue = '';
+        Passcode1.setSelected(false);
+        Passcode2.setSelected(false);
+        Passcode3.setSelected(false);
+        Passcode4.setSelected(false);
+        butNumpadLogin.setEnabled(false);
+    },
+
+    Logon: function() {
+
+        // Decrypt with Passcode
+        var view = sap.ui.getCore().byId(AppCache.PasscodeApp);
+        var boxNumpad02 = sap.ui.getCore().byId(view.createId("boxNumpad02"));
+        var decrypted = CryptoJS.AES.decrypt(AppCache.Encrypted, NumPad.numValue);
+
+        try {
+            var auth = decrypted.toString(CryptoJS.enc.Utf8);
+        } catch (err) {
+            auth = '';
+        }
+
+        if (auth === '') {
+            NumPad.Clear();
+
+            if (AppCache.numPasscode == NumPad.numPasscode) {
+                NumPad.numPasscode = 0;
+                AppCacheUserActionLock.setEnabled(false);
+                AppCache.Logout();
+                AppCache.RemoveAllCache();
+                return;
+            }
+
+            jQuery.sap.require("sap.m.MessageToast");
+            boxNumpad02.addStyleClass("animated shake");
+
+            setTimeout(function() {
+                boxNumpad02.removeStyleClass("animated shake");
+            }, 500);
+
+            NumPad.setPasscodeBusy();
+            if (window.cordova) {
+                navigator.notification.vibrate(300);
+            }
+            NumPad.numPasscode++;
+            return;
+        }
+
+        // Clear
+        NumPad.numPasscode = 0;
+        NumPad.Clear();
+        NumPad.Verify = true;
+
+        var data = ModelData.Find(AppCacheUsers, "UNAME", AppCache.CurrentUname)[0];
+
+        // TwoFactor
+        if (data.ENABLE_TWOFACTOR === 'X') {
+            if (!data.TWOFACTOR) {
+                AppCache_inTwoFactor.setValue();
+                AppCache_errorTwoFactor.setVisible(false);
+                AppCache_popTwoFactor.open();
+                setTimeout(function() {
+                    AppCache_popTwoFactor.rerender();
+                }, 800);
+                return;
+            }
+        }
+
+        // Logon Portal
+        if (AppCache.enablePortal) {
+            AppCache.Auth = auth;
+            AppCacheLogonPortal.Relog();
+            return;
+        }
+
+        // Logon SAML
+        if (AppCache.enableSAML) {
+            AppCache.Auth = auth;
+            AppCacheLogonSAML.Relog();
+            return;
+        }
+
+        // Build Auth
+        $.ajaxSetup({
+            headers: {
+                "Authorization": auth,
+                "sap-client": AppCache.Client,
+                "X-SMP-APPCID": AppCache.deviceID,
+                "X-SUP-APPCID": AppCache.deviceID,
+                "Access-Control-Allow-Origin": "*"
+            }
+        });
+
+        // Start App
+        AppCache.Encrypted = '';
+        AppCache.Update();
+    }
+};
+function AppSyncStart(numPackage) {
+    var dynFunction = "sap.n.Database." + AppCache.CurrentApp + ".Sync(numPackage)";
+    eval(dynFunction);
+}
+
+function AppSyncAfterUpdate() {
+    var dynFunction = "sap.n.Database." + AppCache.CurrentApp + ".AfterUpdate()";
+    eval(dynFunction);
+}
+function AppSyncBeforeUpdate() {
+    var dynFunction = "sap.n.Database." + AppCache.CurrentApp + ".BeforeUpdate()";
+    eval(dynFunction);
+}
+function AppSyncAjaxSuccess() {
+    var dynFunction = "sap.n.Database." + AppCache.CurrentApp + ".AjaxSuccess()";
+    eval(dynFunction);
+}
+function AppSyncAjaxError() {
+    var dynFunction = "sap.n.Database." + AppCache.CurrentApp + ".AjaxError()";
+    eval(dynFunction);
+}
 
 AppCache_itemUsers.bindProperty("description",{parts:["TRDAT","LTIME"],formatter: function(TRDAT,LTIME){
 // Date
@@ -415,138 +3820,171 @@ var oTime = oSAPFormat.parse(LTIME);
 var xTime = oOutFormat.format(oTime);
 
 // Format Date
-var formattedText = 'Last Logon: ' + xDate + ' ' + xTime;
+var formattedText = AppCache_tLastLogon.getText() + " " + xDate + ' ' + xTime;
 
 return formattedText;
 
 
 }});
+AppCacheShellItemRun.bindProperty("counter",{parts:["TILE_NUMBER"],formatter: function(TILE_NUMBER){
+if (typeof( TILE_NUMBER ) == "undefined" || TILE_NUMBER === null || TILE_NUMBER === "") { return 0; }
+return parseInt(TILE_NUMBER);
+}});
+AppCacheShellItemFav.bindProperty("counter",{parts:["TILE_NUMBER"],formatter: function(TILE_NUMBER){
+if (typeof( TILE_NUMBER ) == "undefined" || TILE_NUMBER === null || TILE_NUMBER === "") { return 0; }
+return parseInt(TILE_NUMBER);
+}});
+AppCacheShellItem.bindProperty("counter",{parts:["TILE_NUMBER"],formatter: function(TILE_NUMBER){
+if (typeof( TILE_NUMBER ) == "undefined" || TILE_NUMBER === null || TILE_NUMBER === "") { return 0; }
+return parseInt(TILE_NUMBER);
+}});
 
 //FUNCTIONS
-function getOnlineAppCacheContent(value) {
+function getOnlineAppCacheUsers(value) {
 $.ajax({
-datatype: "HTML",
-type: "GET",
-url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_APP_CONTENT&ajax_applid=NEPTUNE_APPCACHE&field_id=00025&xhr-source=MobileContent&ajax_value=" + value + "",
-headers: {"X-Requested-With": "XMLHttpRequest"},
+type: "POST",
+contentType: "application/json",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?ajax_id=GET_USER_DATA&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00281&ajax_value=" + value + "",
+dataType: "json",
+data: encodeURIComponent(modelAppCacheUsers.getJSON()),
 success: function (data) {
-
+modelAppCacheUsers.setData(JSONH.unpack(data.modelAppCacheUsersData));
+setCacheAppCacheUsers(data.modelAppCacheUsersData);
+modelAppCacheTranslation.setData(JSONH.unpack(data.modelAppCacheTranslationData));
+setCacheAppCacheTranslation(data.modelAppCacheTranslationData);
 if (typeof(data.systemMessage) != "undefined"){alert(data.systemMessage.MESSAGE);}
-// Check Content
-var htmlStart = data.substr(0, 15);
+var encrypted = CryptoJS.AES.encrypt(AppCache.Auth, AppCache.Passcode);
 
-if (htmlStart == '<!DOCTYPE html>') {
-    sap.ui.core.BusyIndicator.hide();
+// Loop List data to Update the correct record
+$.each(modelAppCacheUsers.oData, function(i, data) {
 
-    // Update of Passcode App
-    if (AppCache.CurrentApp === AppCache.PasscodeApp) {
-        ModelData.Delete(AppCacheUsers, "UNAME", AppCache.CurrentUname);
-        AppCache.Logout();
+    // Change the correct record
+    if (data.UNAME === AppCache_inUsername.getValue().toUpperCase() || data.UNAME_SSO === AppCache_inUsername.getValue()) {
 
-        jQuery.sap.require("sap.m.MessageToast");
-        sap.m.MessageToast.show(AppCache_txt14.getText());
-        return;
+        if (AppCache.enableMocana) {
+            data.AUTH = AppCache.Auth;
+            AppCache.Encrypted = AppCache.Auth;
+        } else {
+            data.AUTH = encrypted.toString();
+            AppCache.Encrypted = encrypted.toString();
+        }
+
+        AppCache.CurrentUser = data.NAME;
+        AppCache.CurrentUname = data.UNAME;
+        AppCache.CurrentLanguage = data.LANGU_NAD;
+        sapUname = AppCache.CurrentUname;
+
+        if (AppCache.enablePasscode) {
+            AppCacheShellUser.setUsername(AppCache.CurrentUser);
+        }
+
+        if (data.USER_IMAGE) {
+            AppCacheShellUser.setImage(data.USER_IMAGE);
+        }
     }
 
-    if (sap.ui.Device.os.name == "winphone") {
-        window.open("data:text/html," + data, "_blank");
-        return;
-    } else {
-        window.open("data:text/html;base64," + Base64.encode(data), "_blank", "location=0");
-        return;
-    }
+});
 
-}
+// Store to LocalStorage
+setCacheAppCacheUsers();
 
-// Destroy Old App
-if (AppCache.Initialized == true) {
-    if (typeof AppDestroy == 'function') {
-        AppDestroy();
-    }
-}
+// Clear
+AppCache.Passcode = '';
+AppCache.Auth = '';
 
-// Set Local Storage Key
-var appKey = 'AppCache_' + value;
-
-// Set LocalStorage Data
-$.sap.require("jquery.sap.storage");
-var localStorage = $.sap.storage(jQuery.sap.storage.Type.local);
-localStorage.put(appKey, data);
-
-// Set App Initialized
-AppCache.Initialized = true;
-
-// Add to Application Cache
-if (modelAppCacheData.getData().length) {
-    var appData = modelAppCacheData.getData();
-} else {
-    var appData = new Array();
-}
-
-var newApp = {};
-newApp.APPLID = value;
-newApp.UPDDAT = '';
-newApp.UPDTIM = '';
-appData.push(newApp);
-
-// Update Application Data
-modelAppCacheData.setData(appData);
-setCacheAppCacheData();
-
-
-// Get Appliction Data
-getOnlineAppCacheData();
-
-var isWinJS = !!window.Windows && /^ms-appx:/.test(location.href);
-if (isWinJS == true) {
-$("#AppCache_Wrapper").html(data).trigger('create');
-var AppElem = document.getElementById("AppCache_Wrapper");
-var AppData = AppElem.getElementsByTagName("script");
-var AppCode = AppData[0];
-var CodeTxt = AppCode.textContent;
-$.globalEval(CodeTxt);
-} else {
-$("#AppCache_Wrapper").html(data).trigger('create');
-}
+// Start PasscodeApp
+AppCache.Load(AppCache.PasscodeApp);
 }
 });
 }
+function getCacheAppCacheUsers() { _AppCache_GetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheUsers",modelAppCacheUsers,"LS","","",true,true);}
+function setCacheAppCacheUsers(data) { _AppCache_SetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheUsers",modelAppCacheUsers,"LS",data,true,true);}
+function getCacheAppCacheShellListRun() { _AppCache_GetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheShellListRun_" + sapUname,modelAppCacheShellListRun,"DB","","",true);}
+function setCacheAppCacheShellListRun(data) { _AppCache_SetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheShellListRun_" + sapUname,modelAppCacheShellListRun,"DB",data,true);}
+function getCacheAppCacheShellListFav() { _AppCache_GetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheShellListFav_" + sapUname,modelAppCacheShellListFav,"DB","","",true);}
+function setCacheAppCacheShellListFav(data) { _AppCache_SetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheShellListFav_" + sapUname,modelAppCacheShellListFav,"DB",data,true);}
 function getOnlineAppCacheData(value) {
 $.ajax({
 type: "POST",
-url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_APP_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00006&ajax_value=" + value + "",
+contentType: "application/json",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?ajax_id=GET_APP_DATA&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00006&ajax_value=" + value + "",
 dataType: "json",
 data: encodeURIComponent(modelAppCacheData.getJSON()),
 success: function (data) {
-modelAppCacheData.setData(data.modelAppCacheDataData);
-setCacheAppCacheData();
+modelAppCacheData.setData(JSONH.unpack(data.modelAppCacheDataData));
+setCacheAppCacheData(data.modelAppCacheDataData);
 modelAppCacheUpdate.setData(data.modelAppCacheUpdateData);
-setCacheAppCacheUpdate();
+setCacheAppCacheUpdate(data.modelAppCacheUpdateData);
 if (typeof(data.systemMessage) != "undefined"){alert(data.systemMessage.MESSAGE);}
-// Get Local Storage Data
-$.sap.require("jquery.sap.storage");
-var localStorage = $.sap.storage(jQuery.sap.storage.Type.local);
-var appData = modelAppCacheData.getData();
+var delApp = new Array();
 
 // Delete Applications from Cache
-$.each(appData, function(i, data) {
-    if (data.INVALID == true) {
-        var appKey = 'AppCache_' + data.APPLID;
-        localStorage.remove(appKey);
+$.each(modelAppCacheData.oData, function(i, data) {
+    if (data.INVALID) {
+
+        // Delete view from DB/LocalStorage
+        if (window.openDatabase) {
+
+            var viewName = 'AppCacheView_%_' + data.APPLID;
+
+            try {
+                AppDB.transaction(function(tx) {
+                    tx.executeSql("DELETE FROM model WHERE KEY LIKE ?", [viewName], function(tx, r) {});
+                });
+            } catch (e) {
+                console.log("Error processing SQL: " + e.message);
+            }
+
+        } else {
+
+            for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                key = key.replace("state.key_-", "");
+                if (key.indexOf("AppCacheView") > -1) {
+                    if (key.indexOf(data.APPLID) > -1) {
+                        localStorage.removeItem(localStorage.key(i));
+                    }
+                }
+            }
+
+        }
+
+        // Delete from AppCacheData
+        delApp.push(data.APPLID);
+
+        if (AppCache.View[data.APPLID]) {
+            AppCache.View[data.APPLID] = null;
+        }
     }
 });
 
-// Start First App
+$.each(delApp, function(i, data) {
+    ModelData.Delete(AppCacheData, "APPLID", data);
+
+    // Update PIN Code App
+    if (AppCache.enablePasscode && AppCache.PasscodeApp === data) {
+        AppCache.Load(data, {
+            load: "download"
+        });
+    }
+});
+
+// Save
+setCacheAppCacheData();
+
+// Start AppCache.StartApp
 if (NumPad.Verify == true) {
     AppCache.Load(AppCache.StartApp);
+    sap.n.Push.Subscribe();
     NumPad.Verify = false;
 }
 
-// Hide Busy
-sap.ui.core.BusyIndicator.hide();
-
 // Update App - device check
 if (sap.ui.Device.os.name !== 'iOS' && sap.ui.Device.os.name !== 'Android') {
+    return;
+}
+
+if (!AppCache.AppVersion) {
     return;
 }
 
@@ -554,9 +3992,9 @@ if (sap.ui.Device.os.name !== 'iOS' && sap.ui.Device.os.name !== 'Android') {
 if (modelAppCacheUpdate.oData.RELEASED === true && modelAppCacheUpdate.oData.PG_APP_VERSION !== AppCache.AppVersion && modelAppCacheUpdate.oData.AUTO_UPDATE === true) {
 
     // iOS
-    if (sap.ui.Device.os.name === 'iOS' ) {
+    if (sap.ui.Device.os.name === 'iOS') {
         if (modelAppCacheUpdate.oData.URL_IPA) {
-            window.open(modelAppCacheUpdate.oData.URL_IPA);
+            window.open(modelAppCacheUpdate.oData.URL_IPA,"_blank");
         }
         return;
     }
@@ -564,11 +4002,12 @@ if (modelAppCacheUpdate.oData.RELEASED === true && modelAppCacheUpdate.oData.PG_
     fileTransfer = new FileTransfer();
     var remoteFile = encodeURI(AppCache.Url + modelAppCacheUpdate.oData.URL_APK);
     var localFile = cordova.file.externalCacheDirectory + AppCache.CurrentConfig + '.apk';
+    var appVersion = modelAppCacheUpdate.oData.PG_APP_VERSION;
     var percent = new Number;
 
     // Open Dialog
     AppCache_diaDownload.open();
-    AppCache_diaDownload.setText("Downloading new version (v." + modelAppCacheUpdate.oData.PG_APP_VERSION + ")..." + parseInt(percent) + "%");
+    AppCache_diaDownload.setText(AppCache_tDownloading.getText() + " (v." + appVersion + ")..." + parseInt(percent) + "%");
 
     // Delete Old File
     window.resolveLocalFileSystemURL(localFile, function(fileEntry) {
@@ -579,7 +4018,7 @@ if (modelAppCacheUpdate.oData.RELEASED === true && modelAppCacheUpdate.oData.PG_
     fileTransfer.onprogress = function(progressEvent) {
         if (progressEvent.lengthComputable) {
             percent = (100 / progressEvent.total) * progressEvent.loaded;
-            AppCache_diaDownload.setText("Downloading new version (v." + modelAppCacheUpdate.oData.PG_APP_VERSION + ")..." + parseInt(percent) + "%");
+            AppCache_diaDownload.setText(AppCache_tDownloading.getText() + " (v." + appVersion + ")..." + parseInt(percent) + "%");
         }
     };
 
@@ -597,69 +4036,96 @@ if (modelAppCacheUpdate.oData.RELEASED === true && modelAppCacheUpdate.oData.PG_
         function(error) {
             AppCache_diaDownload.close();
             jQuery.sap.require("sap.m.MessageToast");
-            sap.m.MessageToast.show(AppCache_txt13.getText());
+            sap.m.MessageToast.show(AppCache_tErrorDownloading.getText());
         },
         true, {
 
         }
     );
 
-
-
 }
-}
-,error: function (result, status) {
-sap.ui.core.BusyIndicator.hide();
 }
 });
 }
-function getCacheAppCacheData() { _AppCache_GetCache("NEPTUNE_APPCACHE_AppCacheData",modelAppCacheData,"LS","","");}
-function setCacheAppCacheData() { _AppCache_SetCache("NEPTUNE_APPCACHE_AppCacheData",modelAppCacheData,"LS");}
-function getOnlineAppCacheUsers(value) {
+function getCacheAppCacheData() { _AppCache_GetCache("AppCacheData",modelAppCacheData,"LS","","",true);}
+function setCacheAppCacheData(data) { _AppCache_SetCache("AppCacheData",modelAppCacheData,"LS",data,true);}
+function getCacheAppCacheNotifList() { _AppCache_GetCache("AppCacheNotifList_" + sapUname,modelAppCacheNotifList,"DB","","",true);}
+function setCacheAppCacheNotifList(data) { _AppCache_SetCache("AppCacheNotifList_" + sapUname,modelAppCacheNotifList,"DB",data,true);}
+function getCacheAppCacheTranslation() { _AppCache_GetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheTranslation_" + sapUname,modelAppCacheTranslation,"DB","","",true);}
+function setCacheAppCacheTranslation(data) { _AppCache_SetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheTranslation_" + sapUname,modelAppCacheTranslation,"DB",data,true);}
+function getOnlineAppCacheNotifDelta(value) {
 $.ajax({
 type: "POST",
-url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=GET_USER_DATA&ajax_applid=NEPTUNE_APPCACHE&field_id=00098&ajax_value=" + value + "",
+contentType: "application/json",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?ajax_id=GET_NOTIF_LIST&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00178&ajax_value=" + value + "",
 dataType: "json",
-data: encodeURIComponent(modelAppCacheUsers.getJSON()),
+data: encodeURIComponent(modelAppCacheNotifTime.getJSON()),
 success: function (data) {
-modelAppCacheUsers.setData(data.modelAppCacheUsersData);
-setCacheAppCacheUsers();
+modelAppCacheNotifDelta.setData(JSONH.unpack(data.modelAppCacheNotifDeltaData));
+modelAppCacheNotifTime.setData(data.modelAppCacheNotifTimeData);
+setCacheAppCacheNotifTime(data.modelAppCacheNotifTimeData);
 if (typeof(data.systemMessage) != "undefined"){alert(data.systemMessage.MESSAGE);}
-var dataUsers = modelAppCacheUsers.getData();
-var encrypted = CryptoJS.AES.encrypt(AppCache.Auth, AppCache.Passcode);
+// Get App Name
+$.each(modelAppCacheNotifDelta.oData, function(i, data) {
 
-// Loop List data to Update the correct record
-$.each(dataUsers, function(i, data) {
+    var app = ModelData.Find(AppCacheShellList, "APPLID", data.APPLID)[0];
 
-    // Change the correct record
-    if (data.UNAME == AppCache_inUsername.getValue().toUpperCase()) {
-        data.AUTH = encrypted.toString();
-        AppCache.Encrypted = encrypted.toString();
-        AppCache.CurrentUser = data.NAME;
-        AppCache.CurrentUname = data.UNAME;
-
-        if (AppCache.enablePasscode === true && typeof txtUserName != 'undefined') {
-            txtUserName.setText(AppCache.CurrentUser);
-        }
+    if (app) {
+        data.APPLID_S = app.TILE_TITLE + ' - ' + app.TILE_INFO;
     }
 
 });
 
-// Store to LocalStorage
-setCacheAppCacheUsers();
+// Delta Update
+ModelData.UpdateArray(AppCacheNotifList, "GUID", modelAppCacheNotifDelta.oData);
+setCacheAppCacheNotifList();
 
-// Clear
-AppCache.Passcode = '';
-AppCache.Auth = '';
+// Set Notif Timer
+if (modelAppCacheNotifTime.oData.ENABLED && !sap.n.Notif.getDataInterval) {
+    sap.n.Notif.getDataInterval = setInterval(function() {
+
+        if (AppCache.isOffline) {
+            return;
+        }
+        getOnlineAppCacheNotifDelta();
+
+    }, modelAppCacheNotifTime.oData.INTERVAL);
+}
+
+// Refresh Notification Client
+if (sap.n.Notif.Refresh) {
+    sap.n.Notif.Refresh();
+}
+
+// Update Tile Info
+var dataNew = {};
+dataNew.APPLID = AppCache.NotifApp;
+dataNew.TILE_NUMBER = modelAppCacheNotifList.oData.length;
+sap.n.Launchpad.UpdateTileInfo(dataNew);
+
+// Global Notification
+$.each(modelAppCacheNotifDelta.oData, function(i, data) {
+
+    if (i > 3) {
+        return;
+    }
+
+    sap.n.Notif.showAlert(data);
+});
 }
 });
 }
-function getCacheAppCacheUsers() { _AppCache_GetCache("NEPTUNE_APPCACHE_AppCacheUsers",modelAppCacheUsers,"LS","","");}
-function setCacheAppCacheUsers() { _AppCache_SetCache("NEPTUNE_APPCACHE_AppCacheUsers",modelAppCacheUsers,"LS");}
+function getCacheAppCacheUpdate() { _AppCache_GetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheUpdate",modelAppCacheUpdate,"LS","","",false);}
+function setCacheAppCacheUpdate(data) { _AppCache_SetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheUpdate",modelAppCacheUpdate,"LS",data,false);}
+function getCacheAppCacheDiaSettings() { _AppCache_GetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheDiaSettings_" + sapUname,modelAppCacheDiaSettings,"DB","","",false);}
+function setCacheAppCacheDiaSettings(data) { _AppCache_SetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheDiaSettings_" + sapUname,modelAppCacheDiaSettings,"DB",data,false);}
+function getCacheAppCacheNotifTime() { _AppCache_GetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheNotifTime_" + sapUname,modelAppCacheNotifTime,"LS","","",false);}
+function setCacheAppCacheNotifTime(data) { _AppCache_SetCache("NEPTUNE_LAUNCHPAD_MOBILE_AppCacheNotifTime_" + sapUname,modelAppCacheNotifTime,"LS",data,false);}
 function getOnlineAppCache_popTwoFactor(value) {
 $.ajax({
 type: "POST",
-url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?sap-client=100&ajax_id=CHECK_TWO_FACTOR&ajax_applid=NEPTUNE_APPCACHE&field_id=00146&ajax_value=" + value + "",
+contentType: "application/json",
+url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?ajax_id=CHECK_TWO_FACTOR&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00215&ajax_value=" + value + "",
 dataType: "json",
 success: function (data) {
 modelAppCache_popTwoFactor.setData(data.modelAppCache_popTwoFactorData);
@@ -683,39 +4149,56 @@ if (data.TWOFACTOR == 'confirmed') {
 }
 });
 }
-function getCacheAppCacheUpdate() { _AppCache_GetCache("NEPTUNE_APPCACHE_AppCacheUpdate",modelAppCacheUpdate,"LS","","");}
-function setCacheAppCacheUpdate() { _AppCache_SetCache("NEPTUNE_APPCACHE_AppCacheUpdate",modelAppCacheUpdate,"LS");}
 
-//DATABASE & CACHE
-function _AppCache_GetCache(e,a,t,o,n){window.openDatabase&&"DB"==t?_AppCache_GetCache_DB(e,a,o,n):_AppCache_GetCache_LS(e,a,o,n)}function _AppCache_SetCache(e,a,t){window.openDatabase&&"DB"==t?_AppCache_SetCache_DB(e,a):_AppCache_SetCache_LS(e,a)}function _AppCache_GetCache_LS(id,model,online,event){$.sap.require("jquery.sap.storage");var lStorage=$.sap.storage(jQuery.sap.storage.Type.local),lData=lStorage.get(id);return online&&!lData&&window[online](),lData?(model.setData(lData),void("function"==typeof eval(event)&&eval(event)())):void("function"==typeof eval(event)&&eval(event)())}function _AppCache_SetCache_LS(e,a){$.sap.require("jquery.sap.storage");var t=$.sap.storage(jQuery.sap.storage.Type.local),o=a.getData();t.remove(e),t.put(e,o)}function _AppCache_GetCache_DB(e,a){try{AppDB.transaction(function(t){t.executeSql("SELECT * FROM model WHERE KEY=?",[e],function(e,t){for(var o=0;o<t.rows.length;o++){var n=t.rows.item(o).VALUE,p=JSON.parse(n);a.setData(p)}},null)})}catch(t){return void console.log("Error processing SQL: "+t.message)}}function _AppCache_SetCache_DB(e,a){var t=a.getJSON();try{AppDB.transaction(function(a){a.executeSql("INSERT OR REPLACE INTO model (KEY,VALUE) VALUES (?,?)",[e,t])})}catch(o){return void console.log("Error processing SQL: "+o.message)}}window.openDatabase&&("undefined"==typeof AppDB&&(AppDB=window.openDatabase("AppCache","1.0","AppCache",5e7)),AppDB.transaction(function(e){e.executeSql("CREATE TABLE IF NOT EXISTS model (KEY VARCHAR PRIMARY KEY, VALUE VARCHAR)")}));
+function _AppCache_GetCache(e,t,a,o,n,r,p){window.openDatabase&&"DB"==a?_AppCache_GetCache_DB(e,t,o,n,r,p):_AppCache_GetCache_LS(e,t,o,n,r,p)}function _AppCache_SetCache(e,t,a,o,n,r){window.openDatabase&&"DB"==a?_AppCache_SetCache_DB(e,t,o,n,r):_AppCache_SetCache_LS(e,t,o,n,r)}function _AppCache_GetCache_LS(id,model,online,event,jsonh,encryption){$.sap.require("jquery.sap.storage");var lStorage=$.sap.storage(jQuery.sap.storage.Type.local),modelJSON=lStorage.get(id);if(online&&!modelJSON&&eval(online)(),!modelJSON)return void("function"==typeof eval(event)&&eval(event)());if(encryption){if(0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{")){var decrypted=CryptoJS.AES.decrypt(modelJSON,AppStorage.deviceID);modelJSON=decrypted.toString(CryptoJS.enc.Utf8)}}else if("string"==typeof modelJSON&&0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{"))return;if(jsonh)if("string"==typeof modelJSON)var modelData=JSONH.unpack(JSON.parse(modelJSON));else var modelData=modelJSON;else if("string"==typeof modelJSON)var modelData=JSON.parse(modelJSON);else var modelData=modelJSON;model.setData(modelData),"function"==typeof eval(event)&&eval(event)()}function _AppCache_SetCache_LS(e,t,a,o,n){$.sap.require("jquery.sap.storage");var r=$.sap.storage(jQuery.sap.storage.Type.local);if(a)var p=JSON.stringify(a);else if(o)var p=JSON.stringify(JSONH.pack(t.oData));else var p=t.oData;if(n){var i=CryptoJS.AES.encrypt(p,AppStorage.deviceID);p=i.toString()}r.remove(e),r.put(e,p)}function _AppCache_GetCache_DB(id,model,online,event,jsonh,encryption){try{AppDB.transaction(function(tx){tx.executeSql("SELECT * FROM model WHERE KEY=?",[id],function(tx,results){for(var i=0;i<results.rows.length;i++){var modelJSON=results.rows.item(i).VALUE;if(encryption){if(0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{")){var decrypted=CryptoJS.AES.decrypt(modelJSON,AppStorage.deviceID);modelJSON=decrypted.toString(CryptoJS.enc.Utf8)}}else if("string"==typeof modelJSON&&0!==modelJSON.indexOf("[")&&0!==modelJSON.indexOf("{"))return;if(jsonh)if("string"==typeof modelJSON)var modelData=JSONH.unpack(JSON.parse(modelJSON));else var modelData=modelJSON;else var modelData=JSON.parse(modelJSON);model.setData(modelData),"function"==typeof eval(event)&&eval(event)()}0===results.rows.length&&"function"==typeof eval(event)&&eval(event)(),online&&!model.getData().length&&eval(online)()},null)})}catch(e){return void console.log("Error processing SQL: "+e.message)}}function _AppCache_SetCache_DB(e,t,a,o,n){if(a)var r=JSON.stringify(a);else if(o)var r=JSON.stringify(JSONH.pack(t.oData));else var r=t.getJSON();if(n){var p=CryptoJS.AES.encrypt(r,AppStorage.deviceID);r=p.toString()}try{AppDB.transaction(function(t){t.executeSql("INSERT OR REPLACE INTO model (KEY,VALUE) VALUES (?,?)",[e,r])})}catch(i){return void console.log("Error processing SQL: "+i.message)}}var AppStorage={deviceID:"",Startup:function(){AppStorage.deviceID=localStorage.getItem("AppCacheID"),AppStorage.deviceID||(AppStorage.deviceID=AppStorage.genID(),localStorage.setItem("AppCacheID",AppStorage.deviceID))},genID:function(){var e=(new Date).getTime(),t="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,function(t){var a=(e+16*Math.random())%16|0;return e=Math.floor(e/16),("x"==t?a:7&a|8).toString(16)});return t}};AppStorage.Startup(),window.openDatabase&&("undefined"==typeof AppDB&&(AppDB=window.openDatabase("AppCache","1.0","AppCache",5e7)),AppDB.transaction(function(e){e.executeSql("CREATE TABLE IF NOT EXISTS model (KEY VARCHAR PRIMARY KEY, VALUE VARCHAR)")}));
 //INIT
+AppCacheToolbar.addStyleClass("neptuneTopToolbar");
+AppCacheShellTitleTxt.addStyleClass("neptuneTopTitle");
+AppCachePageURL.addStyleClass("sapMGlobalBackgroundColorStrong");
+AppCache_butLogon.addStyleClass("AppCacheSpacer");
+AppCache_resetPassword.addStyleClass("neptuneLinkWhite");
+AppCache_statusItem.addStyleClass("NeptuneListItem");
+AppCache_butPassword.addStyleClass("AppCacheSpacer");
+AppCache_butPasscode.addStyleClass("AppCacheSpacer");
+AppCache_butSendCaptcha.addStyleClass("AppCacheSpacer");
+AppCacheUserAction.addStyleClass("neptunePop");
+AppCacheAppAction.addStyleClass("neptunePop");
+AppCacheShellMenuPageStart.addStyleClass("sapMGlobalBackgroundColorStrong");
+AppCacheShellMenuPageAll.addStyleClass("sapMGlobalBackgroundColorStrong");
+AppCacheShellMenuPageAllBack.addStyleClass("neptuneBut");
+AppCacheShellMenuCloseAll.addStyleClass("neptuneBut");
+AppCacheShellMenuPageMen.addStyleClass("sapMGlobalBackgroundColorStrong");
+AppCacheShellMenuPageMenBack.addStyleClass("neptuneBut");
+AppCacheShellMenuCloseMen.addStyleClass("neptuneBut");
+AppCacheShellMenuPageSplit.addStyleClass("sapMGlobalBackgroundColorStrong");
+AppCacheSplitList.addStyleClass("sapUiSizeCompact");
+getCacheAppCacheNotifList();
+getCacheAppCacheUpdate();
+AppCache_popTwoFactor.addStyleClass("NeptuneTop");
 sap.ui.getCore().attachInit(function() {
 setTimeout(function(){
-getCacheAppCacheUpdate();
-
-AppCache_popTwoFactor.addStyleClass("NeptuneTop");
 sap.ui.core.BusyIndicator.hide();
 },100);
 });
 
 jQuery(function() { jQuery("form").submit(function(event) { event.preventDefault(); return false; }); })
 </script>
-<script src="neptune/server/neptune/js/aes.js"></script>
-<script src="neptune/server/neptune/js/AppCache-3.1.js"></script>
-<script src="neptune/server/neptune/js/AppSync-3.1.js"></script>
+<style>
 
+</style>
 <script>
 AppCache.StartApp = "CSM_SALES_ORDER";
-AppCache.PasscodeApp = "NEPTUNE_APPCACHE_PASSCODE";
+AppCache.PasscodeApp = "NEPTUNE_LAUNCHPAD_PINCODE";
 AppCache.numPasscode = "5";
 AppCache.Client = "100";
 AppCache.Url = "http://sap-svi.colorsam.local:8003/neptune/";
 AppCache.CurrentConfig = "CSAGENTS-SVI";
-AppCache.AppVersion = "1.0.0";
+AppCache.AppVersion = "1.0.1";
 AppCache.enablePasscode = true;
 AppCache.enableTwoFactor = false;
 AppCache.enableMocana = false;
 AppCache.enableSMP = false;
+AppCache.useMenu = false;
 AppCache.enablePortal = false;
 AppCache.enablePush = true;
 AppCache.GoogleID = "408956739192";

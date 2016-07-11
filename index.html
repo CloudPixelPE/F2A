@@ -157,7 +157,7 @@ data-sap-ui-libs="sap.ui.layout,sap.ui.unified,sap.m"></script>
 <script>
 var JSONH,jsonh=JSONH=function(n,r){function t(r){for(var t,e,u=r.length,o=l(u?r[0]:{}),c=o.length,f=n(u*c),i=0,h=0;u>i;++i)for(e=r[i],t=0;c>t;f[h++]=e[o[t++]]);return a.call([c],o,f)}function e(r){if("object"==typeof r[0])return r;for(var t,e,u=r.length,o=r[0],c=n((u-o-1)/o||0),f=1+o,i=0;u>f;)for(c[i++]=e={},t=0;o>t;e[r[++t]]=r[f++]);return c}function u(n){return n.length?t(n):n}function o(n){return n.length?e(n):n}function c(n,r,t,e){return h(u(n,e),r,t)}function f(n,r,t){return o(s(n,r),t)}var i=[],a=i.concat,l=Object.keys||function(n){var r,t=[];for(r in n)n.hasOwnProperty(r)&&t.push(r);return t},h=(n.isArray||function(n,r){return r=n.call(i),function(t){return n.call(t)==r}}({}.toString),i.map||function(r,t){for(var e=this,u=e.length,o=n(u);u--;o[u]=r.call(t,e[u],u,e));return o},r.stringify),s=r.parse;return{pack:u,parse:f,stringify:c,unpack:o}}(Array,JSON);
 var localAppID = "NEPTUNE_LAUNCHPAD_MOBILE";
-if (typeof AppCache === "undefined") { var sapUname = "SVLADM"; } else { var sapUname = AppCache.CurrentUname; }
+if (typeof AppCache === "undefined") { var sapUname = "GDIFLUMERI"; } else { var sapUname = AppCache.CurrentUname; }
  
  var AppCacheShell = new sap.ui.unified.Shell("AppCacheShell",{visible:true,showPane:false,searchVisible:true,headerVisible:true,headerHiding:false}); 
  var AppCacheShellMenu = new sap.ui.unified.ShellHeadItem("AppCacheShellMenu",{visible:false,startsSection:false,showSeparator:true,showMarker:false,selected:false,icon:"sap-icon://menu2",press: function(oEvent) {
@@ -3841,7 +3841,7 @@ function getOnlineAppCacheUsers(value) {
 $.ajax({
 type: "POST",
 contentType: "application/json",
-url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?ajax_id=GET_USER_DATA&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00281&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003//neptune/native/neptune_ajax?ajax_id=GET_USER_DATA&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00281&ajax_value=" + value + "",
 dataType: "json",
 data: encodeURIComponent(modelAppCacheUsers.getJSON()),
 success: function (data) {
@@ -3904,7 +3904,7 @@ function getOnlineAppCacheData(value) {
 $.ajax({
 type: "POST",
 contentType: "application/json",
-url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?ajax_id=GET_APP_DATA&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00006&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003//neptune/native/neptune_ajax?ajax_id=GET_APP_DATA&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00006&ajax_value=" + value + "",
 dataType: "json",
 data: encodeURIComponent(modelAppCacheData.getJSON()),
 success: function (data) {
@@ -4054,7 +4054,7 @@ function getOnlineAppCacheNotifDelta(value) {
 $.ajax({
 type: "POST",
 contentType: "application/json",
-url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?ajax_id=GET_NOTIF_LIST&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00178&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003//neptune/native/neptune_ajax?ajax_id=GET_NOTIF_LIST&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00178&ajax_value=" + value + "",
 dataType: "json",
 data: encodeURIComponent(modelAppCacheNotifTime.getJSON()),
 success: function (data) {
@@ -4122,7 +4122,7 @@ function getOnlineAppCache_popTwoFactor(value) {
 $.ajax({
 type: "POST",
 contentType: "application/json",
-url: "http://sap-svi.colorsam.local:8003/neptune//neptune/native/neptune_ajax?ajax_id=CHECK_TWO_FACTOR&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00215&ajax_value=" + value + "",
+url: "http://sap-svi.colorsam.local:8003//neptune/native/neptune_ajax?ajax_id=CHECK_TWO_FACTOR&ajax_applid=NEPTUNE_LAUNCHPAD_MOBILE&sap-client=&uxp=400&field_id=00215&ajax_value=" + value + "",
 dataType: "json",
 success: function (data) {
 modelAppCache_popTwoFactor.setData(data.modelAppCache_popTwoFactorData);
@@ -4188,7 +4188,7 @@ AppCache.StartApp = "CSM_SALES_ORDER";
 AppCache.PasscodeApp = "NEPTUNE_LAUNCHPAD_PINCODE";
 AppCache.numPasscode = "5";
 AppCache.Client = "100";
-AppCache.Url = "http://sap-svi.colorsam.local:8003/neptune/";
+AppCache.Url = "http://sap-svi.colorsam.local:8003/";
 AppCache.CurrentConfig = "CSAGENTS-SVI";
 AppCache.AppVersion = "1.0.3";
 AppCache.enablePasscode = true;

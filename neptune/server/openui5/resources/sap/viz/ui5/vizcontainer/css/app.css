@@ -1,0 +1,33 @@
+.ui5-viz-container-app {
+	margin: 0px;
+	background-color: #eeeeee;
+	position: relative;
+}
+
+.ui5-viz-container-app-viz-frame {
+	position: absolute;
+	background-color: #fafafa;
+	min-width: 300px;
+	min-height: 600px;
+}
+
+.ui5-viz-container-app-viz-builder {
+	position: absolute;
+	width: 260px;
+}
+
+.ui5-viz-container-app-switch-bar {
+	position: absolute;
+	margin: 0px auto;
+	/* TODO Add container layer for switch bar*/
+	width: 388px !important;
+	height: 54px !important;
+	padding-top: 9px;
+}
+
+.ui5-viz-container-app-vertical-splitter {
+	position: absolute;
+	width: 8px;
+	background: linear-gradient(to left, rgba(242, 242, 242, 0),
+		rgba(0, 0, 0, 0.1));
+}

@@ -2,11 +2,9 @@
 <Library name="sap.viz" xmlns="http://www.sap.com/ui5/ide/templates/xmlview">
 <Template name="sap.viz.ui5.Area" alias="Area">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Area({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -27,9 +25,6 @@
 	xAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Area
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -51,15 +46,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Area xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -87,11 +79,9 @@
 </Template>
 <Template name="sap.viz.ui5.Area100" alias="Area100">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Area100({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -112,9 +102,6 @@
 	xAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Area
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -136,15 +123,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Area100 xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -172,11 +156,9 @@
 </Template>
 <Template name="sap.viz.ui5.Bar" alias="Bar">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Bar({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -197,9 +179,6 @@
 	yAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Bar
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -221,15 +200,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Bar xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -257,11 +233,9 @@
 </Template>
 <Template name="sap.viz.ui5.Bubble" alias="Bubble">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Bubble({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -283,9 +257,6 @@
 	plotArea: undefined, // sap.viz.ui5.types.Bubble
 	toolTip: undefined, // sap.viz.ui5.types.Tooltip
 	interaction: undefined, // sap.viz.ui5.types.controller.Interaction
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -307,15 +278,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Bubble xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -344,11 +312,9 @@
 </Template>
 <Template name="sap.viz.ui5.Bullet" alias="Bullet">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Bullet({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -367,9 +333,6 @@
 	plotArea: undefined, // sap.viz.ui5.types.Bullet
 	xAxis2: undefined, // sap.viz.ui5.types.Axis
 	yAxis2: undefined, // sap.viz.ui5.types.Axis
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -391,15 +354,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Bullet xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -425,11 +385,9 @@
 </Template>
 <Template name="sap.viz.ui5.Column" alias="Column">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Column({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -450,9 +408,6 @@
 	xAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.VerticalBar
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -474,15 +429,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Column xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -510,11 +462,9 @@
 </Template>
 <Template name="sap.viz.ui5.Combination" alias="Combination">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Combination({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -535,9 +485,6 @@
 	xAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Combination
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -559,15 +506,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Combination xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -595,11 +539,9 @@
 </Template>
 <Template name="sap.viz.ui5.Donut" alias="Donut">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Donut({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -618,9 +560,6 @@
 	interaction: undefined, // sap.viz.ui5.types.controller.Interaction
 	toolTip: undefined, // sap.viz.ui5.types.Tooltip
 	dataTransform: undefined, // sap.viz.ui5.types.Datatransform
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -642,15 +581,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Donut xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -676,11 +612,9 @@
 </Template>
 <Template name="sap.viz.ui5.DualBar" alias="DualBar,Bar">
 	<jsTemplate><![CDATA[new sap.viz.ui5.DualBar({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -702,9 +636,6 @@
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Bar
 	xAxis2: undefined, // sap.viz.ui5.types.Axis
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -726,15 +657,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/DualBar xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -763,11 +691,9 @@
 </Template>
 <Template name="sap.viz.ui5.DualColumn" alias="DualColumn,Column">
 	<jsTemplate><![CDATA[new sap.viz.ui5.DualColumn({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -789,9 +715,6 @@
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.VerticalBar
 	yAxis2: undefined, // sap.viz.ui5.types.Axis
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -813,15 +736,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/DualColumn xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -850,11 +770,9 @@
 </Template>
 <Template name="sap.viz.ui5.DualCombination" alias="DualCombination,Combination">
 	<jsTemplate><![CDATA[new sap.viz.ui5.DualCombination({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -876,9 +794,6 @@
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Combination
 	yAxis2: undefined, // sap.viz.ui5.types.Axis
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -900,15 +815,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/DualCombination xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -937,11 +849,9 @@
 </Template>
 <Template name="sap.viz.ui5.DualLine" alias="DualLine,Line">
 	<jsTemplate><![CDATA[new sap.viz.ui5.DualLine({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -963,9 +873,6 @@
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Line
 	yAxis2: undefined, // sap.viz.ui5.types.Axis
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -987,15 +894,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/DualLine xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1024,11 +928,9 @@
 </Template>
 <Template name="sap.viz.ui5.DualStackedColumn" alias="DualStackedColumn,Column">
 	<jsTemplate><![CDATA[new sap.viz.ui5.DualStackedColumn({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1050,9 +952,6 @@
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.StackedVerticalBar
 	yAxis2: undefined, // sap.viz.ui5.types.Axis
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1074,15 +973,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/DualStackedColumn xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1111,11 +1007,9 @@
 </Template>
 <Template name="sap.viz.ui5.DualStackedColumn100" alias="DualStackedColumn100,Column100">
 	<jsTemplate><![CDATA[new sap.viz.ui5.DualStackedColumn100({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1137,9 +1031,6 @@
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.StackedVerticalBar
 	yAxis2: undefined, // sap.viz.ui5.types.Axis
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1161,15 +1052,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/DualStackedColumn100 xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1198,11 +1086,9 @@
 </Template>
 <Template name="sap.viz.ui5.Heatmap" alias="Heatmap">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Heatmap({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1222,9 +1108,6 @@
 	plotArea: undefined, // sap.viz.ui5.types.Heatmap
 	toolTip: undefined, // sap.viz.ui5.types.Tooltip
 	interaction: undefined, // sap.viz.ui5.types.controller.Interaction
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1246,15 +1129,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Heatmap xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1281,11 +1161,9 @@
 </Template>
 <Template name="sap.viz.ui5.HorizontalArea" alias="HorizontalArea,Area">
 	<jsTemplate><![CDATA[new sap.viz.ui5.HorizontalArea({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1306,9 +1184,6 @@
 	yAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Area
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1330,15 +1205,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/HorizontalArea xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1366,11 +1238,9 @@
 </Template>
 <Template name="sap.viz.ui5.HorizontalArea100" alias="HorizontalArea100,Area100">
 	<jsTemplate><![CDATA[new sap.viz.ui5.HorizontalArea100({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1391,9 +1261,6 @@
 	yAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Area
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1415,15 +1282,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/HorizontalArea100 xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1451,11 +1315,9 @@
 </Template>
 <Template name="sap.viz.ui5.Line" alias="Line">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Line({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1476,9 +1338,6 @@
 	xAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.Line
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1500,15 +1359,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Line xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1536,11 +1392,9 @@
 </Template>
 <Template name="sap.viz.ui5.Pie" alias="Pie">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Pie({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1559,9 +1413,6 @@
 	interaction: undefined, // sap.viz.ui5.types.controller.Interaction
 	toolTip: undefined, // sap.viz.ui5.types.Tooltip
 	dataTransform: undefined, // sap.viz.ui5.types.Datatransform
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1583,15 +1434,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Pie xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1617,11 +1465,9 @@
 </Template>
 <Template name="sap.viz.ui5.Scatter" alias="Scatter">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Scatter({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1643,9 +1489,6 @@
 	toolTip: undefined, // sap.viz.ui5.types.Tooltip
 	interaction: undefined, // sap.viz.ui5.types.controller.Interaction
 	dataTransform: undefined, // sap.viz.ui5.types.Datatransform
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1667,15 +1510,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Scatter xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1704,11 +1544,9 @@
 </Template>
 <Template name="sap.viz.ui5.StackedColumn" alias="StackedColumn,Column">
 	<jsTemplate><![CDATA[new sap.viz.ui5.StackedColumn({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1729,9 +1567,6 @@
 	xAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.StackedVerticalBar
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1753,15 +1588,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/StackedColumn xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1789,11 +1621,9 @@
 </Template>
 <Template name="sap.viz.ui5.StackedColumn100" alias="StackedColumn100,Column100">
 	<jsTemplate><![CDATA[new sap.viz.ui5.StackedColumn100({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1814,9 +1644,6 @@
 	xAxis: undefined, // sap.viz.ui5.types.Axis
 	background: undefined, // sap.viz.ui5.types.Background
 	plotArea: undefined, // sap.viz.ui5.types.StackedVerticalBar
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1838,15 +1665,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/StackedColumn100 xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1874,11 +1698,9 @@
 </Template>
 <Template name="sap.viz.ui5.TimeBubble" alias="TimeBubble,Bubble">
 	<jsTemplate><![CDATA[new sap.viz.ui5.TimeBubble({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1900,9 +1722,6 @@
 	plotArea: undefined, // sap.viz.ui5.types.Bubble
 	toolTip: undefined, // sap.viz.ui5.types.Tooltip
 	interaction: undefined, // sap.viz.ui5.types.controller.Interaction
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -1924,15 +1743,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/TimeBubble xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -1961,11 +1777,9 @@
 </Template>
 <Template name="sap.viz.ui5.Treemap" alias="Treemap">
 	<jsTemplate><![CDATA[new sap.viz.ui5.Treemap({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -1983,9 +1797,6 @@
 	plotArea: undefined, // sap.viz.ui5.types.Treemap
 	toolTip: undefined, // sap.viz.ui5.types.Tooltip
 	interaction: undefined, // sap.viz.ui5.types.controller.Interaction
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -2007,15 +1818,12 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/Treemap xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz=""
 	selectData=""
 	deselectData=""
@@ -2040,11 +1848,9 @@
 </Template>
 <Template name="sap.viz.ui5.VizContainer" alias="VizContainer,Container">
 	<jsTemplate><![CDATA[new sap.viz.ui5.VizContainer({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	uiConfig: undefined, // object
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
@@ -2058,9 +1864,6 @@
 	vizData: undefined, // sap.viz.ui5.data.Dataset
 	analysisObjectsForPicker: [], // sap.viz.ui5.controls.common.feeds.AnalysisObject
 	feeds: [], // sap.viz.ui5.controls.common.feeds.FeedItem
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	feedsChanged: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -2088,11 +1891,9 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/VizContainer xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	uiConfig=""
 	width="640px"
 	height="480px"
@@ -2100,7 +1901,6 @@
 	vizCss=""
 	vizProperties=""
 	enableMorphing=""
-	validateFieldGroup=""
 	feedsChanged=""
 	vizTypeChanged=""
 	vizDefinitionChanged=""
@@ -2119,11 +1919,9 @@
 </Template>
 <Template name="sap.viz.ui5.controls.Popover" alias="Popover">
 	<jsTemplate><![CDATA[new sap.viz.ui5.controls.Popover({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	uiConfig: undefined, // object
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
@@ -2132,25 +1930,19 @@
 	formatString: undefined, // any
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
-	dependents: [], // sap.ui.core.Control, since 1.19
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this]
+	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/controls/Popover xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	uiConfig=""
 	width="640px"
 	height="480px"
 	customDataControl=""
 	actionItems=""
-	formatString=""
-	validateFieldGroup="">
+	formatString="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/controls/Popover>
@@ -2158,27 +1950,20 @@
 </Template>
 <Template name="sap.viz.ui5.controls.VizFrame" alias="VizFrame,Frame">
 	<jsTemplate><![CDATA[new sap.viz.ui5.controls.VizFrame({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	uiConfig: undefined, // object
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
-	vizType: "column", // string
+	vizType: undefined, // string
 	vizProperties: undefined, // object
 	vizScales: undefined, // object, since 1.25
-	vizCustomizations: undefined, // object
-	legendVisible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	dataset: undefined, // sap.viz.ui5.data.Dataset
 	feeds: [], // sap.viz.ui5.controls.common.feeds.FeedItem
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	renderComplete: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -2191,20 +1976,15 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/controls/VizFrame xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	uiConfig=""
 	width="640px"
 	height="480px"
-	vizType="column"
+	vizType=""
 	vizProperties=""
 	vizScales=""
-	vizCustomizations=""
-	legendVisible="true"
-	validateFieldGroup=""
 	renderComplete=""
 	selectData=""
 	deselectData="">
@@ -2217,32 +1997,24 @@
 </Template>
 <Template name="sap.viz.ui5.controls.common.BaseControl" alias="BaseControl,Control">
 	<jsTemplate><![CDATA[new sap.viz.ui5.controls.common.BaseControl({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	uiConfig: undefined, // object
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
-	dependents: [], // sap.ui.core.Control, since 1.19
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this]
+	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/controls/common/BaseControl xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	uiConfig=""
 	width="640px"
-	height="480px"
-	validateFieldGroup="">
+	height="480px">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/controls/common/BaseControl>
@@ -2250,22 +2022,18 @@
 </Template>
 <Template name="sap.viz.ui5.controls.common.feeds.AnalysisObject" alias="AnalysisObject,Object">
 	<jsTemplate><![CDATA[new sap.viz.ui5.controls.common.feeds.AnalysisObject({
-	id: "${id}", // sap.ui.core.ID
 	uid: undefined, // string
 	name: undefined, // string
 	type: undefined, // string
-	dataType: undefined, // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/controls/common/feeds/AnalysisObject xmlns="sap.viz"
-	id="${id}"
 	uid=""
 	name=""
-	type=""
-	dataType="">
+	type="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/controls/common/feeds/AnalysisObject>
@@ -2273,7 +2041,6 @@
 </Template>
 <Template name="sap.viz.ui5.controls.common.feeds.FeedItem" alias="FeedItem,Item">
 	<jsTemplate><![CDATA[new sap.viz.ui5.controls.common.feeds.FeedItem({
-	id: "${id}", // sap.ui.core.ID
 	uid: undefined, // string
 	type: undefined, // string
 	values: undefined, // string[]
@@ -2283,7 +2050,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/controls/common/feeds/FeedItem xmlns="sap.viz"
-	id="${id}"
 	uid=""
 	type=""
 	values="">
@@ -2294,11 +2060,9 @@
 </Template>
 <Template name="sap.viz.ui5.core.BaseChart" alias="BaseChart,Chart">
 	<jsTemplate><![CDATA[new sap.viz.ui5.core.BaseChart({
-	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
-	fieldGroupIds: [], // string[], since 1.31
 	width: "640px", // sap.ui.core.CSSSize
 	height: "480px", // sap.ui.core.CSSSize
 	css: undefined, // string
@@ -2307,24 +2071,18 @@
 	dependents: [], // sap.ui.core.Control, since 1.19
 	dataset: undefined, // sap.viz.ui5.data.Dataset
 	noData: undefined, // sap.ui.core.Control
-	validateFieldGroup: [function (oEvent) {
-		var ${control} = oEvent.getSource();
-	}, this],
 	beforeCreateViz: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/core/BaseChart xmlns="sap.viz"
-	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	fieldGroupIds=""
 	width="640px"
 	height="480px"
 	css=""
-	validateFieldGroup=""
 	beforeCreateViz="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2335,46 +2093,27 @@
 </Template>
 <Template name="sap.viz.ui5.core.BaseStructuredType" alias="BaseStructuredType,Type">
 	<jsTemplate><![CDATA[new sap.viz.ui5.core.BaseStructuredType({
-	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/core/BaseStructuredType xmlns="sap.viz"
-	id="${id}">
+>
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/core/BaseStructuredType>
 ]]></xmlTemplate>
 </Template>
-<Template name="sap.viz.ui5.data.CustomDataset" alias="CustomDataset,Dataset">
-	<jsTemplate><![CDATA[new sap.viz.ui5.data.CustomDataset({
-	id: "${id}", // sap.ui.core.ID
-	data: undefined, // object
-	tooltip: undefined, // sap.ui.core.TooltipBase
-	customData: [], // sap.ui.core.CustomData
-	dependents: [] // sap.ui.core.Control, since 1.19
-})
-]]></jsTemplate>
-	<xmlTemplate><![CDATA[<ui5/data/CustomDataset xmlns="sap.viz"
-	id="${id}"
-	data="">
-		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
-		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
-</ui5/data/CustomDataset>
-]]></xmlTemplate>
-</Template>
 <Template name="sap.viz.ui5.data.Dataset" alias="Dataset">
 	<jsTemplate><![CDATA[new sap.viz.ui5.data.Dataset({
-	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/data/Dataset xmlns="sap.viz"
-	id="${id}">
+>
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/data/Dataset>
@@ -2382,26 +2121,18 @@
 </Template>
 <Template name="sap.viz.ui5.data.DimensionDefinition" alias="DimensionDefinition,Definition">
 	<jsTemplate><![CDATA[new sap.viz.ui5.data.DimensionDefinition({
-	id: "${id}", // sap.ui.core.ID
 	axis: undefined, // int
 	value: undefined, // any
 	name: undefined, // string
-	identity: undefined, // string
-	displayValue: undefined, // any
-	dataType: undefined, // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/data/DimensionDefinition xmlns="sap.viz"
-	id="${id}"
 	axis=""
 	value=""
-	name=""
-	identity=""
-	displayValue=""
-	dataType="">
+	name="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/data/DimensionDefinition>
@@ -2409,8 +2140,6 @@
 </Template>
 <Template name="sap.viz.ui5.data.FlattenedDataset" alias="FlattenedDataset,Dataset">
 	<jsTemplate><![CDATA[new sap.viz.ui5.data.FlattenedDataset({
-	id: "${id}", // sap.ui.core.ID
-	context: undefined, // any
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
@@ -2420,8 +2149,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/data/FlattenedDataset xmlns="sap.viz"
-	id="${id}"
-	context="">
+>
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 		<dimensions></dimensions> <!-- sap.viz.ui5.data.DimensionDefinition -->
@@ -2432,26 +2160,18 @@
 </Template>
 <Template name="sap.viz.ui5.data.MeasureDefinition" alias="MeasureDefinition,Definition">
 	<jsTemplate><![CDATA[new sap.viz.ui5.data.MeasureDefinition({
-	id: "${id}", // sap.ui.core.ID
 	group: 1, // int
 	value: undefined, // any
 	name: undefined, // string
-	identity: undefined, // string
-	format: undefined, // any
-	range: [], // any[]
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/data/MeasureDefinition xmlns="sap.viz"
-	id="${id}"
 	group="1"
 	value=""
-	name=""
-	identity=""
-	format=""
-	range="">
+	name="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/data/MeasureDefinition>
@@ -2459,7 +2179,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Area" alias="Area">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Area({
-	id: "${id}", // sap.ui.core.ID
 	orientation: sap.viz.ui5.types.Area_orientation.vertical, // sap.viz.ui5.types.Area_orientation
 	colorPalette: [], // string[]
 	primaryValuesColorPalette: [], // string[]
@@ -2477,7 +2196,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Area xmlns="sap.viz"
-	id="${id}"
 	orientation="vertical"
 	colorPalette=""
 	primaryValuesColorPalette=""
@@ -2496,7 +2214,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Area_animation" alias="Area_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Area_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -2506,7 +2223,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Area_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -2517,7 +2233,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Area_hoverline" alias="Area_hoverline">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Area_hoverline({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2525,7 +2240,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Area_hoverline xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2534,7 +2248,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Area_marker" alias="Area_marker">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Area_marker({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	shape: sap.viz.ui5.types.Area_marker_shape.circle, // sap.viz.ui5.types.Area_marker_shape
 	size: 8, // int
@@ -2545,7 +2258,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Area_marker xmlns="sap.viz"
-	id="${id}"
 	visible="true"
 	shape="circle"
 	size="8"
@@ -2557,7 +2269,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Area_tooltip" alias="Area_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Area_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	enabled: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2565,7 +2276,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Area_tooltip xmlns="sap.viz"
-	id="${id}"
 	enabled="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2574,7 +2284,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Axis" alias="Axis">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Axis({
-	id: "${id}", // sap.ui.core.ID
 	isIndependentMode: false, // boolean
 	isPercentMode: false, // boolean
 	isKeepFirstAndLastLabel: false, // boolean
@@ -2602,7 +2311,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Axis xmlns="sap.viz"
-	id="${id}"
 	isIndependentMode="false"
 	isPercentMode="false"
 	isKeepFirstAndLastLabel="false"
@@ -2631,7 +2339,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Axis_axisTick" alias="Axis_axisTick,Tick">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Axis_axisTick({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2639,7 +2346,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Axis_axisTick xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2648,7 +2354,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Axis_axisline" alias="Axis_axisline">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Axis_axisline({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2656,7 +2361,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Axis_axisline xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2665,7 +2369,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Axis_gridline" alias="Axis_gridline">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Axis_gridline({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	disable: false, // boolean
 	showFirstLine: false, // boolean
@@ -2679,7 +2382,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Axis_gridline xmlns="sap.viz"
-	id="${id}"
 	visible="true"
 	disable="false"
 	showFirstLine="false"
@@ -2694,7 +2396,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Axis_indicator" alias="Axis_indicator">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Axis_indicator({
-	id: "${id}", // sap.ui.core.ID
 	enable: false, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2702,7 +2403,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Axis_indicator xmlns="sap.viz"
-	id="${id}"
 	enable="false">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2711,10 +2411,9 @@
 </Template>
 <Template name="sap.viz.ui5.types.Axis_label" alias="Axis_label">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Axis_label({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	numberFormat: "", // string
-	formatString: undefined, // any
+	formatString: null, // any
 	unitFormatType: sap.viz.ui5.types.Axis_label_unitFormatType.FinancialUnits, // sap.viz.ui5.types.Axis_label_unitFormatType
 	hideSubLevels: false, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -2723,10 +2422,9 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Axis_label xmlns="sap.viz"
-	id="${id}"
 	visible="true"
 	numberFormat=""
-	formatString=""
+	formatString="null"
 	unitFormatType="FinancialUnits"
 	hideSubLevels="false">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -2736,7 +2434,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Axis_layoutInfo" alias="Axis_layoutInfo,Info">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Axis_layoutInfo({
-	id: "${id}", // sap.ui.core.ID
 	width: 0, // float
 	height: 0, // float
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -2745,7 +2442,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Axis_layoutInfo xmlns="sap.viz"
-	id="${id}"
 	width="0"
 	height="0">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -2755,7 +2451,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Axis_scale" alias="Axis_scale">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Axis_scale({
-	id: "${id}", // sap.ui.core.ID
 	fixedRange: false, // boolean
 	minValue: 0, // float
 	maxValue: 0, // float
@@ -2766,7 +2461,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Axis_scale xmlns="sap.viz"
-	id="${id}"
 	fixedRange="false"
 	minValue="0"
 	maxValue="0"
@@ -2778,9 +2472,8 @@
 </Template>
 <Template name="sap.viz.ui5.types.Axis_title" alias="Axis_title">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Axis_title({
-	id: "${id}", // sap.ui.core.ID
 	visible: false, // boolean
-	text: undefined, // string
+	text: "null", // string
 	applyAxislineColor: false, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2788,9 +2481,8 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Axis_title xmlns="sap.viz"
-	id="${id}"
 	visible="false"
-	text=""
+	text="null"
 	applyAxislineColor="false">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2799,7 +2491,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Background" alias="Background">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Background({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	drawingEffect: sap.viz.ui5.types.Background_drawingEffect.normal, // sap.viz.ui5.types.Background_drawingEffect
 	direction: sap.viz.ui5.types.Background_direction.vertical, // sap.viz.ui5.types.Background_direction
@@ -2811,7 +2502,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Background xmlns="sap.viz"
-	id="${id}"
 	visible="true"
 	drawingEffect="normal"
 	direction="vertical"
@@ -2824,7 +2514,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Background_border" alias="Background_border">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Background_border({
-	id: "${id}", // sap.ui.core.ID
 	stroke: "#d8d8d8", // string
 	strokeWidth: 1, // int
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -2837,7 +2526,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Background_border xmlns="sap.viz"
-	id="${id}"
 	stroke="#d8d8d8"
 	strokeWidth="1">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -2851,7 +2539,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Background_border_bottom" alias="Background_border_bottom">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Background_border_bottom({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2859,7 +2546,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Background_border_bottom xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2868,7 +2554,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Background_border_left" alias="Background_border_left">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Background_border_left({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2876,7 +2561,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Background_border_left xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2885,7 +2569,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Background_border_right" alias="Background_border_right">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Background_border_right({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2893,7 +2576,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Background_border_right xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2902,7 +2584,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Background_border_top" alias="Background_border_top">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Background_border_top({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2910,7 +2591,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Background_border_top xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2919,7 +2599,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Bar" alias="Bar">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Bar({
-	id: "${id}", // sap.ui.core.ID
 	orientation: sap.viz.ui5.types.Bar_orientation.vertical, // sap.viz.ui5.types.Bar_orientation
 	colorPalette: [], // string[]
 	primaryValuesColorPalette: [], // string[]
@@ -2937,7 +2616,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Bar xmlns="sap.viz"
-	id="${id}"
 	orientation="vertical"
 	colorPalette=""
 	primaryValuesColorPalette=""
@@ -2956,7 +2634,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Bar_animation" alias="Bar_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Bar_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -2966,7 +2643,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Bar_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -2977,7 +2653,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Bar_tooltip" alias="Bar_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Bar_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	enabled: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -2985,7 +2660,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Bar_tooltip xmlns="sap.viz"
-	id="${id}"
 	enabled="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -2994,7 +2668,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Bubble" alias="Bubble">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Bubble({
-	id: "${id}", // sap.ui.core.ID
 	colorPalette: [], // string[]
 	shapePalette: [], // string[]
 	minMarkerSize: undefined, // int
@@ -3019,7 +2692,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Bubble xmlns="sap.viz"
-	id="${id}"
 	colorPalette=""
 	shapePalette=""
 	minMarkerSize=""
@@ -3045,7 +2717,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Bubble_animation" alias="Bubble_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Bubble_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -3055,7 +2726,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Bubble_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -3066,16 +2736,14 @@
 </Template>
 <Template name="sap.viz.ui5.types.Bubble_axisTooltip" alias="Bubble_axisTooltip,Tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Bubble_axisTooltip({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
-	formatString: undefined, // string[]
+	formatString: [], // string[]
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Bubble_axisTooltip xmlns="sap.viz"
-	id="${id}"
 	visible="true"
 	formatString="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -3085,7 +2753,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Bubble_hoverline" alias="Bubble_hoverline">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Bubble_hoverline({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3093,7 +2760,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Bubble_hoverline xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3102,7 +2768,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Bullet" alias="Bullet">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Bullet({
-	id: "${id}", // sap.ui.core.ID
 	orientation: sap.viz.ui5.types.Bullet_orientation.vertical, // sap.viz.ui5.types.Bullet_orientation
 	colorPalette: [], // string[]
 	primaryValuesColorPalette: [], // string[]
@@ -3117,7 +2782,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Bullet xmlns="sap.viz"
-	id="${id}"
 	orientation="vertical"
 	colorPalette=""
 	primaryValuesColorPalette=""
@@ -3133,7 +2797,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Bullet_tooltip" alias="Bullet_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Bullet_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	enabled: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3141,7 +2804,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Bullet_tooltip xmlns="sap.viz"
-	id="${id}"
 	enabled="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3150,7 +2812,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Combination" alias="Combination">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Combination({
-	id: "${id}", // sap.ui.core.ID
 	orientation: sap.viz.ui5.types.Combination_orientation.vertical, // sap.viz.ui5.types.Combination_orientation
 	colorPalette: [], // string[]
 	primaryValuesColorPalette: [], // string[]
@@ -3168,7 +2829,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Combination xmlns="sap.viz"
-	id="${id}"
 	orientation="vertical"
 	colorPalette=""
 	primaryValuesColorPalette=""
@@ -3187,7 +2847,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Combination_animation" alias="Combination_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Combination_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -3197,7 +2856,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Combination_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -3208,7 +2866,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Combination_bar" alias="Combination_bar">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Combination_bar({
-	id: "${id}", // sap.ui.core.ID
 	isRoundCorner: false, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3216,7 +2873,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Combination_bar xmlns="sap.viz"
-	id="${id}"
 	isRoundCorner="false">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3225,7 +2881,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Combination_dataShape" alias="Combination_dataShape,Shape">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Combination_dataShape({
-	id: "${id}", // sap.ui.core.ID
 	primaryAxis: [], // string[]
 	secondaryAxis: [], // string[]
 	secondAxis: [], // string[]
@@ -3235,7 +2890,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Combination_dataShape xmlns="sap.viz"
-	id="${id}"
 	primaryAxis=""
 	secondaryAxis=""
 	secondAxis="">
@@ -3246,7 +2900,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Combination_line" alias="Combination_line">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Combination_line({
-	id: "${id}", // sap.ui.core.ID
 	width: 2, // int
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3255,7 +2908,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Combination_line xmlns="sap.viz"
-	id="${id}"
 	width="2">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3265,7 +2917,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Combination_line_marker" alias="Combination_line_marker">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Combination_line_marker({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	shape: [], // string[]
 	size: 6, // int
@@ -3276,7 +2927,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Combination_line_marker xmlns="sap.viz"
-	id="${id}"
 	visible="true"
 	shape=""
 	size="6"
@@ -3288,7 +2938,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Combination_tooltip" alias="Combination_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Combination_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	enabled: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3296,7 +2945,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Combination_tooltip xmlns="sap.viz"
-	id="${id}"
 	enabled="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3305,7 +2953,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Datalabel" alias="Datalabel">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Datalabel({
-	id: "${id}", // sap.ui.core.ID
 	visible: false, // boolean
 	hideWhenOverlap: true, // boolean
 	isDonut: false, // boolean
@@ -3323,14 +2970,13 @@
 	position: sap.viz.ui5.types.Datalabel_position.inside, // sap.viz.ui5.types.Datalabel_position
 	orientation: sap.viz.ui5.types.Datalabel_orientation.vertical, // sap.viz.ui5.types.Datalabel_orientation
 	respectShapeWidth: false, // boolean
-	formatString: undefined, // any[]
+	formatString: [], // any[][]
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Datalabel xmlns="sap.viz"
-	id="${id}"
 	visible="false"
 	hideWhenOverlap="true"
 	isDonut="false"
@@ -3356,7 +3002,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Datatransform" alias="Datatransform">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Datatransform({
-	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
@@ -3365,7 +3010,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Datatransform xmlns="sap.viz"
-	id="${id}">
+>
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 		<autoBinning></autoBinning> <!-- sap.viz.ui5.types.Datatransform_autoBinning -->
@@ -3375,7 +3020,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Datatransform_autoBinning" alias="Datatransform_autoBinning,Binning">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Datatransform_autoBinning({
-	id: "${id}", // sap.ui.core.ID
 	enable: false, // boolean
 	binNumber: 10, // int
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -3384,7 +3028,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Datatransform_autoBinning xmlns="sap.viz"
-	id="${id}"
 	enable="false"
 	binNumber="10">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -3394,7 +3037,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Datatransform_dataSampling" alias="Datatransform_dataSampling,Sampling">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Datatransform_dataSampling({
-	id: "${id}", // sap.ui.core.ID
 	enable: false, // boolean
 	sizeFactor: 1, // int
 	numberPrecondition: 3000, // int
@@ -3405,7 +3047,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Datatransform_dataSampling xmlns="sap.viz"
-	id="${id}"
 	enable="false"
 	sizeFactor="1"
 	numberPrecondition="3000">
@@ -3417,7 +3058,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Datatransform_dataSampling_grid" alias="Datatransform_dataSampling_grid,Sampling_grid">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Datatransform_dataSampling_grid({
-	id: "${id}", // sap.ui.core.ID
 	row: 3, // int
 	column: 3, // int
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -3426,7 +3066,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Datatransform_dataSampling_grid xmlns="sap.viz"
-	id="${id}"
 	row="3"
 	column="3">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -3436,7 +3075,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Heatmap" alias="Heatmap">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Heatmap({
-	id: "${id}", // sap.ui.core.ID
 	startColor: "#C2E3A9", // string
 	endColor: "#73C03C", // string
 	colorPalette: undefined, // string[]
@@ -3451,7 +3089,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Heatmap xmlns="sap.viz"
-	id="${id}"
 	startColor="#C2E3A9"
 	endColor="#73C03C"
 	colorPalette=""
@@ -3467,7 +3104,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Heatmap_animation" alias="Heatmap_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Heatmap_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -3477,7 +3113,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Heatmap_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -3488,7 +3123,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Heatmap_border" alias="Heatmap_border">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Heatmap_border({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3496,7 +3130,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Heatmap_border xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3505,7 +3138,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Heatmap_tooltip" alias="Heatmap_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Heatmap_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	enabled: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3513,7 +3145,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Heatmap_tooltip xmlns="sap.viz"
-	id="${id}"
 	enabled="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3522,7 +3153,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Legend" alias="Legend">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Legend({
-	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
@@ -3530,7 +3160,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Legend xmlns="sap.viz"
-	id="${id}">
+>
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 		<layout></layout> <!-- sap.viz.ui5.types.Legend_layout -->
@@ -3539,7 +3169,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Legend_layout" alias="Legend_layout">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Legend_layout({
-	id: "${id}", // sap.ui.core.ID
 	position: sap.viz.ui5.types.Legend_layout_position.right, // sap.viz.ui5.types.Legend_layout_position
 	priority: 1, // int
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -3548,7 +3177,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Legend_layout xmlns="sap.viz"
-	id="${id}"
 	position="right"
 	priority="1">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -3558,7 +3186,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Line" alias="Line">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Line({
-	id: "${id}", // sap.ui.core.ID
 	orientation: sap.viz.ui5.types.Line_orientation.vertical, // sap.viz.ui5.types.Line_orientation
 	colorPalette: [], // string[]
 	primaryValuesColorPalette: [], // string[]
@@ -3577,7 +3204,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Line xmlns="sap.viz"
-	id="${id}"
 	orientation="vertical"
 	colorPalette=""
 	primaryValuesColorPalette=""
@@ -3597,7 +3223,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Line_animation" alias="Line_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Line_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -3607,7 +3232,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Line_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -3618,7 +3242,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Line_hoverline" alias="Line_hoverline">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Line_hoverline({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3626,7 +3249,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Line_hoverline xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3635,7 +3257,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Line_marker" alias="Line_marker">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Line_marker({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	shape: sap.viz.ui5.types.Line_marker_shape.circle, // sap.viz.ui5.types.Line_marker_shape
 	size: 6, // int
@@ -3646,7 +3267,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Line_marker xmlns="sap.viz"
-	id="${id}"
 	visible="true"
 	shape="circle"
 	size="6"
@@ -3658,7 +3278,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Line_tooltip" alias="Line_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Line_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	enabled: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3666,7 +3285,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Line_tooltip xmlns="sap.viz"
-	id="${id}"
 	enabled="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3675,7 +3293,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Pie" alias="Pie">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Pie({
-	id: "${id}", // sap.ui.core.ID
 	colorPalette: [], // string[]
 	isDonut: false, // boolean
 	isGeoPie: false, // boolean
@@ -3691,7 +3308,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Pie xmlns="sap.viz"
-	id="${id}"
 	colorPalette=""
 	isDonut="false"
 	isGeoPie="false"
@@ -3708,7 +3324,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Pie_animation" alias="Pie_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Pie_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -3718,7 +3333,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Pie_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -3729,18 +3343,16 @@
 </Template>
 <Template name="sap.viz.ui5.types.Pie_tooltip" alias="Pie_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Pie_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	valueFormat: "n", // string
 	percentageFormat: ".0%", // string
-	formatString: undefined, // string[]
+	formatString: [], // string[]
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Pie_tooltip xmlns="sap.viz"
-	id="${id}"
 	visible="true"
 	valueFormat="n"
 	percentageFormat=".0%"
@@ -3752,7 +3364,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.RootContainer" alias="RootContainer,Container">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.RootContainer({
-	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
@@ -3760,7 +3371,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/RootContainer xmlns="sap.viz"
-	id="${id}">
+>
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 		<layout></layout> <!-- sap.viz.ui5.types.RootContainer_layout -->
@@ -3769,7 +3380,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.RootContainer_layout" alias="RootContainer_layout,Container_layout">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.RootContainer_layout({
-	id: "${id}", // sap.ui.core.ID
 	adjustPolicy: undefined, // string
 	padding: 24, // int
 	paddingTop: undefined, // int
@@ -3785,7 +3395,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/RootContainer_layout xmlns="sap.viz"
-	id="${id}"
 	adjustPolicy=""
 	padding="24"
 	paddingTop=""
@@ -3802,7 +3411,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Scatter" alias="Scatter">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Scatter({
-	id: "${id}", // sap.ui.core.ID
 	colorPalette: [], // string[]
 	shapePalette: [], // string[]
 	maxPriValue: 0, // float
@@ -3823,7 +3431,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Scatter xmlns="sap.viz"
-	id="${id}"
 	colorPalette=""
 	shapePalette=""
 	maxPriValue="0"
@@ -3845,7 +3452,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Scatter_animation" alias="Scatter_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Scatter_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -3855,7 +3461,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Scatter_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -3866,16 +3471,14 @@
 </Template>
 <Template name="sap.viz.ui5.types.Scatter_axisTooltip" alias="Scatter_axisTooltip,Tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Scatter_axisTooltip({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
-	formatString: undefined, // string[]
+	formatString: [], // string[]
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Scatter_axisTooltip xmlns="sap.viz"
-	id="${id}"
 	visible="true"
 	formatString="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -3885,7 +3488,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Scatter_hoverline" alias="Scatter_hoverline">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Scatter_hoverline({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3893,7 +3495,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Scatter_hoverline xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3902,7 +3503,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.StackedVerticalBar" alias="StackedVerticalBar,Bar">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.StackedVerticalBar({
-	id: "${id}", // sap.ui.core.ID
 	orientation: sap.viz.ui5.types.StackedVerticalBar_orientation.vertical, // sap.viz.ui5.types.StackedVerticalBar_orientation
 	colorPalette: [], // string[]
 	primaryValuesColorPalette: [], // string[]
@@ -3919,7 +3519,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/StackedVerticalBar xmlns="sap.viz"
-	id="${id}"
 	orientation="vertical"
 	colorPalette=""
 	primaryValuesColorPalette=""
@@ -3937,7 +3536,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.StackedVerticalBar_animation" alias="StackedVerticalBar_animation,Bar_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.StackedVerticalBar_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -3947,7 +3545,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/StackedVerticalBar_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -3958,7 +3555,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.StackedVerticalBar_tooltip" alias="StackedVerticalBar_tooltip,Bar_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.StackedVerticalBar_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	enabled: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3966,7 +3562,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/StackedVerticalBar_tooltip xmlns="sap.viz"
-	id="${id}"
 	enabled="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3975,9 +3570,8 @@
 </Template>
 <Template name="sap.viz.ui5.types.Title" alias="Title">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Title({
-	id: "${id}", // sap.ui.core.ID
 	visible: false, // boolean
-	text: undefined, // string
+	text: "null", // string
 	alignment: sap.viz.ui5.types.Title_alignment.center, // sap.viz.ui5.types.Title_alignment
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -3986,9 +3580,8 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Title xmlns="sap.viz"
-	id="${id}"
 	visible="false"
-	text=""
+	text="null"
 	alignment="center">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -3998,7 +3591,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Title_layout" alias="Title_layout">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Title_layout({
-	id: "${id}", // sap.ui.core.ID
 	position: "right", // string
 	priority: 0, // int
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -4007,7 +3599,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Title_layout xmlns="sap.viz"
-	id="${id}"
 	position="right"
 	priority="0">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -4017,12 +3608,11 @@
 </Template>
 <Template name="sap.viz.ui5.types.Tooltip" alias="Tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Tooltip({
-	id: "${id}", // sap.ui.core.ID
-	preRender: undefined, // any
-	postRender: undefined, // any
+	preRender: null, // any
+	postRender: null, // any
 	visible: true, // boolean
 	drawingEffect: sap.viz.ui5.types.Tooltip_drawingEffect.normal, // sap.viz.ui5.types.Tooltip_drawingEffect
-	formatString: undefined, // any[]
+	formatString: [], // any[][]
 	layinChart: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4038,9 +3628,8 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Tooltip xmlns="sap.viz"
-	id="${id}"
-	preRender=""
-	postRender=""
+	preRender="null"
+	postRender="null"
 	visible="true"
 	drawingEffect="normal"
 	formatString=""
@@ -4060,7 +3649,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Tooltip_background" alias="Tooltip_background">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Tooltip_background({
-	id: "${id}", // sap.ui.core.ID
 	color: "#ffffff", // string
 	borderColor: "#cccccc", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -4069,7 +3657,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Tooltip_background xmlns="sap.viz"
-	id="${id}"
 	color="#ffffff"
 	borderColor="#cccccc">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -4079,7 +3666,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Tooltip_bodyDimensionLabel" alias="Tooltip_bodyDimensionLabel,Label">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Tooltip_bodyDimensionLabel({
-	id: "${id}", // sap.ui.core.ID
 	color: "#666666", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4087,7 +3673,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Tooltip_bodyDimensionLabel xmlns="sap.viz"
-	id="${id}"
 	color="#666666">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4096,7 +3681,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Tooltip_bodyDimensionValue" alias="Tooltip_bodyDimensionValue,Value">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Tooltip_bodyDimensionValue({
-	id: "${id}", // sap.ui.core.ID
 	color: "#666666", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4104,7 +3688,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Tooltip_bodyDimensionValue xmlns="sap.viz"
-	id="${id}"
 	color="#666666">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4113,7 +3696,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Tooltip_bodyMeasureLabel" alias="Tooltip_bodyMeasureLabel,Label">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Tooltip_bodyMeasureLabel({
-	id: "${id}", // sap.ui.core.ID
 	color: "#666666", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4121,7 +3703,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Tooltip_bodyMeasureLabel xmlns="sap.viz"
-	id="${id}"
 	color="#666666">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4130,7 +3711,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Tooltip_bodyMeasureValue" alias="Tooltip_bodyMeasureValue,Value">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Tooltip_bodyMeasureValue({
-	id: "${id}", // sap.ui.core.ID
 	color: "#000000", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4138,7 +3718,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Tooltip_bodyMeasureValue xmlns="sap.viz"
-	id="${id}"
 	color="#000000">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4147,7 +3726,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Tooltip_closeButton" alias="Tooltip_closeButton,Button">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Tooltip_closeButton({
-	id: "${id}", // sap.ui.core.ID
 	backgroundColor: "#ffffff", // string
 	borderColor: "#cccccc", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -4156,7 +3734,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Tooltip_closeButton xmlns="sap.viz"
-	id="${id}"
 	backgroundColor="#ffffff"
 	borderColor="#cccccc">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -4166,7 +3743,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Tooltip_footerLabel" alias="Tooltip_footerLabel,Label">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Tooltip_footerLabel({
-	id: "${id}", // sap.ui.core.ID
 	color: "#000000", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4174,7 +3750,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Tooltip_footerLabel xmlns="sap.viz"
-	id="${id}"
 	color="#000000">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4183,7 +3758,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Tooltip_separationLine" alias="Tooltip_separationLine,Line">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Tooltip_separationLine({
-	id: "${id}", // sap.ui.core.ID
 	borderBottomColor: "#a7a9ac", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4191,7 +3765,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Tooltip_separationLine xmlns="sap.viz"
-	id="${id}"
 	borderBottomColor="#a7a9ac">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4200,7 +3773,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Treemap" alias="Treemap">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Treemap({
-	id: "${id}", // sap.ui.core.ID
 	startColor: "#C2E3A9", // string
 	endColor: "#73C03C", // string
 	colorPalette: undefined, // string[]
@@ -4215,7 +3787,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Treemap xmlns="sap.viz"
-	id="${id}"
 	startColor="#C2E3A9"
 	endColor="#73C03C"
 	colorPalette=""
@@ -4231,7 +3802,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Treemap_animation" alias="Treemap_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Treemap_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -4241,7 +3811,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Treemap_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -4252,7 +3821,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Treemap_border" alias="Treemap_border">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Treemap_border({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4260,7 +3828,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Treemap_border xmlns="sap.viz"
-	id="${id}"
 	visible="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4269,7 +3836,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.Treemap_tooltip" alias="Treemap_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.Treemap_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	enabled: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4277,7 +3843,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/Treemap_tooltip xmlns="sap.viz"
-	id="${id}"
 	enabled="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4286,7 +3851,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.VerticalBar" alias="VerticalBar,Bar">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.VerticalBar({
-	id: "${id}", // sap.ui.core.ID
 	orientation: sap.viz.ui5.types.VerticalBar_orientation.vertical, // sap.viz.ui5.types.VerticalBar_orientation
 	colorPalette: [], // string[]
 	primaryValuesColorPalette: [], // string[]
@@ -4302,7 +3866,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/VerticalBar xmlns="sap.viz"
-	id="${id}"
 	orientation="vertical"
 	colorPalette=""
 	primaryValuesColorPalette=""
@@ -4319,7 +3882,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.VerticalBar_animation" alias="VerticalBar_animation,Bar_animation">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.VerticalBar_animation({
-	id: "${id}", // sap.ui.core.ID
 	dataLoading: true, // boolean
 	dataUpdating: true, // boolean
 	resizing: true, // boolean
@@ -4329,7 +3891,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/VerticalBar_animation xmlns="sap.viz"
-	id="${id}"
 	dataLoading="true"
 	dataUpdating="true"
 	resizing="true">
@@ -4340,7 +3901,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.VerticalBar_tooltip" alias="VerticalBar_tooltip,Bar_tooltip">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.VerticalBar_tooltip({
-	id: "${id}", // sap.ui.core.ID
 	enabled: true, // boolean
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4348,7 +3908,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/VerticalBar_tooltip xmlns="sap.viz"
-	id="${id}"
 	enabled="true">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4357,7 +3916,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.XYContainer" alias="XYContainer">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.XYContainer({
-	id: "${id}", // sap.ui.core.ID
 	yAngle: 0, // float
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -4365,7 +3923,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/XYContainer xmlns="sap.viz"
-	id="${id}"
 	yAngle="0">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -4374,7 +3931,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.controller.Interaction" alias="Interaction">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.controller.Interaction({
-	id: "${id}", // sap.ui.core.ID
 	supportedEventNames: [], // string[]
 	enableMouseMove: true, // boolean
 	enableMouseOver: true, // boolean
@@ -4393,7 +3949,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/controller/Interaction xmlns="sap.viz"
-	id="${id}"
 	supportedEventNames=""
 	enableMouseMove="true"
 	enableMouseOver="true"
@@ -4413,7 +3968,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.controller.Interaction_pan" alias="Interaction_pan">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.controller.Interaction_pan({
-	id: "${id}", // sap.ui.core.ID
 	enable: true, // boolean
 	orientation: sap.viz.ui5.types.controller.Interaction_pan_orientation.both, // sap.viz.ui5.types.controller.Interaction_pan_orientation
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -4422,7 +3976,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/controller/Interaction_pan xmlns="sap.viz"
-	id="${id}"
 	enable="true"
 	orientation="both">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -4432,7 +3985,6 @@
 </Template>
 <Template name="sap.viz.ui5.types.controller.Interaction_selectability" alias="Interaction_selectability">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.controller.Interaction_selectability({
-	id: "${id}", // sap.ui.core.ID
 	mode: sap.viz.ui5.types.controller.Interaction_selectability_mode.inclusive, // sap.viz.ui5.types.controller.Interaction_selectability_mode
 	axisLabelSelection: true, // boolean
 	legendSelection: true, // boolean
@@ -4446,7 +3998,6 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/controller/Interaction_selectability xmlns="sap.viz"
-	id="${id}"
 	mode="inclusive"
 	axisLabelSelection="true"
 	legendSelection="true"
@@ -4461,14 +4012,13 @@
 </Template>
 <Template name="sap.viz.ui5.types.layout.Dock" alias="Dock">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.layout.Dock({
-	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/layout/Dock xmlns="sap.viz"
-	id="${id}">
+>
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/types/layout/Dock>
@@ -4476,14 +4026,13 @@
 </Template>
 <Template name="sap.viz.ui5.types.layout.Stack" alias="Stack">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.layout.Stack({
-	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/layout/Stack xmlns="sap.viz"
-	id="${id}">
+>
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/types/layout/Stack>
@@ -4491,9 +4040,8 @@
 </Template>
 <Template name="sap.viz.ui5.types.legend.Common" alias="Common">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.legend.Common({
-	id: "${id}", // sap.ui.core.ID
 	visible: true, // boolean
-	formatString: undefined, // string
+	formatString: "null", // string
 	isHierarchical: false, // boolean
 	isScrollable: false, // boolean
 	position: sap.viz.ui5.types.legend.Common_position.right, // sap.viz.ui5.types.legend.Common_position
@@ -4507,9 +4055,8 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/legend/Common xmlns="sap.viz"
-	id="${id}"
 	visible="true"
-	formatString=""
+	formatString="null"
 	isHierarchical="false"
 	isScrollable="false"
 	position="right"
@@ -4524,18 +4071,16 @@
 </Template>
 <Template name="sap.viz.ui5.types.legend.Common_title" alias="Common_title">
 	<jsTemplate><![CDATA[new sap.viz.ui5.types.legend.Common_title({
-	id: "${id}", // sap.ui.core.ID
 	visible: false, // boolean
-	text: undefined, // string
+	text: "null", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ui5/types/legend/Common_title xmlns="sap.viz"
-	id="${id}"
 	visible="false"
-	text="">
+	text="null">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ui5/types/legend/Common_title>

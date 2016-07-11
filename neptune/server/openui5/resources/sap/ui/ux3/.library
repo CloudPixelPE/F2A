@@ -3,13 +3,13 @@
 
   <name>sap.ui.ux3</name>
   <vendor>SAP SE</vendor>
-  <copyright>UI development toolkit for HTML5 (OpenUI5)
- * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+  <copyright>SAP UI development toolkit for HTML5 (SAPUI5/OpenUI5)
+ * (c) Copyright 2009-2014 SAP SE or an SAP affiliate company.
  * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.</copyright>
-  <version>1.36.8</version>
-
+  <version>1.26.3</version>
+  
   <documentation>Controls that implement the SAP User Experience (UX) Guidelines 3.0</documentation>
-
+  
   <dependencies>
     <dependency>
       <libraryName>sap.ui.core</libraryName>
@@ -18,7 +18,7 @@
       <libraryName>sap.ui.commons</libraryName>
     </dependency>
   </dependencies>
-
+  
   <appData>
     <selenium xmlns="http://www.sap.com/ui5/buildext/selenium" package="com.sap.ui5.selenium.ux3" />
     <!-- excludes for the JSCoverage -->
@@ -28,9 +28,6 @@
     <releasenotes xmlns="http://www.sap.com/ui5/buildext/releasenotes"
         url="../../../../test-resources/sap/ui/ux3/relnotes/changes-{major}.{minor}.json"
         resolve="lib" />
-    <ownership xmlns="http://www.sap.com/ui5/buildext/ownership">
-        <component>CA-UI5-CTR</component><!-- default component for library, embedded text as a shortcut for <name>text</name> -->
-    </ownership>
   </appData>
 
 </library>

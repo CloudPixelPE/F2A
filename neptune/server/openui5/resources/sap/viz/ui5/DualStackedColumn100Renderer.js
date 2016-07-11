@@ -1,7 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
-
-(c) Copyright 2009-2016 SAP SE. All rights reserved
- * @deprecated Since 1.30.1. Do not require this private module. All chart wrappers share the BaseChartRenderer.
+ * 
+ * (c) Copyright 2009-2014 SAP SE. All rights reserved
  */
-sap.ui.define(['./core/BaseChartRenderer','./DualStackedColumn100'],function(B){"use strict";return B;},true);
+jQuery.sap.declare("sap.viz.ui5.DualStackedColumn100Renderer");jQuery.sap.require("sap.viz.ui5.core.BaseChartRenderer");sap.viz.ui5.DualStackedColumn100Renderer=sap.viz.ui5.core.BaseChartRenderer;

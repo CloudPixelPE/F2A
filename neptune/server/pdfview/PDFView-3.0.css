@@ -1,0 +1,41 @@
+#pdfWrapper
+{
+    position:absolute;
+    z-index:1;
+    top: 0;
+    bottom:0;
+    width:100%;
+    background:#565656;
+    overflow:auto;
+}
+
+#pdfScroller
+{
+    position:absolute;
+    z-index:1;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    padding:0;
+}
+
+.pdfPage
+{
+    position:relative;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    width: 100%
+}
+
+.pdfPage > canvas
+{
+    position: absolute;
+    border: solid 1px #474747;
+    top: 0;
+}
+
+.pdfPage > div
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}

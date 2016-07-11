@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.colsam.saleorder" versionCode="102" version="1.0.2">
+<author></author>
+<name>CS AGENTS-SVI</name>
+<description>App Vendite Colorificio Sammarinese</description>
+<preference name="windows-identity-name" value="" />
+<preference name="windows-appx-target" value="uap" />
+<preference name="windows-arch" value="anycpu" />
+<preference name="WindowsDefaultUriPrefix" value="ms-appx://" />
+<plugin spec="https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free" source="git" />
+<plugin name="cordova-plugin-file-opener2" source="npm" />
+<platform name="ios" />
+<icon src="icon.png" />
+<splash src="splash.png" />
+<plugin name="cordova-plugin-barcodescanner" source="npm" />
+<plugin name="pushwoosh-pgb-plugin" spec="5.1.1" source="npm" />
+<plugin name="com.adobe.plugins.gaplugin" source="pgb" />
+<plugin name="nl.x-services.plugins.calendar" source="pgb" />
+<plugin name="com.chariotsolutions.nfc.plugin" source="pgb" />
+<plugin name="nl.x-services.plugins.sslcertificatechecker" source="pgb" />
+<preference name="phonegap-version" value="cli-6.1.0" />
+<plugin name="cordova-plugin-statusbar" source="npm" />
+<gap:config-file platform="ios" parent="UIStatusBarHidden"><true/></gap:config-file>
+<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance"><false/></gap:config-file>
+<preference name="StatusBarOverlaysWebView" value="false" />
+<preference name="ShowSplashScreenSpinner" value="false"/>
+<platform name="ios">
+<preference name="SplashScreenDelay" value="1" />
+</platform>
+<platform name="android">
+<preference name="SplashScreenDelay" value="20000" />
+</platform>
+<preference name="AutoHideSplashScreen" value="false" />
+<preference name="FadeSplashScreen" value="false"/>
+<preference name="SplashShowOnlyFirstTime" value="false" />
+<preference name="SplashMaintainAspectRatio" value="true" />
+<feature name="http://api.phonegap.com/1.0/battery"/>
+<feature name="http://api.phonegap.com/1.0/camera"/>
+<feature name="http://api.phonegap.com/1.0/contacts"/>
+<feature name="http://api.phonegap.com/1.0/file"/>
+<feature name="http://api.phonegap.com/1.0/geolocation"/>
+<feature name="http://api.phonegap.com/1.0/media"/>
+<feature name="http://api.phonegap.com/1.0/network"/>
+<feature name="http://api.phonegap.com/1.0/notification"/>
+<feature name="http://api.phonegap.com/1.0/device"/>
+<plugin name="cordova-plugin-battery-status" source="npm" />
+<plugin name="cordova-plugin-camera" source="npm" />
+<plugin name="cordova-plugin-media-capture" source="npm" />
+<plugin name="cordova-plugin-contacts" source="npm" />
+<plugin name="cordova-plugin-device" source="npm" />
+<plugin name="cordova-plugin-file" source="npm" />
+<plugin name="cordova-plugin-splashscreen" source="npm" />
+<plugin name="cordova-plugin-file-transfer" source="npm" />
+<plugin name="cordova-plugin-geolocation" source="npm" />
+<plugin name="cordova-plugin-inappbrowser" source="npm" />
+<plugin name="cordova-plugin-media" source="npm" />
+<plugin name="cordova-plugin-network-information" source="npm" />
+<plugin name="cordova-plugin-dialogs" source="npm" />
+<plugin name="cordova-plugin-vibration" source="npm" />
+<plugin name="cordova-plugin-whitelist" source="npm" />
+<preference name="android-build-tool" value="gradle" />
+<access origin="*" subdomains="true"/>
+</widget>

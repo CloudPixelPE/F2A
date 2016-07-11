@@ -1,9 +1,10 @@
 /* NOTE: This file was generated as an optimized version of "library.source.less" for the Theme Designer. */
 
 /*!
- * ${copyright}
+ * SAP UI development toolkit for HTML5 (SAPUI5)
+ *
+ * (c) Copyright 2009-2015 SAP SE. All rights reserved
  */
-
 
 @import "../base/library.less";
 @import "../../../../../Base/baseLib/sap_bluecrystal/base.less"; /* ORIGINAL IMPORT PATH: "../../../../sap/ui/core/themes/sap_bluecrystal/base.less" */
@@ -144,13 +145,15 @@ Approval colors
 }
 
 /* Weekend (00) */
-.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekendDay {
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay6,
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay0{
 	background:@sapMeOverlapCalendarType00;
 }
 
 /* Weekend (00) not in current month */
 .sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarDayNotInCurrentMonth,
-.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekendDay.sapMeCalendarDayNotInCurrentMonth {
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay6.sapMeCalendarDayNotInCurrentMonth,
+.sapMeCalendarApproval > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay0.sapMeCalendarDayNotInCurrentMonth{
 	background:@sapUiLightestBG;
 	color: @sapUiLightBorder;
 }
@@ -219,15 +222,17 @@ Action colors
 }
 
 /* Weekend (00) */
-.sapMeCalendarAction > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekendDay {
+.sapMeCalendarAction > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay6,
+.sapMeCalendarAction > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay0{
 	background:@sapMeOverlapCalendarType00;
 }
 
 /* Weekend (00) not in current month */
 .sapMeCalendarAction > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarDayNotInCurrentMonth,
-.sapMeCalendarAction > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekendDay.sapMeCalendarDayNotInCurrentMonth {
+.sapMeCalendarAction > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay6.sapMeCalendarDayNotInCurrentMonth,
+.sapMeCalendarAction > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay0.sapMeCalendarDayNotInCurrentMonth{
 	background:@sapUiLightestBG;
-	color: @sapUiLightBorder;
+	color: @sapUiLightBorder;	
 }
 
 
@@ -270,11 +275,61 @@ Action colors
 /* ============================================= */
 /* CSS for control sap.me/CalendarLegend.control */
 /* ============================================= */
+.sapMeCalendarLegend {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
 
 .sapUIMeLegendOuterContainer {
 	background-color: @sapUiLightestBG;
+	min-height: 3rem;
 }
 
+.sapUIMeLegendIconContainer {
+}
+
+.sapUIMeCalendarLegendLabels {
+	display: inline-block;
+	margin-left: 0.75rem;
+	font-size: 0.875rem;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+    vertical-align: middle;
+}
+
+.sapMLabel.sapUIMeCalendarLegendLabels::after {
+	content: none;
+}
+
+.sapUIMeLegendMenuContainer {
+	margin-top: 0.8rem;
+	overflow: hidden;
+	height: auto;
+	margin-left: 0rem;
+}
+
+.sapUIMeLegendMenu {
+	display: inline-block;
+	overflow: hidden;
+	height: auto;
+	margin-left: 0rem;
+	margin-top: 1rem;
+	margin-bottom: 0.75rem;
+}
+
+.sapUIMeLegendColor {
+    height: .875rem;
+    width: .875rem;
+	display: inline-block;
+	margin-left: 1rem;
+	margin-top: .25rem;
+	margin-bottom: .25rem;
+	vertical-align: middle;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
 /* Approval Design*/
 .sapMeCalendarLegendApproval .sapUIMeLegendColorForType00 {
 	background-color: @sapMeOverlapCalendarType00;
@@ -355,45 +410,111 @@ Action colors
 	background-color: @sapUiExtraLightBG;
 }
 
+.sapUIMeLegendLine {
+	font-size: 0.875rem;
+	margin-top: 0rem;
+	vertical-align: middle;
+	height: 1.5rem;
+	display: inline-block;
+	white-space: nowrap;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
 .sapUIMeLegendIcon {
+	width: 3rem;
+	height: 3rem;
+	line-height: 3rem;
+	font-size: 1.5rem;
+	float: left;
 	background-color: @sapUiLightestBG;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 .sapUIMeLegendArrow {
+	display: inline-block;
+	float: right;
 	font-color: @sapUiStandardText;
 }
 
+.sapUIMeLegendIconLegend {
+	
+}
+
+.sapUIMeLegenDottedLine {
+	
+}
 /* END "CalendarLegend.css" */
 
 /* START "OverlapCalendar.css" */
 .sapMeOverlapCalendar {
 	background : @sapUiLightestBG;
 }
+/* Overwriting calendar css */
+.sapMeOverlapCalendarCalendar > .sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthDayNames {
+	margin-top: .25rem;
+}
 
-.sapMeOverlapCalendarCalendar > .sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekendDay.sapMeCalendarDayNotInCurrentMonth,
+.sapMeOverlapCalendarCalendar > .sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthDays {
+	margin-bottom: 0rem;
+}
+.sapMeOverlapCalendarCalendar > .sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay6.sapMeCalendarDayNotInCurrentMonth,
+.sapMeOverlapCalendarCalendar > .sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay.sapMeCalendarWeekDay0.sapMeCalendarDayNotInCurrentMonth,
 .sapMeOverlapCalendarCalendar > .sapMeCalendar > .sapMeCalendarMonth > div.sapMeCalendarMonthDays > .sapMeCalendarMonthDay  {
 	background: @sapUiExtraLightBG;
 	color : @sapUiLightText;
 }
 /* Overlap Calendar Grid */
 .sapMeOverlapCalendarGrid{
-	border-bottom-color: @sapUiExtraLightBorder;
+	border-bottom : 0.0625rem solid @sapUiExtraLightBorder;
 }
-
+.sapMeOverlapCalendarRow{
+	
+}
 .sapMeOverlapCalendarOverlapIndicator{
-	border-top-color: @sapUiExtraLightBorder;
-	border-bottom-color: @sapUiExtraLightBorder;
+	height:0.4375rem;
+	line-height:0px;
+	border-top : 0.0625rem solid @sapUiExtraLightBorder;
+	border-bottom : 0.0625rem solid @sapUiExtraLightBorder;
 }
-
+.sapMeOverlapCalendarOverlap{
+	height: 0.4375rem;
+	display:inline-block;
+	position: relative;
+}
 
 .sapMeOverlapCalendarDay{
-	border-bottom-color: @sapUiLightestBorder;
-	border-left-color: @sapUiLightestBorder;
+	text-align: center;
+	display: inline-block;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	box-sizing:border-box;
+	padding: 0.9375rem 0px;
+	border-bottom: 0.0625rem solid @sapUiLightestBorder;
+	border-left: .0625rem solid @sapUiLightestBorder;
+	border-right:none;
+	border-top:none;
 	background: @sapUiExtraLightBG;
 }
+.sapMeOverlapCalendarDay :nth-of-type(1){
+	border-left:none;
+}
+
+.sapMeOverlapCalendarDay.sapMeOverlapCalendarDayWithHalf {
+	padding : 0px;
+}
+
 .sapMeOverlapCalendarHalfDay {
-    border-bottom-color: @sapUiLightestBorder;
-    border-left-color: @sapUiLightestBorder;
+    position: absolute; /* half days are absolute because we need two of them to overlap in the parent div */
+    border-bottom: 0.0625rem solid @sapUiLightestBorder;
+    border-left: 0.0625rem solid @sapUiLightestBorder;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
 }
 
 .sapMeOverlapCalendarTypeHalfDayEnd {
@@ -524,12 +645,32 @@ Action colors
     background: url(img/bg_white_transparent.png), linear-gradient(to bottom right, rgba(255, 255, 255, 0) 53%, @sapMeOverlapCalendarType07 50%);
 }
 
+.sapMeOverlapCalendarRowLabels{
+	position:absolute;
+	z-index:3;
+	width:100%;
+	display:inline;
+}
+
 .sapMeOverlapCalendarNameLbl{
+	font-face : "Open Sans Regular";
+	font-size : .875rem;
 	color : @sapUiStandardText;
+	margin-left : 1rem;
+	top: .25rem;
+	position: relative;
+	z-index:3;
 }
 
 .sapMeOverlapCalendarTypeLbl {
+    position: absolute;
+    font-face: "Open Sans Regular";
+    font-size: .75rem;
     color: @sapUiDarkText;
+    top: 1.5rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 /* END "OverlapCalendar.css" */
 

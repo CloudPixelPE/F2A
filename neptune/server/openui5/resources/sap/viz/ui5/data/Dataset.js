@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
-
-(c) Copyright 2009-2016 SAP SE. All rights reserved
+ * 
+ * (c) Copyright 2009-2014 SAP SE. All rights reserved
  */
-sap.ui.define(['sap/ui/core/Element','sap/viz/library'],function(E,l){"use strict";var D=E.extend("sap.viz.ui5.data.Dataset",{metadata:{"abstract":true,library:"sap.viz"}});return D;});
+jQuery.sap.declare("sap.viz.ui5.data.Dataset");jQuery.sap.require("sap.viz.library");jQuery.sap.require("sap.ui.core.Element");sap.ui.core.Element.extend("sap.viz.ui5.data.Dataset",{metadata:{"abstract":true,library:"sap.viz"}});

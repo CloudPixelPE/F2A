@@ -51,14 +51,10 @@ If a column shall have an automatical sizing enter &quot;auto&quot; for this col
     </aggregations>
     <methods>
         <method type="sap.ui.commons/layout/MatrixLayout" name="createRow">
-            <documentation>Creates a new matrix layout row and appends it to this matrix layout.
-
-Each argument must be either a matrix layout cell, which is added to the row
-&quot;as is&quot;, or an arbitrary content control, which is wrapped with a new
-(default) matrix layout cell first and then added to the row.</documentation>
+            <documentation>Creates a new matrix layout row and appends it to this matrix layout.</documentation>
             <parameters>
-                <parameter type="sap.ui.core/Control" name="rowContent">
-                    <documentation>to add</documentation>
+                <parameter type="sap.ui.core/Control" name="controls">
+                    <documentation>Each argument must be either a matrix layout cell, which is added to the row &quot;as is&quot;, or an arbitrary content control, which is wrapped with a new (default) matrix layout cell first and then added to the row.</documentation>
                 </parameter>
             </parameters>
         </method>

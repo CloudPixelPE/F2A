@@ -13,6 +13,7 @@
 
 .sapMScrollbarV > div,
 .sapMScrollbarH > div {
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
@@ -51,12 +52,12 @@
 
 /* ObjectListItem and ObjectHeader share styles for markers such as flag and favorite */
 .sapMObjStatusMarker {
-
+	
 	color: @sapUiAccent5;
 }
 
-.sapMObjStatusMarker .sapUiIcon + .sapUiIcon,
-.sapMObjStatusMarker .sapUiHiddenPlaceholder + .sapUiIcon {
+.sapMObjStatusMarker .sapUiIcon + .sapUiIcon {
+	
 	margin-left: .5rem;
 }
 

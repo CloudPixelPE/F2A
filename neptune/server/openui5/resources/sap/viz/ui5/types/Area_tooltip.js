@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
- * 
- * (c) Copyright 2009-2014 SAP SE. All rights reserved
+
+(c) Copyright 2009-2016 SAP SE. All rights reserved
  */
-jQuery.sap.declare("sap.viz.ui5.types.Area_tooltip");jQuery.sap.require("sap.viz.library");jQuery.sap.require("sap.viz.ui5.core.BaseStructuredType");sap.viz.ui5.core.BaseStructuredType.extend("sap.viz.ui5.types.Area_tooltip",{metadata:{deprecated:true,library:"sap.viz",properties:{"enabled":{type:"boolean",group:"",defaultValue:true}}}});
+sap.ui.define(['sap/viz/library','sap/viz/ui5/core/BaseStructuredType'],function(l,B){"use strict";var A=B.extend("sap.viz.ui5.types.Area_tooltip",{metadata:{library:"sap.viz",properties:{enabled:{type:"boolean",defaultValue:true}}}});return A;});

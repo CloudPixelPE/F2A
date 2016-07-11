@@ -1,6 +1,6 @@
 /*!
  * SAP UI development toolkit for HTML5 (SAPUI5)
- * 
- * (c) Copyright 2009-2014 SAP SE. All rights reserved
+
+(c) Copyright 2009-2016 SAP SE. All rights reserved
  */
-jQuery.sap.declare("sap.viz.ui5.types.Axis_scale");jQuery.sap.require("sap.viz.library");jQuery.sap.require("sap.viz.ui5.core.BaseStructuredType");sap.viz.ui5.core.BaseStructuredType.extend("sap.viz.ui5.types.Axis_scale",{metadata:{library:"sap.viz",properties:{"fixedRange":{type:"boolean",group:"",defaultValue:false},"minValue":{type:"float",group:"",defaultValue:0},"maxValue":{type:"float",group:"",defaultValue:0},"fixedTicks":{type:"object[]",group:"",defaultValue:null,deprecated:true}}}});
+sap.ui.define(['sap/viz/library','sap/viz/ui5/core/BaseStructuredType'],function(l,B){"use strict";var A=B.extend("sap.viz.ui5.types.Axis_scale",{metadata:{library:"sap.viz",properties:{fixedRange:{type:"boolean",defaultValue:false},minValue:{type:"float",defaultValue:0},maxValue:{type:"float",defaultValue:0},fixedTicks:{type:"object[]",deprecated:true}}}});return A;});

@@ -2,11 +2,14 @@
 <Library name="sap.ui.core" xmlns="http://www.sap.com/ui5/ide/templates/xmlview">
 <Template name="sap.ui.core.ComponentContainer" alias="ComponentContainer,Container">
 	<jsTemplate><![CDATA[new sap.ui.core.ComponentContainer({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	name: undefined, // string
 	url: undefined, // sap.ui.core.URI
+	handleValidation: false, // boolean
 	settings: undefined, // object
 	propagateModel: false, // boolean
 	width: undefined, // sap.ui.core.CSSSize
@@ -14,20 +17,27 @@
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
-	component: undefined // sap.ui.core.UIComponent
+	component: undefined, // sap.ui.core.UIComponent
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ComponentContainer xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	name=""
 	url=""
+	handleValidation="false"
 	settings=""
 	propagateModel="false"
 	width=""
 	height=""
-	component="">
+	component=""
+	validateFieldGroup="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </ComponentContainer>
@@ -35,18 +45,26 @@
 </Template>
 <Template name="sap.ui.core.Control" alias="Control">
 	<jsTemplate><![CDATA[new sap.ui.core.Control({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
-	dependents: [] // sap.ui.core.Control, since 1.19
+	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<Control xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
-	visible="true">
+	visible="true"
+	fieldGroupIds=""
+	validateFieldGroup="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </Control>
@@ -54,6 +72,7 @@
 </Template>
 <Template name="sap.ui.core.CustomData" alias="CustomData,Data">
 	<jsTemplate><![CDATA[new sap.ui.core.CustomData({
+	id: "${id}", // sap.ui.core.ID
 	key: undefined, // string
 	value: undefined, // any
 	writeToDom: false, // boolean, since 1.9.0
@@ -63,6 +82,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<CustomData xmlns="sap.ui.core"
+	id="${id}"
 	key=""
 	value=""
 	writeToDom="false">
@@ -73,13 +93,14 @@
 </Template>
 <Template name="sap.ui.core.Element" alias="Element">
 	<jsTemplate><![CDATA[new sap.ui.core.Element({
+	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<Element xmlns="sap.ui.core"
->
+	id="${id}">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </Element>
@@ -87,9 +108,11 @@
 </Template>
 <Template name="sap.ui.core.HTML" alias="HTML">
 	<jsTemplate><![CDATA[new sap.ui.core.HTML({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	content: undefined, // string
 	preferDOM: true, // boolean
 	sanitizeContent: false, // boolean
@@ -97,19 +120,25 @@
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	afterRendering: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<HTML xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	content=""
 	preferDOM="true"
 	sanitizeContent="false"
 	visible="true"
+	validateFieldGroup=""
 	afterRendering="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -118,32 +147,43 @@
 </Template>
 <Template name="sap.ui.core.Icon" alias="Icon">
 	<jsTemplate><![CDATA[new sap.ui.core.Icon({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	src: undefined, // sap.ui.core.URI
 	size: undefined, // sap.ui.core.CSSSize
-	color: undefined, // sap.ui.core.CSSColor
-	hoverColor: undefined, // sap.ui.core.CSSColor
-	activeColor: undefined, // sap.ui.core.CSSColor
+	color: undefined, // string
+	hoverColor: undefined, // string
+	activeColor: undefined, // string
 	width: undefined, // sap.ui.core.CSSSize
 	height: undefined, // sap.ui.core.CSSSize
-	backgroundColor: undefined, // sap.ui.core.CSSColor
-	hoverBackgroundColor: undefined, // sap.ui.core.CSSColor
-	activeBackgroundColor: undefined, // sap.ui.core.CSSColor
+	backgroundColor: undefined, // string
+	hoverBackgroundColor: undefined, // string
+	activeBackgroundColor: undefined, // string
 	decorative: true, // boolean, since 1.16.4
+	useIconTooltip: true, // boolean, since 1.30.0
+	alt: undefined, // string, since 1.30.0
+	noTabStop: false, // boolean, since 1.30.1
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
+	ariaLabelledBy: [], // sap.ui.core.Control
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	press: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<Icon xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	src=""
 	size=""
 	color=""
@@ -155,14 +195,49 @@
 	hoverBackgroundColor=""
 	activeBackgroundColor=""
 	decorative="true"
+	useIconTooltip="true"
+	alt=""
+	noTabStop="false"
+	ariaLabelledBy=""
+	validateFieldGroup=""
 	press="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </Icon>
 ]]></xmlTemplate>
 </Template>
+<Template name="sap.ui.core.InvisibleText" alias="InvisibleText,Text">
+	<jsTemplate><![CDATA[new sap.ui.core.InvisibleText({
+	id: "${id}", // sap.ui.core.ID
+	busy: false, // boolean
+	busyIndicatorDelay: 1000, // int
+	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
+	text: "", // string
+	tooltip: undefined, // sap.ui.core.TooltipBase
+	customData: [], // sap.ui.core.CustomData
+	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
+})
+]]></jsTemplate>
+	<xmlTemplate><![CDATA[<InvisibleText xmlns="sap.ui.core"
+	id="${id}"
+	busy="false"
+	busyIndicatorDelay="1000"
+	visible="true"
+	fieldGroupIds=""
+	text=""
+	validateFieldGroup="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+</InvisibleText>
+]]></xmlTemplate>
+</Template>
 <Template name="sap.ui.core.Item" alias="Item">
 	<jsTemplate><![CDATA[new sap.ui.core.Item({
+	id: "${id}", // sap.ui.core.ID
 	text: "", // string
 	enabled: true, // boolean
 	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
@@ -173,6 +248,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<Item xmlns="sap.ui.core"
+	id="${id}"
 	text=""
 	enabled="true"
 	textDirection="Inherit"
@@ -184,13 +260,14 @@
 </Template>
 <Template name="sap.ui.core.LayoutData" alias="LayoutData,Data">
 	<jsTemplate><![CDATA[new sap.ui.core.LayoutData({
+	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [] // sap.ui.core.Control, since 1.19
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<LayoutData xmlns="sap.ui.core"
->
+	id="${id}">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </LayoutData>
@@ -198,6 +275,7 @@
 </Template>
 <Template name="sap.ui.core.ListItem" alias="ListItem,Item">
 	<jsTemplate><![CDATA[new sap.ui.core.ListItem({
+	id: "${id}", // sap.ui.core.ID
 	text: "", // string
 	enabled: true, // boolean
 	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
@@ -210,6 +288,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ListItem xmlns="sap.ui.core"
+	id="${id}"
 	text=""
 	enabled="true"
 	textDirection="Inherit"
@@ -223,22 +302,30 @@
 </Template>
 <Template name="sap.ui.core.LocalBusyIndicator" alias="LocalBusyIndicator,Indicator">
 	<jsTemplate><![CDATA[new sap.ui.core.LocalBusyIndicator({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	width: "100px", // sap.ui.core.CSSSize
 	height: "100px", // sap.ui.core.CSSSize
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
-	dependents: [] // sap.ui.core.Control, since 1.19
+	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<LocalBusyIndicator xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	width="100px"
-	height="100px">
+	height="100px"
+	validateFieldGroup="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </LocalBusyIndicator>
@@ -246,6 +333,7 @@
 </Template>
 <Template name="sap.ui.core.Message" alias="Message">
 	<jsTemplate><![CDATA[new sap.ui.core.Message({
+	id: "${id}", // sap.ui.core.ID
 	text: undefined, // string
 	timestamp: undefined, // string
 	icon: undefined, // sap.ui.core.URI
@@ -257,6 +345,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<Message xmlns="sap.ui.core"
+	id="${id}"
 	text=""
 	timestamp=""
 	icon=""
@@ -269,9 +358,11 @@
 </Template>
 <Template name="sap.ui.core.ScrollBar" alias="ScrollBar,Bar">
 	<jsTemplate><![CDATA[new sap.ui.core.ScrollBar({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	vertical: true, // boolean
 	scrollPosition: undefined, // int
 	size: undefined, // sap.ui.core.CSSSize
@@ -280,20 +371,26 @@
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	scroll: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<ScrollBar xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	vertical="true"
 	scrollPosition=""
 	size=""
 	contentSize=""
 	steps=""
+	validateFieldGroup=""
 	scroll="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -302,6 +399,7 @@
 </Template>
 <Template name="sap.ui.core.SeparatorItem" alias="SeparatorItem,Item">
 	<jsTemplate><![CDATA[new sap.ui.core.SeparatorItem({
+	id: "${id}", // sap.ui.core.ID
 	text: "", // string
 	enabled: true, // boolean
 	textDirection: sap.ui.core.TextDirection.Inherit, // sap.ui.core.TextDirection
@@ -312,6 +410,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<SeparatorItem xmlns="sap.ui.core"
+	id="${id}"
 	text=""
 	enabled="true"
 	textDirection="Inherit"
@@ -323,6 +422,7 @@
 </Template>
 <Template name="sap.ui.core.Title" alias="Title">
 	<jsTemplate><![CDATA[new sap.ui.core.Title({
+	id: "${id}", // sap.ui.core.ID
 	text: undefined, // string
 	icon: undefined, // sap.ui.core.URI
 	level: sap.ui.core.TitleLevel.Auto, // sap.ui.core.TitleLevel
@@ -333,6 +433,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<Title xmlns="sap.ui.core"
+	id="${id}"
 	text=""
 	icon=""
 	level="Auto"
@@ -344,9 +445,11 @@
 </Template>
 <Template name="sap.ui.core.TooltipBase" alias="TooltipBase,Base">
 	<jsTemplate><![CDATA[new sap.ui.core.TooltipBase({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	text: "", // string
 	openDuration: 200, // int
 	closeDuration: 200, // int
@@ -359,15 +462,20 @@
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	closed: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this] // since 1.11.0
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<TooltipBase xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	text=""
 	openDuration="200"
 	closeDuration="200"
@@ -377,6 +485,7 @@
 	collision="flip"
 	openDelay="500"
 	closeDelay="100"
+	validateFieldGroup=""
 	closed="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -385,18 +494,26 @@
 </Template>
 <Template name="sap.ui.core.UIComponent" alias="UIComponent">
 	<jsTemplate><![CDATA[new sap.ui.core.UIComponent({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
-	dependents: [] // sap.ui.core.Control, since 1.19
+	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<UIComponent xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
-	visible="true">
+	visible="true"
+	fieldGroupIds=""
+	validateFieldGroup="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </UIComponent>
@@ -404,6 +521,7 @@
 </Template>
 <Template name="sap.ui.core.VariantLayoutData" alias="VariantLayoutData,Data">
 	<jsTemplate><![CDATA[new sap.ui.core.VariantLayoutData({
+	id: "${id}", // sap.ui.core.ID
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
@@ -411,7 +529,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<VariantLayoutData xmlns="sap.ui.core"
->
+	id="${id}">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 		<multipleLayoutData></multipleLayoutData> <!-- sap.ui.core.LayoutData -->
@@ -420,9 +538,11 @@
 </Template>
 <Template name="sap.ui.core.mvc.HTMLView" alias="HTMLView">
 	<jsTemplate><![CDATA[new sap.ui.core.mvc.HTMLView({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	width: "100%", // sap.ui.core.CSSSize
 	height: undefined, // sap.ui.core.CSSSize
 	viewName: undefined, // string
@@ -431,6 +551,9 @@
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	content: [], // sap.ui.core.Control
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	afterInit: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -446,13 +569,16 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<mvc/HTMLView xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	width="100%"
 	height=""
 	viewName=""
 	displayBlock="false"
+	validateFieldGroup=""
 	afterInit=""
 	beforeExit=""
 	afterRendering=""
@@ -465,9 +591,11 @@
 </Template>
 <Template name="sap.ui.core.mvc.JSONView" alias="JSONView">
 	<jsTemplate><![CDATA[new sap.ui.core.mvc.JSONView({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	width: "100%", // sap.ui.core.CSSSize
 	height: undefined, // sap.ui.core.CSSSize
 	viewName: undefined, // string
@@ -476,6 +604,9 @@
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	content: [], // sap.ui.core.Control
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	afterInit: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -491,13 +622,16 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<mvc/JSONView xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	width="100%"
 	height=""
 	viewName=""
 	displayBlock="false"
+	validateFieldGroup=""
 	afterInit=""
 	beforeExit=""
 	afterRendering=""
@@ -510,9 +644,11 @@
 </Template>
 <Template name="sap.ui.core.mvc.JSView" alias="JSView">
 	<jsTemplate><![CDATA[new sap.ui.core.mvc.JSView({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	width: "100%", // sap.ui.core.CSSSize
 	height: undefined, // sap.ui.core.CSSSize
 	viewName: undefined, // string
@@ -521,6 +657,9 @@
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	content: [], // sap.ui.core.Control
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	afterInit: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -536,13 +675,16 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<mvc/JSView xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	width="100%"
 	height=""
 	viewName=""
 	displayBlock="false"
+	validateFieldGroup=""
 	afterInit=""
 	beforeExit=""
 	afterRendering=""
@@ -555,9 +697,11 @@
 </Template>
 <Template name="sap.ui.core.mvc.TemplateView" alias="TemplateView,View">
 	<jsTemplate><![CDATA[new sap.ui.core.mvc.TemplateView({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	width: "100%", // sap.ui.core.CSSSize
 	height: undefined, // sap.ui.core.CSSSize
 	viewName: undefined, // string
@@ -566,6 +710,9 @@
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	content: [], // sap.ui.core.Control
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	afterInit: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -581,13 +728,16 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<mvc/TemplateView xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	width="100%"
 	height=""
 	viewName=""
 	displayBlock="false"
+	validateFieldGroup=""
 	afterInit=""
 	beforeExit=""
 	afterRendering=""
@@ -600,9 +750,11 @@
 </Template>
 <Template name="sap.ui.core.mvc.View" alias="View">
 	<jsTemplate><![CDATA[new sap.ui.core.mvc.View({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	width: "100%", // sap.ui.core.CSSSize
 	height: undefined, // sap.ui.core.CSSSize
 	viewName: undefined, // string
@@ -611,6 +763,9 @@
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	content: [], // sap.ui.core.Control
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	afterInit: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -626,13 +781,16 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<mvc/View xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	width="100%"
 	height=""
 	viewName=""
 	displayBlock="false"
+	validateFieldGroup=""
 	afterInit=""
 	beforeExit=""
 	afterRendering=""
@@ -645,9 +803,11 @@
 </Template>
 <Template name="sap.ui.core.mvc.XMLView" alias="XMLView">
 	<jsTemplate><![CDATA[new sap.ui.core.mvc.XMLView({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	width: "100%", // sap.ui.core.CSSSize
 	height: undefined, // sap.ui.core.CSSSize
 	viewName: undefined, // string
@@ -656,6 +816,9 @@
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	content: [], // sap.ui.core.Control
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	afterInit: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -671,13 +834,16 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<mvc/XMLView xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	width="100%"
 	height=""
 	viewName=""
 	displayBlock="false"
+	validateFieldGroup=""
 	afterInit=""
 	beforeExit=""
 	afterRendering=""
@@ -690,6 +856,7 @@
 </Template>
 <Template name="sap.ui.core.search.OpenSearchProvider" alias="OpenSearchProvider,Provider">
 	<jsTemplate><![CDATA[new sap.ui.core.search.OpenSearchProvider({
+	id: "${id}", // sap.ui.core.ID
 	icon: undefined, // string
 	suggestUrl: undefined, // sap.ui.core.URI
 	suggestType: "json", // string
@@ -699,6 +866,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<search/OpenSearchProvider xmlns="sap.ui.core"
+	id="${id}"
 	icon=""
 	suggestUrl=""
 	suggestType="json">
@@ -709,6 +877,7 @@
 </Template>
 <Template name="sap.ui.core.search.SearchProvider" alias="SearchProvider,Provider">
 	<jsTemplate><![CDATA[new sap.ui.core.search.SearchProvider({
+	id: "${id}", // sap.ui.core.ID
 	icon: undefined, // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
@@ -716,6 +885,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<search/SearchProvider xmlns="sap.ui.core"
+	id="${id}"
 	icon="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
@@ -724,6 +894,7 @@
 </Template>
 <Template name="sap.ui.core.tmpl.DOMAttribute" alias="DOMAttribute">
 	<jsTemplate><![CDATA[new sap.ui.core.tmpl.DOMAttribute({
+	id: "${id}", // sap.ui.core.ID
 	name: undefined, // string
 	value: undefined, // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
@@ -732,6 +903,7 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<tmpl/DOMAttribute xmlns="sap.ui.core"
+	id="${id}"
 	name=""
 	value="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
@@ -741,24 +913,32 @@
 </Template>
 <Template name="sap.ui.core.tmpl.DOMElement" alias="DOMElement">
 	<jsTemplate><![CDATA[new sap.ui.core.tmpl.DOMElement({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	text: undefined, // string
 	tag: "span", // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	attributes: [], // sap.ui.core.tmpl.DOMAttribute
-	elements: [] // sap.ui.core.tmpl.DOMElement
+	elements: [], // sap.ui.core.tmpl.DOMElement
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<tmpl/DOMElement xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	text=""
-	tag="span">
+	tag="span"
+	validateFieldGroup="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 		<attributes></attributes> <!-- sap.ui.core.tmpl.DOMAttribute -->
@@ -768,20 +948,28 @@
 </Template>
 <Template name="sap.ui.core.tmpl.Template" alias="Template">
 	<jsTemplate><![CDATA[new sap.ui.core.tmpl.Template({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	content: undefined, // string
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
-	dependents: [] // sap.ui.core.Control, since 1.19
+	dependents: [], // sap.ui.core.Control, since 1.19
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this]
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<tmpl/Template xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
-	content="">
+	fieldGroupIds=""
+	content=""
+	validateFieldGroup="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
 		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
 </tmpl/Template>
@@ -789,14 +977,19 @@
 </Template>
 <Template name="sap.ui.core.tmpl.TemplateControl" alias="TemplateControl,Control">
 	<jsTemplate><![CDATA[new sap.ui.core.tmpl.TemplateControl({
+	id: "${id}", // sap.ui.core.ID
 	busy: false, // boolean
 	busyIndicatorDelay: 1000, // int
 	visible: true, // boolean
+	fieldGroupIds: [], // string[], since 1.31
 	context: undefined, // object
 	tooltip: undefined, // sap.ui.core.TooltipBase
 	customData: [], // sap.ui.core.CustomData
 	dependents: [], // sap.ui.core.Control, since 1.19
 	template: undefined, // sap.ui.core.tmpl.Template
+	validateFieldGroup: [function (oEvent) {
+		var ${control} = oEvent.getSource();
+	}, this],
 	afterRendering: [function (oEvent) {
 		var ${control} = oEvent.getSource();
 	}, this],
@@ -806,11 +999,14 @@
 })
 ]]></jsTemplate>
 	<xmlTemplate><![CDATA[<tmpl/TemplateControl xmlns="sap.ui.core"
+	id="${id}"
 	busy="false"
 	busyIndicatorDelay="1000"
 	visible="true"
+	fieldGroupIds=""
 	context=""
 	template=""
+	validateFieldGroup=""
 	afterRendering=""
 	beforeRendering="">
 		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->

@@ -1,0 +1,2684 @@
+.viz-controls-common-analysisDraggable {
+
+}
+.viz-controls-common-analysisDraggingToken {
+    cursor: move;
+    background: rgba(102, 102, 102, 0.6);
+    border-radius: 3px;
+    display: block;
+    font-weight: bold;
+    padding: 0px 3px 0px 4px;
+    height: 22px;
+    line-height: 22px;
+    width: 178px;
+    z-index: 999999;
+    border: 1px solid #333;
+    box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.viz-controls-common-analysisDraggingToken > span {
+    display: inline-block;
+    width: 160px;
+    margin-right: 2px;
+    color: #FFF !important;
+}
+.viz-controls-common-analysisDraggingToken-icon {
+    padding: 1px 6px;
+    float: right;
+    margin: 3px 0 0 0;
+    color: #333;
+    font: inherit;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: baseline;
+    border-radius: 0;
+    border: 0;
+}
+.viz-controls-common-analysisDraggingToken-icon-dropAccepted {
+    background-position: -17px -163px;
+}
+.viz-controls-common-analysisDraggingToken-icon-dropAcceptedAsReplacement {
+    background-position: 0px -163px;
+}
+.viz-controls-common-analysisDraggingToken-icon-dropDenied {
+    background-position: -34px -163px;
+}
+.viz-controls-common-analysisDraggingToken-icon-dropAsTrash {
+    background-position: 0px -269px;
+}
+.viz-controls-common-analysisDraggingToken-warn {
+    font-weight: normal;
+    font-size: 14px;
+    color: #FFBD69;
+    float: left;
+    display: inline-block;
+    min-width: 178px;
+}
+.viz-controls-common-analysisDraggingToken-warn-text{
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0px 4px 0px 4px;
+}.viz-controls-common-feedlist {
+    position: absolute;
+    width: auto;
+    z-index: 999999;
+}
+.viz-controls-common-feedlist-container {
+    position: absolute;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #DAD9D9;
+    background-color: #ffffff;
+}
+.viz-controls-common-feedlist-container-left {
+    -webkit-animation: viz-controls-common-feedlist_keyframes_left .5s ease-out;
+}
+@-webkit-keyframes viz-controls-common-feedlist_keyframes_left
+{
+    0% {opacity: 0; left: 12px}
+    100% {opacity: 1; left: 0px}
+}
+.viz-controls-common-feedlist-container-right {
+    -webkit-animation: viz-controls-common-feedlist_keyframes_right .5s ease-out;
+}
+@-webkit-keyframes viz-controls-common-feedlist_keyframes_right
+{
+    0% {opacity: 0; left: -12px}
+    100% {opacity: 1; left: 0px}
+}
+.viz-controls-common-feedlist-arrow {
+    background-color: #ffffff;
+    height: 32px;
+    width: 32px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #DAD9D9;
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.viz-controls-common-feedlist-content {
+    position: absolute;
+    background-color: #ffffff;
+    padding-right: 2px;
+}
+.viz-controls-common-feedlist-content-header {
+    padding: 12px 0px 0px 12px;
+    font-weight: bold;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.viz-controls-common-feedlist ul {
+    min-width: 340px;
+    min-height: 200px;
+    padding: 1px;
+    background-color: #ffffff;
+    list-style: none;
+    margin: 0px;
+    display: inline-block;
+    position: absolute;
+    overflow-x: hidden;
+}
+.viz-controls-common-feedlist li {
+    position: relative;
+    line-height: 12px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.viz-controls-common-feedlist-li-button, .viz-controls-common-feedlist-li-hierarchy-indicator {
+    display: block;
+    float: right;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    border: 1px solid transparent;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+}
+.viz-controls-common-feedlist-li-hierarchy-indicator {
+    left: 2px;
+}
+.viz-controls-common-feedlist-li-hierarchy-Icon {
+    background-position: 0px -220px;
+    cursor: default;
+}
+.viz-controls-common-feedlist-li-button {
+    right: 15px;
+    cursor: pointer;
+}
+.viz-controls-common-feedlist-li-button-offset {
+    right: 2px;
+}
+.viz-controls-common-feedlist-li-button-close {
+    background-color: #007CC0;
+}
+.viz-controls-common-feedlist li:first-child {
+    padding-top: 3px;
+}
+.viz-controls-common-feedlist li:last-child {
+    margin-bottom: 0px;
+}
+.viz-controls-common-feedlist-li-hierarchy-indicator-focus {
+    background-color: #007CC0;
+}
+.viz-controls-common-feedlist a, .viz-controls-common-feedlist span {
+    margin-left: 20px;
+    display: block;
+    padding: 6px 6px;
+    cursor: pointer;
+    width: 260px;
+}
+.viz-controls-common-feedlist span {
+    padding-left: 45px;
+}
+.viz-controls-common-feedlist-li-a_suffix:after {
+    content: attr(__suffix);
+    position: relative;
+    margin-left: 8px;
+    line-height: 14px;
+    top: 2px;
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    padding: 0 4px;
+    vertical-align: top;
+    display: inline-block;
+    max-width: 100%;
+    color: #666666;
+    font-size: 11px;
+    font-weight: bold;
+}
+.viz-controls-common-feedlist-li-plus-icon {
+    background-position: 0px -1118px;
+}
+.viz-controls-common-feedlist-li-minus-icon {
+    background-position: -51px -1118px;
+}
+/*.viz-controls-common-feedlist-content > ul > li:hover, .viz-controls-common-feedlist-content > ul > li:focus {
+    background-color: #e5f2f9;
+}*/
+
+/*.viz-controls-common-feedlist-content > ul > li:hover .viz-controls-common-feedlist-li-hierarchy-Icon {
+    background-position: -17px -220px;
+}*/
+.viz-controls-common-hide-cursor {
+    cursor: none;
+    pointer-events: none;
+}
+.viz-controls-common-feedlist-li-highlight {
+    background-color: #e5f2f9;
+}
+.viz-controls-common-feedlist-li-icon-container {
+    position: absolute;
+    top: 4px;
+}.viz-controls-common-feeding-view {
+    width: 222px;
+}
+.viz-controls-common-feeding-item {
+    margin-bottom: 12px;
+    position: relative;
+}
+.viz-controls-common-feeding-item-title {
+    margin-bottom: 2px;
+    font-size: 12px;
+    cursor:default;
+}
+.viz-controls-common-feeding-item-content {
+    position: relative;
+}
+.viz-controls-common-feeding-item-list {
+    background-color: #ffffff;
+    border-color: #dddddd;
+    border-style: solid;
+    border-width: 1px;
+    padding: 3px 3px;
+    cursor: pointer;
+    margin: 0 30px 0 3px;
+}
+.viz-controls-common-feeding-item-list-feeding-disable {
+    pointer-events: none;
+}
+.viz-controls-common-feeding-item-list_active {
+    border-color: #007CC0;
+}
+
+.viz-controls-common-feeding-item-ph {
+    height: 24px;
+    position: relative;
+}
+.viz-controls-common-feeding-item-ph-half {
+    height: 12px;
+}
+.viz-controls-common-feeding-item-ph-text {
+    line-height: 24px;
+    display: inline-block;
+    font-style: italic;
+    color: #BEBDBD;
+    margin: 0 0 0 4px;
+}
+.viz-controls-common-feeding-item-add-icon {
+    background-position: 0px -1417px;
+    position: absolute;
+    top: 8px;
+    right: 9px;
+    cursor: pointer;
+}
+.viz-controls-common-feeding-item-add-icon_active {
+    background-position: -17px -1417px;
+}
+.viz-controls-common-feeding-card {
+    margin-bottom: 4px;
+    padding: 0px 3px 0px 4px;
+    display: block;
+    position: relative;
+    color: #FFFFFF;
+    background-color: #666666;
+    background: #666666;
+    border: 1px solid #333;
+    border-radius: 3px;
+    font-weight: bold;
+    overflow: hidden;
+    cursor: move;
+    pointer-events: auto;
+}
+.viz-controls-common-feeding-card:last-of-type {
+    margin-bottom: 0px;
+}
+.viz-controls-common-feeding-card-text {
+    line-height: 22px;
+    padding: 0 2px 0 0;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 2px;
+}
+.viz-controls-common-feeding-card:hover .viz-controls-common-feeding-card-text-with-icon-1 {
+    padding: 0 22px 0 0;
+}
+.viz-controls-common-feeding-card:hover .viz-controls-common-feeding-card-text-with-icon-2 {
+    padding: 0 44px 0 0;
+}
+.viz-controls-common-feeding-hierarchy-card-icon {
+    float: left;
+    margin: 3px 2px 0px 2px;
+    background-position: -18px -220px;
+}
+.viz-controls-common-feeding-action-icon-measure {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    position: absolute;
+    top: 3px;
+    right: 2px;
+    background-position: -51px -303px;
+    cursor: pointer;
+}
+.viz-controls-common-feeding-action-icon-hierarchy {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    position: absolute;
+    top: 3px;
+    right: 2px;
+    background-position: 0px 0px;
+    cursor: pointer;
+}
+.viz-controls-common-feeding-action-icon-div {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    cursor: pointer;
+}
+.viz-controls-common-feeding-card-measure:hover .viz-controls-common-feeding-action-icon-measure{
+    visibility: visible;
+    opacity: 1;
+}
+.viz-controls-common-feeding-card-hierarchy:hover .viz-controls-common-feeding-action-icon-hierarchy{
+    visibility: visible;
+    opacity: 1;
+}
+.viz-controls-common-feeding-card-operation-div {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+.viz-controls-common-feeding-card-operation {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    -webkit-transition-duration: .2s;
+    transition-duration: .2s;
+    top: 3px;
+    right: 2px;
+    color: #333;
+    font: inherit;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: baseline;
+    border-radius: 0;
+    border: 0;
+    background-position: 0px -269px;
+    cursor: pointer;
+}
+.viz-controls-common-feeding-card:hover .viz-controls-common-feeding-card-operation {
+    visibility: visible;
+    opacity: 1;
+}
+.viz-controls-common-feeding-card_draggingHelper {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    box-shadow: 2px 2px 1px 1px #444;
+    -webkit-box-shadow: 2px 2px 1px 1px #444;
+}
+.viz-controls-common-feeding-card_draggingHelper_grabbing {
+    cursor: -webkit-grabbing;
+}
+.viz-controls-common-feeding-card_draggingHelper_noDrop {
+}
+.viz-controls-common-feeding-card-ghost {
+    background: #e5e5e5;
+    border: 0;
+    font-weight: bold;
+    color: #666666;
+    padding: 0 4px 0 5px;
+}
+.viz-controls-common-feeding-drop-indicator {
+    background-color: #74b6e2;
+    border: 0;
+    position: absolute;
+    margin: -4px 0 0 -4px;
+    height: 4px;
+    width: 185px;
+}.viz-controls-common-menu {
+    position: absolute;
+    z-index: 999999;
+}
+.viz-controls-common-menu-transition {
+    -webkit-transition-duration: .24s;
+    transition-duration: .24s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.viz-controls-common-menu-list {
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, .5);
+    border: 1px solid #7f7f7f;
+    background-color: #ffffff;
+    max-height: 264px;
+    overflow-x: hidden !important;
+}
+.viz-controls-common-menu-list > ul {
+    min-width: 178px;
+    max-width: 260px;
+    background-color: #ffffff;
+    list-style: none;
+    display: inline-block;
+    padding-left: 0px;
+    margin:0px 0px 4px 0px;
+}
+
+.viz-controls-common-menu-list > ul > li {
+    cursor: default;
+    padding: 6px 10px;
+    position: relative;
+    line-height: 12px;
+    height: 12px;
+    font-size: 12px;
+    margin: 4px 0px;
+}
+.viz-controls-common-menu-list > ul > li:last-child {
+    margin-bottom: 0px;
+}
+.viz-controls-common-menu-list-hovered {
+   background-color: #e5f2f9;
+}
+.viz-controls-common-menu-list-prefix-icon-x1 {
+    padding-left: 22px !important;
+}
+.viz-controls-common-menu-list-suffix-icon-x1 {
+    padding-right: 33px !important;
+}
+.viz-controls-common-menu-list-suffix-icon-submenu {
+    position: absolute;
+    right: 9px;
+    top: 4px;
+    background-position: -119px -362px;
+}
+/*.viz-controls-common-menu-list-hovered .viz-controls-common-menu-list-suffix-icon-submenu {
+    background-position: -102px -362px;
+}*/
+.viz-controls-common-menu-list-selected:before {
+    background-image: url('../common/assets/UVB_SharedSprite2.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 0px -207px;
+    width: 10px;
+    height: 10px;
+    content: " ";
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    margin-top: -5px;
+    left: 6px;
+}
+/*.viz-controls-common-menu-list-hovered:before {
+    background-position: -11px -207px;
+}*/
+
+.viz-controls-common-menu-list-caption {
+
+}
+.viz-controls-common-menu-list-group-splitter {
+    border-style: solid;
+    border-width: 1px 0px 0px 0px;
+    border-color: #ccc;
+    width: 90%;
+    margin: 0px auto;
+}
+.viz-controls-common-text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.viz-controls-common-havanaVXTabSprite16 {
+    background-image: url('../common/assets/UVB_VxtabSprite.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+}
+.viz-controls-common-havanaVXTabSprite16-mask {
+    -webkit-mask-image: url('../common/assets/UVB_VxtabSprite.png');
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+}
+.viz-controls-common-havanaSharedSprite16 {
+    background-image: url('../common/assets/UVB_SharedSprite2.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+}
+.viz-controls-common-UVBSharedSprite {
+    background-image: url('../common/assets/UVB_SharedSprite.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+}
+.viz-controls-common-havanaSharedSprite16-mask {
+    background-image: url('../common/assets/UVB_SharedSprite2.png');
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+}
+.viz-controls-common-havanaVXTabSprite24 {
+    background-image: url('../common/assets/UVB_VxtabSprite.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+.viz-controls-common-geography {
+    background-image: url('../common/assets/UVB_SharedSprite.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    background-position: 0px -101px;
+}
+.viz-controls-common-popUp {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    z-index: 999999;
+}
+@-webkit-keyframes vizControls-common-blur_keyframes
+{
+0% {-webkit-filter: blur(0px);}
+100% {-webkit-filter: blur(4px);}
+}
+.viz-controls-common-blur {
+    -webkit-animation: vizControls-common-blur_keyframes .3s ease-out forwards;
+    /* filter: blur(4px);
+     -o-filter: blur(4px);
+     -ms-filter: blur(4px);
+     -moz-filter: blur(4px);
+     -webkit-filter: blur(4px);*/
+}
+.viz-controls-common-button-cancel:hover {
+    color: #007cc0;
+}
+.viz-controls-common-button {
+    border: 1px solid #BFBFBF;
+    cursor: pointer;
+    background: #FFFFFF;
+
+    /* used for disabled, hover and active states */
+}
+
+.viz-controls-common-button:hover {
+    border: 1px solid #BFBFBF;
+    background: #E5F2F9;
+}
+.viz-controls-common-button:active {
+    border: 1px solid #007CC0;
+    background: #007CC0;
+    color: #FFFFFF;
+}
+.viz-controls-common-scrollable-x {
+    overflow-x: auto !important;
+}
+.viz-controls-common-scrollable-y {
+    overflow-y: auto !important;
+}.viz-controls-annotation-confirmdialog {
+    position: absolute;
+    /*width: 400px;
+     height: 200px;*/
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid #96A8C3;
+    -moz-box-shadow: inset 0 0 1px 1px #ffffff, 5px 5px 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 0 1px 1px #ffffff, 5px 5px 10px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 1px 1px #ffffff, 5px 5px 10px rgba(0,0,0,0.5);
+    z-index: 28;
+}
+.viz-controls-annotation-confirmdialog-header {
+    background-color: white;
+    background-repeat: repeat-x;
+    border-color: #E5EAF3 white;
+    border-style: solid;
+    border-width: 1px 1px 0;
+    margin: 0;
+    height: 19px;
+    color: black;
+    padding-top: 6px;
+    cursor: move;
+    overflow: hidden;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+.viz-controls-annotation-confirmdialog-headerleft {
+    font-weight: bold;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 20px;
+    text-overflow: ellipsis;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.viz-controls-annotation-confirmdialog-headerleft-label {
+    font-weight: bold;
+    white-space: nowrap;
+    margin: 6px 4px 0 20px;
+    color: black;
+    cursor: move;
+}
+.viz-controls-annotation-confirmdialog-headerright {
+    position: absolute;
+    right: 6px;
+    top: 1px;
+    padding-left: 5px;
+}
+.viz-controls-annotation-confirmdialog-headerright-close:hover, .viz-controls-annotation-confirmdialog-headerright-close:focus, .viz-controls-annotation-confirmdialog-headerright-close:active {
+    background-image: url(../controls/annotation/assets/DlgCloseHov_n.gif);
+    pointer-events: auto;
+}
+.viz-controls-annotation-confirmdialog-headerright-close {
+    width: 18px;
+    height: 18px;
+    background-image: url(../controls/annotation/assets/DlgClose_n.gif);
+    display: inline-block;
+    margin: 5px 1px 0 0;
+    cursor: pointer;
+    color: transparent;
+    pointer-events: auto;
+}
+.viz-controls-annotation-confirmdialog-content {
+    background-color: white;
+    border-color: white;
+    padding: 10px 20px 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-width: 0 1px;
+    border-style: solid;
+    overflow: hidden;
+}
+.viz-controls-annotation-confirmdialog-content-up {
+    background-color: white;
+    border-color: white;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    border-width: 0 1px;
+    border-style: solid;
+    overflow: hidden;
+}
+.viz-controls-annotation-confirmdialog-content-down {
+    background-color: white;
+    border-color: white;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    border-width: 0 1px;
+    border-style: solid;
+    overflow: hidden;
+}
+.viz-controls-annotation-confirmdialog-content-icon {
+    width: 32px;
+    height: 32px;
+    background-image: url('../controls/annotation/assets/warning.png');
+    display: inline-block;
+    /*margin: 5px 1px 0 0;*/
+    cursor: pointer;
+    color: transparent;
+    /*padding-right: 2px;*/
+    vertical-align: top;
+    overflow: hidden;
+    outline: none;
+    position: relative;
+    float: left;
+}
+.viz-controls-annotation-confirmdialog-content-info {
+    font-weight: bold;
+    white-space: nowrap;
+    margin: 6px 4px 0 20px;
+    color: black;
+    cursor: move;
+    /*padding-left: 6px;*/
+    padding-right: 7px;
+    vertical-align: top;
+    overflow: hidden;
+    float: left;
+    text-align: left;
+    position: relative;
+}
+.viz-controls-annotation-confirmdialog-content-checkbox {
+    display: inline-block;
+    margin: 5px 1px 0 58px;
+    cursor: pointer;
+    color: transparent;
+    padding-right: 2px;
+    vertical-align: top;
+    overflow: hidden;
+    outline: none;
+    position: relative;
+    float: left;
+    pointer-events: auto;
+}
+.viz-controls-annotation-confirmdialog-content-checkboxlabel {
+    font-weight: bold;
+    white-space: nowrap;
+    margin: 4px 4px 0 4px;
+    color: black;
+    cursor: move;
+    padding-left: 6px;
+    padding-right: 7px;
+    vertical-align: top;
+    overflow: hidden;
+    float: left;
+    text-align: left;
+    position: relative;
+}
+.viz-controls-annotation-confirmdialog-footer {
+    background-color: white;
+    border: 1px solid white;
+    border-top-width: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 43px;
+}
+.viz-controls-annotation-confirmdialog-footer-buttons {
+    padding-top: 4px;
+    margin: auto;
+    width: 200px;
+    white-space: nowrap;
+}
+.viz-controls-annotation-confirmdialog-footer-button {
+    width: 80px;
+    height: 28px;
+    margin: 0px 10px;
+    padding: 1px 6px;
+    pointer-events: auto;
+    outline: none;
+}
+.viz-controls-annotation-richtextdialog {
+    position: absolute;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: #E5EAF3;
+    border: 1px solid #007cc0;
+    -moz-box-shadow: inset 0 0 1px 1px #ffffff, 5px 5px 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 0 1px 1px #ffffff, 5px 5px 10px rgba(0,0,0,0.5);
+    box-shadow: inset 0 0 1px 1px #ffffff, 5px 5px 10px rgba(0,0,0,0.5);
+    z-index: 30;
+}
+.viz-controls-annotation-richtextdialog-header {
+    background-color: white;
+    background-repeat: repeat-x;
+    border-color: #E5EAF3 white;
+    border-style: solid;
+    border-width: 1px 1px 0;
+    margin: 0;
+    height: 19px;
+    color: black;
+    padding-top: 6px;
+    cursor: move;
+    overflow: hidden;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+.viz-controls-annotation-richtextdialog-headerleft {
+    font-weight: bold;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 20px;
+    text-overflow: ellipsis;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.viz-controls-annotation-richtextdialog-headerleft-label {
+    font-weight: bold;
+    white-space: nowrap;
+    margin: 6px 4px 0 20px;
+    color: black;
+    cursor: move;
+}
+.viz-controls-annotation-richtextdialog-headerright {
+    position: absolute;
+    right: 6px;
+    top: 1px;
+    padding-left: 5px;
+}
+.viz-controls-annotation-richtextdialog-headerright-close:hover, .viz-controls-annotation-richtextdialog-headerright-close:focus, .viz-controls-annotation-richtextdialog-headerright-close:active {
+    background-image: url('../controls/annotation/assets/DlgCloseHov_n.gif');
+}
+.viz-controls-annotation-richtextdialog-headerright-close {
+    width: 18px;
+    height: 18px;
+    background-image: url('../controls/annotation/assets/DlgClose_n.gif');
+    display: inline-block;
+    margin: 5px 1px 0 0;
+    cursor: pointer;
+    color: transparent;
+}
+.viz-controls-annotation-richtextdialog-content {
+    background-color: white;
+    border-color: white;
+    padding: 10px 20px 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-width: 0 1px;
+    border-style: solid;
+    overflow: auto;
+}
+.viz-controls-annotation-richtextdialog-footer {
+    background-color: white;
+    border: 1px solid white;
+    border-top-width: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 36px;
+}
+.viz-controls-annotation-richtextdialog-footer-buttons {
+    display: inline-block;
+    float: right;
+    padding-right: 14px;
+    white-space: nowrap;
+}
+.viz-controls-annotation-block-layer {
+    background-color: white;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    outline: 0 none;
+    z-index: 28;
+}
+.viz-controls-annotation-button {
+    vertical-align: top;
+    padding: 0 5px;
+    margin: 0 5px;
+    overflow: visible;
+    white-space: nowrap;
+    outline: none;
+    background-repeat: repeat-x;
+    width: 80px;
+    height: 28px;
+}.viz-controls-builder-view-list {
+    min-height: 600px;
+}
+.viz-controls-builder-area {
+    min-width: 181px;
+    font: 14px "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: #585858;
+    background-color: #f2f2f2;
+    border: 1px solid #dddddd;
+    border-width: 1px 0px 0px 0px;
+    overflow-x: hidden;
+}
+.viz-controls-builder-view-header {
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #dddddd;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 14px;
+    padding-bottom: 2px;
+    line-height: 36px;
+    padding-left: 19px;
+    cursor:default;
+}
+.viz-controls-builder-view-item {
+    margin: 0px 8px 0px 8px;
+}
+
+.viz-controls-builder-switcher-container {
+    padding-top: 10px;
+    width: 222px;
+    padding-left: 19px;
+}
+.viz-controls-builder-header {
+    margin-bottom: 10px;
+}
+.viz-controls-builder-header-text {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor:default;
+    margin-right: 5px;
+}
+.viz-controls-builder-header-value {
+    font-weight: normal;
+    font-size: 12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor:default;
+}.viz-controls-chart-area {
+    width: 100%;
+    height: 100%;
+    background-color: #FAFAFA;
+    min-width: 300px;
+    position: relative;
+    z-index: 1;
+}
+.viz-controls-chart-loading-icon {
+    background-image: url('../common/assets/ajax-loader.gif');
+    display: none;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 0px;
+}
+.viz-controls-chart-property-zone {
+    position:absolute;
+    cursor: pointer;
+}
+.viz-controls-chart-property-zone:hover {
+    background-color:#DDDDDD;
+    opacity: 0.3;
+}
+.viz-controls-chart-property-zone-selected {
+    border: 1px solid #007CC0;
+    background-color:#DDDDDD;
+    opacity: 0.3;
+}
+.viz-controls-chart-drop-zone {
+    position:absolute;
+    border:1px solid #007CC0;
+    color:#007CC0;
+    cursor: pointer;
+}
+.viz-controls-chart-title-button {
+    float: right;
+    width:16px;
+    height:16px;
+    border-width: 0px;
+    background-color: transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.viz-controls-chart-title-text{
+    float:left;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:none !important;
+    background:transparent;
+    border-style:none;
+    font-size:16px;
+    font-weight:bold;
+    outline:0;
+    border: none;
+    text-align:center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: none;
+}
+.viz-controls-chart-setting-icon{
+    background-position: -18px 0px;
+    cursor: pointer;
+    padding: 1px;
+    position:absolute;
+    cursor: pointer;
+}
+.viz-controls-chart-setting-icon:hover {
+    background-position: 0px -248px;
+}
+
+.viz-controls-chart-title-edit{
+   border: 1px solid #007CC0;
+   background-color: #FAFAFA;
+}
+.viz-controls-contextmenu {
+    position: absolute;
+    z-index: 999999;
+    top: -10000px;
+    display: block;
+    min-width: 80px;
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    cursor: default;
+    outline: none;
+    overflow: hidden;
+    padding: 1px;
+    box-shadow: 2px 2px 3px rgba(198,198,198,0.5);
+    -webkit-box-shadow: 2px 2px 3px rgba(198,198,198,0.5);
+    -moz-box-shadow: 2px 2px 3px rgba(198,198,198,0.5);
+}
+.viz-controls-contextmenu-list {
+    padding: 0;
+    margin: 0;
+    display: block;
+    cursor: default;
+    color: #585858;
+    font-size: 12px;
+    font-family: Tahoma, Arial, Helvetica, sans-serif;
+}
+.viz-controls-contextmenu-list > li {
+    margin: 4px 0px;
+    background-color: #ffffff;
+}
+.viz-controls-contextmenu-list-hovered > li:hover {
+    background-color: #e5f2f9;
+}
+.viz-controls-contextmenu-MnuItm {
+    display: block;
+    height: 23px;
+    line-height: 21.5px;
+    white-space: nowrap;
+    position: relative;
+}
+.viz-controls-contextmenu-MnuItmTxt {
+    color: #585858;
+    padding-left: 6px;
+    padding-right: 7px;
+    vertical-align: top;
+    overflow: hidden;
+    text-align: left;
+    white-space: nowrap;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+    pointer-events: none;
+}
+.viz-controls-contextmenu-MnuItmIco {
+    padding-right: 2px;
+    width: 20px;
+    vertical-align: top;
+    display: inline-block;
+    overflow: hidden;
+    outline: none;
+    height: 100%;
+    position: relative;
+    pointer-events: none;
+}
+.viz-controls-contextmenu-MnuItm-Show, .viz-controls-contextmenu-MnuItm-Hide {
+    padding-left:21px;
+}
+.viz-controls-contextmenu-MnuItmIco-Show:before {
+    background-position: 0px -207px;
+}
+.viz-controls-contextmenu-MnuItmIco-Hide:before {
+    background-position: -34px -207px;
+}
+.viz-controls-contextmenu-MnuItmIco-Show:before, .viz-controls-contextmenu-MnuItmIco-Hide:before {
+    background-image: url('../common/assets/UVB_SharedSprite2.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 10px;
+    content: " ";
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    margin-top: -5px;
+    left: 9px;
+}
+.viz-controls-contextmenu-MnuItmIco-Show-Hovered:before {
+    background-position: -11px -207px;
+}
+.viz-controls-contextmenu-MnuItmIco > img {
+    max-width: 16px;
+    max-height: 16px;
+    padding-left: 6px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+.viz-controls-contextmenu-blank-MnuItem {
+    display : block;
+    height : 21.5px;
+    line-height : 21.5px;
+    white-space : nowrap;
+    position : relative;
+    padding : 0px 10px;
+}
+.viz-controls-contextmenu-blank-MnuItmTxt {
+    color: #bfbfbf;
+}
+.viz-controls-contextmenu-MnuItem-separator {
+    border-bottom : 1px solid #e7e7e7;
+    width: 95%;
+    margin: 1px auto;
+}.viz-controls-custombutton-button {
+    min-width: 20px;
+    min-height: 20px;
+    float: right;
+    padding: 11px 3px 0px 0px;
+    border-width: 0px;
+    background-color: transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}.viz-controls-feeding-view {
+    min-width: 181px;
+    overflow-x: hidden;
+    padding-top: 5px;
+}
+.viz-controls-feeding-expand-icon {
+    float:left;
+    background-position: -17px -51px;
+    cursor: pointer;
+}
+.viz-controls-feeding-collapse-icon {
+    float:left;
+    background-position: -34px -51px;
+    cursor: pointer; 
+}
+.viz-controls-feeding-title-with-icon {
+    margin-left: 0px; 
+    padding-top:5px;
+}
+.viz-controls-feeding-title-without-icon {
+    margin-left: 16px;
+    padding-top:5px;
+}
+.viz-controls-feeding-title-text {
+    font-weight: bold;
+    font-size: 12px;
+    margin-left: 3px;
+}
+.viz-controls-feeding-separator {
+    border-style: solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #dddddd;
+    margin: 4px 8px 10px 19px;
+}
+.viz-controls-feeding-container {
+    display: inline-block;
+    min-height: 60px;
+    margin-left: 19px;
+}
+
+.viz-controls-filterbar-layout {
+    background-color: #FAFAFA;
+    float: left;
+    position: absolute;
+    height: 100%;
+    white-space: nowrap;
+    left: 25px;
+    right:0px;
+}
+.viz-controls-filterbar-filterItems-container {
+    position: absolute;
+    min-height: 38px;
+    height:auto;
+    right:4px;
+    left:0px;
+}
+.viz-controls-filterbar-header-plus {
+    background-position: 0px -1417px;
+    position: absolute;
+    top: 11px;
+    left: 7px;
+    cursor: pointer;
+}
+.viz-controls-filterbar-header-plus:hover {
+    background-position: -17px -1417px;
+}
+.viz-controls-filterbar-description {
+    line-height: 38px;
+    margin-left: 28px;
+    cursor:default;
+}
+
+.viz-controls-filterbar-filter-item, .viz-controls-filterbar-filter-item-tooltip,.viz-controls-filterbar-global-filter-item {
+    height: 37px;
+    width: 180px;
+    border-radius: 3px;
+     cursor: default;
+}
+
+.viz-controls-filterbar-filter-item, .viz-controls-filterbar-global-filter-item {
+    position: relative;
+    float: left;
+    display: inline;
+    margin-left: 10px;
+    margin-top: 2px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDD;
+}
+.viz-controls-filterbar-filter-values-active {
+    color: #008fd3;
+    cursor: pointer;
+}
+
+.viz-controls-filterbar-filter-exclude {
+    text-decoration: line-through;
+}
+
+.viz-controls-filterbar-global-filter-item {
+    color : #FFFFFF;
+    background-color: #7F7F7F;
+}
+
+.viz-controls-filterbar-filter-item-tooltip {
+    width: auto;
+    padding: 1px 10px 5px 0px;
+    position: absolute;
+    top: 40px;
+    z-index: 999999;
+    display: block;
+    min-width: 100px;
+    max-width: 300px;
+    background-color: #F2F2F2;
+    border: 1px solid #7F7F7F;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+
+.viz-controls-filterbar-filter-item-tooltip-globalfilter {
+    color : #A6DBF2;
+}
+.viz-controls-filterbar-filter-item-tooltip-title, .viz-controls-filterbar-filter-item-text, .viz-controls-filterbar-filter-item-info, .viz-controls-filterbar-filter-item-tooltip-globalfilter {
+    padding-left: 10px;
+    line-height: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    white-space: nowrap;
+}
+.viz-controls-filterbar-filter-item-tooltip-title {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.viz-controls-filterbar-filter-item-text {
+    position : absolute;
+    max-width : 180px;
+    padding-left: 0px;
+    left : 10px;
+    top : 0px;
+    margin-right: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+.viz-controls-filterbar-range-filter-item-text {
+    right : 20px;
+}
+.viz-controls-filterbar-filter-item-info {
+    position : absolute;
+    padding-left: 0px;
+    top : 0px;
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+.viz-controls-filterbar-delete-icon {
+    background-position: 0px -34px;
+    position: absolute;
+    cursor: pointer;
+    top: 2px;
+    right: 1px;
+}
+.viz-controls-filterbar-delete-icon:hover {
+    background-position: -17px -34px;
+}
+.viz-controls-filterbar-filter-item-tooltip-value, .viz-controls-filterbar-filter-values {
+    padding-left: 10px;
+    display: block;
+    font-size: 11px;
+    white-space: pre;
+    overflow: hidden;
+    padding-bottom: 3px;
+    text-overflow: ellipsis;
+}
+.viz-controls-filterbar-filter-item-tooltip-value {
+    top: -16px;
+}
+.viz-controls-filterbar-filter-values {
+    position: absolute;
+    left : 0px;
+    right : 0px;
+    bottom: 0px;
+}
+.viz-controls-filterbar2-layout {
+    background-color: #FAFAFA;
+    float: left;
+    position: absolute;
+    height: 100%;
+    white-space: nowrap;
+    left: 25px;
+    right:0px;
+}
+.viz-controls-filterbar2-filterItems-container {
+    position: absolute;
+    min-height: 38px;
+    height:auto;
+    right:4px;
+    left:0px;
+}
+.viz-controls-filterbar2-header-plus {
+    background-position: 0px -1417px;
+    position: absolute;
+    top: 11px;
+    left: 7px;
+    cursor: pointer;
+}
+.viz-controls-filterbar2-header-plus:hover {
+    background-position: -17px -1417px;
+}
+.viz-controls-filterbar2-description {
+    line-height: 38px;
+    margin-left: 28px;
+    cursor:default;
+}
+
+.viz-controls-filterbar2-filter-item {
+    height: 37px;
+    width: 180px;
+    border-radius: 3px;
+    cursor: default;
+}
+
+.viz-controls-filterbar2-filter-item {
+    position: relative;
+    float: left;
+    display: inline;
+    margin-left: 10px;
+    margin-top: 2px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDD;
+}
+.viz-controls-filterbar2-filter-values-active {
+    color: #008fd3;
+    cursor: pointer;
+}
+
+.viz-controls-filterbar2-filter-exclude {
+    text-decoration: line-through;
+}
+
+.viz-controls-filterbar2-global-filter-item {
+    color : #FFFFFF;
+    background-color: #7F7F7F;
+}
+
+.viz-controls-filterbar2-filter-item-text, .viz-controls-filterbar2-filter-item-info {
+    padding-left: 10px;
+    line-height: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.viz-controls-filterbar2-filter-item-text {
+    position : absolute;
+    max-width : 180px;
+    padding-left: 0px;
+    left : 10px;
+    top : 0px;
+    margin-right: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+.viz-controls-filterbar2-range-filter-item-text {
+    right : 20px;
+}
+.viz-controls-filterbar2-filter-item-info {
+    position : absolute;
+    padding-left: 0px;
+    top : 0px;
+    margin-right: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+.viz-controls-filterbar2-delete-icon {
+    background-position: 0px -34px;
+    position: absolute;
+    cursor: pointer;
+    top: 2px;
+    right: 1px;
+}
+.viz-controls-filterbar2-delete-icon:hover {
+    background-position: -17px -34px;
+}
+.viz-controls-filterbar2-filter-values {
+    padding-left: 10px;
+    display: block;
+    font-size: 11px;
+    white-space: pre;
+    overflow: hidden;
+    padding-bottom: 3px;
+    text-overflow: ellipsis;
+}
+
+.viz-controls-filterbar2-filter-values {
+    position: absolute;
+    left : 0px;
+    right : 0px;
+    bottom: 0px;
+}
+.viz-controls-frame-editor {
+    position: absolute;
+    width: 760px;
+    height: 460px;
+    -webkit-animation: vizControls-vizFrame-editor_keyframes .3s ease-out forwards;
+}
+@-webkit-keyframes vizControls-vizFrame-editor_keyframes
+{
+0% {opacity: 0;}
+100% {opacity: 1;}
+}
+.viz-controls-frame-editor-main {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #ffffff;
+    padding: 12px;
+}
+.viz-controls-frame-editor-header {
+    width: 100%;
+    height: 40px;
+}
+.viz-controls-frame-editor-content {
+    width: 100%;
+    margin-bottom: 24px;
+}
+.viz-controls-frame-editor-content-img {
+    width: 100%;
+}
+.viz-controls-frame-editor-footer {
+    width: 100%;
+}
+.viz-controls-frame-editor-footer-button {
+    width: 80px;
+    height: 28px;
+    margin-right: 6px;
+}
+.viz-controls-frame-editor-close {
+    background-position: 0px -269px;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    cursor: pointer;
+}
+.viz-controls-frame-editor-close:hover {
+    opacity: .6;
+}.viz-controls-frame-area {
+    width: 100%;
+    height: 100%;
+    background-color: #FAFAFA;
+    min-width: 300px;
+    min-height: 600px;
+    position: relative;
+    z-index: 1;
+}
+/*will be removed by title context menu*/
+.viz-controls-frame-MnuItm {
+    display: block;
+    height: 23px;
+    line-height: 21.5px;
+    white-space: nowrap;
+    position: relative;
+}
+.viz-controls-frame-MnuItmTxt {
+    color: #585858;
+    padding-left: 6px;
+    padding-right: 7px;
+    vertical-align: top;
+    overflow: hidden;
+    text-align: left;
+    white-space: nowrap;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+    pointer-events: none;
+}
+.viz-controls-frame-MnuItmIco {
+    padding-right: 2px;
+    width: 20px;
+    vertical-align: top;
+    display: inline-block;
+    overflow: hidden;
+    outline: none;
+    height: 100%;
+    position: relative;
+    pointer-events: none;
+}
+.viz-controls-frame-MnuItm-Show, .viz-controls-frame-MnuItm-Hide {
+    padding-left:21px;
+}
+.viz-controls-frame-MnuItmIco-Show:before {
+    background-position: 0px -207px;
+}
+.viz-controls-frame-MnuItmIco-Hide:before {
+    background-position: -34px -207px;
+}
+.viz-controls-frame-MnuItmIco-Show:before, .viz-controls-frame-MnuItmIco-Hide:before {
+    background-image: url('../common/assets/UVB_SharedSprite2.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 10px;
+    content: " ";
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    margin-top: -5px;
+    left: 9px;
+}
+.viz-controls-frame-MnuItmIco-Show-Hovered:before {
+    background-position: -11px -207px;
+}
+.viz-controls-frame-MnuItmIco > img {
+    max-width: 16px;
+    max-height: 16px;
+    padding-left: 6px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+.viz-controls-frame-blank-MnuItem {
+    display : block;
+    height : 21.5px;
+    line-height : 21.5px;
+    white-space : nowrap;
+    position : relative;
+    padding : 0px 10px;
+}
+.viz-controls-frame-blank-MnuItmTxt {
+    color: #bfbfbf;
+}
+.viz-controls-frame-MnuItem-separator {
+    border-bottom : 1px solid #e7e7e7;
+    width: 95%;
+    margin: 1px auto;
+}
+.viz-controls-frame-header {
+    background-color: #FAFAFA;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    top: -1px;
+    border: 1px solid #DAD9D9;
+    min-height: 40px;
+    padding: 0px 0px 0px 0px;
+    min-width: 300px;
+    position: relative;
+}
+.viz-controls-frame-header-fullscreen-exit-icon {
+    background-position: -17px -17px;
+    cursor: pointer;
+    padding: 1px;
+}
+.viz-controls-frame-header-fullscreen-exit-icon:hover {
+    background-position: -19px -248px;
+}
+.viz-controls-frame-header-fullscreen-enter-icon {
+    background-position: 0px -17px;
+    cursor: pointer;
+    padding: 1px;
+}
+.viz-controls-frame-header-fullscreen-enter-icon:hover {
+    background-position: -38px -248px;
+}
+.viz-controls-frame-header-setting-icon {
+    background-position: -18px 0px;
+    cursor: pointer;
+    padding: 1px;
+}
+.viz-controls-frame-header-setting-icon:hover {
+    background-position: 0px -248px;    
+}
+.viz-controls-frame-header-filterbar-container {
+    background-color: #FAFAFA;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    float: left;
+    position: absolute;
+    left: 0px;
+    right: 60px;
+    min-height: 38px;
+    height:99%;
+    margin: 0px;
+    white-space: nowrap;
+}
+.viz-controls-frame-filtermenu {
+    visibility: hidden;
+    display: none;
+    z-index: 100;
+    position: absolute;
+    border: 1px solid #96a8c3;
+    background-color: #f2f2f2;
+    cursor: default;
+    outline: none;
+    overflow: hidden;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+.viz-controls-frame-filtermenu > div {
+    float: left;
+    cursor: pointer;
+    height: 30px;
+    margin-right: 15px;
+    margin-top: 5px;
+}
+.viz-controls-frame-filtermenu > div:last-child {
+    margin-right: 0px;
+}
+.viz-controls-frame-filtermenu > div:hover {
+    background-color: #007CC0 ;
+    color: #ffffff;
+}
+.viz-controls-frame-filtermenu > div > div {
+    float: left;
+    margin: 8px 5px 8px 5px;
+}
+.viz-controls-frame-filtermenu > div > div:first-child {
+    margin: 8px 0px 0px 5px;
+}
+.viz-controls-frame-filtermenu-exclude-icon {
+    background-position: 0px -269px;
+}
+.viz-controls-frame-filtermenu > div:hover .viz-controls-frame-filtermenu-exclude-icon {
+    background-position: -17px -269px;
+}
+.viz-controls-frame-filtermenu-filter-icon {
+    background-position: 0px -286px;
+}
+.viz-controls-frame-filtermenu > div:hover .viz-controls-frame-filtermenu-filter-icon {
+    background-position: -17px -286px;
+}
+.viz-controls-frame-xlabel {
+    height: 30px;
+    visibility: hidden;
+}
+.viz-controls-frame-xlabel {
+    text-align: center;
+    line-height: 30px;
+}
+.viz-controls-frame-ylabel {
+    float: left;
+    width: 30px;
+    visibility: hidden;
+}
+.viz-controls-frame-ylabel-text {
+    text-align: center;
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}.viz-controls-mapbuilder{
+    background: #f2f2f2;
+    color: #585858;
+    height: 100%;
+    width: 250px;
+    font: normal 14px "Helvetica Neue", Helvetica, arial, sans-serif;
+}
+
+.viz-controls-mapbuilder-area{
+    padding-left: 5px;
+    padding-right: 10px;  
+    height: 100%;  
+}
+
+.viz-controls-mapbuilder-section{
+    border-style: solid;
+    border-width: 1px;
+    border-color : #d8d8d8;
+    margin-bottom: 9px;
+    padding-left : 13px;
+    padding-right: 9px;
+}
+
+.viz-controls-mapbuilder-section-expand{
+    padding-bottom: 9px;
+}
+
+.viz-controls-mapbuilder-header{
+    height: 30px;
+    padding-left: 13px;
+}
+
+.viz-controls-mapbuilder-header-text{
+    display : inline-block;
+    width: auto;
+    max-width: 125px;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    font: normal 12px "Helvetica Neue", Helvetica, arial, sans-serif;
+    color: #008fd3;
+    position: relative;
+    top : 6px;
+    left : 5px;
+}
+
+.viz-controls-mapbuilder-header-plus{
+    background-image: url('../controls/mapbuilder/assets/add.png');
+    display : inline-block;
+    cursor: pointer;
+    width : 16px;
+    height: 16px;
+    position: relative;
+    top : 10px;
+}
+
+.viz-controls-mapbuilder-disable-header-plus{
+    background-image: url('../controls/mapbuilder/assets/disabled_add.png');
+    display : inline-block;
+    width : 16px;
+    height: 16px;
+    position: relative;
+    top : 10px;
+}
+
+.viz-controls-mapbuilder-section-header{
+    cursor: pointer;
+    height: 30px;
+    margin-top : 4px;
+    margin-bottom: 4px;
+}
+
+.viz-controls-mapbuilder-section-block{
+    display : inline-block;
+    vertical-align : top;
+    margin-top : 10px;
+    margin-bottom: 10px;
+    margin-left : 6px;
+    width : 14px;
+    height: 14px
+}
+
+.viz-controls-mapbuilder-section-category-title {
+    display: inline;
+    padding-bottom: 4px;
+    margin-top: 8px;
+}
+
+.viz-controls-mapbuilder-section-category-title-text {
+    display: inline;
+    font : 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #585858;
+}
+
+.viz-controls-mapbuilder-chartType-icon-title {
+    display: inline;
+    padding-bottom: 4px;
+    margin-top: 8px;
+}
+
+.viz-controls-mapbuilder-chartType-icon-title-text {
+    display : inline;
+    font : 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: gray;
+}
+
+.viz-controls-mapbuilder-section-setting{
+    background-image: url('../controls/mapbuilder/assets/setting.png');
+    float: right;
+    background-repeat: no-repeat;
+    display : inline-block;
+    vertical-align : top;
+    margin-top : 8px;
+    margin-bottom: 4px;
+    margin-left : 4px;
+    width : 20px;
+    height: 20px
+}
+
+.viz-controls-mapbuilder-section-icon{
+    background-image: url('../controls/mapbuilder/assets/choropleth.png');
+    background-repeat: no-repeat;
+    display : inline-block;
+    vertical-align : top;
+    margin-top : 8px;
+    margin-bottom: 4px;
+    margin-left : 4px;
+    width : 16px;
+    height: 20px;
+}
+
+.viz-controls-mapbuilder-section-icon-choropleth{
+    background-image: url('../controls/mapbuilder/assets/choropleth.png');
+    background-repeat: no-repeat;
+    display : inline-block;
+    vertical-align : top;
+    margin-top : 8px;
+    margin-bottom: 4px;
+    margin-left : 4px;
+    width : 16px;
+    height: 20px;
+}
+
+.viz-controls-mapbuilder-section-icon-bubble{
+    background-image: url('../controls/mapbuilder/assets/bubble.png');
+    background-repeat: no-repeat;
+    display : inline-block;
+    vertical-align : top;
+    margin-top : 8px;
+    margin-bottom: 4px;
+    margin-left : 4px;
+    width : 16px;
+    height: 20px;
+}
+
+.viz-controls-mapbuilder-section-icon-marker{
+    background-image: url('../controls/mapbuilder/assets/marker.png');
+    background-repeat: no-repeat;
+    display : inline-block;
+    vertical-align : top;
+    margin-top : 8px;
+    margin-bottom: 4px;
+    margin-left : 4px;
+    width : 16px;
+    height: 20px;
+}
+
+.viz-controls-mapbuilder-section-header-expand{
+   padding-bottom : 12px;    
+}
+
+.viz-controls-mapbuilder-section-expand{
+    display : inline-block;
+    vertical-align : top;
+    margin-top : 14px;
+    margin-bottom: 4px;
+    margin-left : 4px;
+    width : 14px;
+    height: 14px
+ 
+}
+
+.viz-controls-mapbuilder-section-collapse{
+    display : inline-block;
+    vertical-align : top;
+    margin-top : 12px;
+    margin-bottom: 4px;
+    margin-left : 4px;
+    width : 14px;
+    height: 14px
+ 
+}
+
+.viz-controls-mapbuilder-section-title{
+    font : bold 13px Tahoma, Helvetica, Arial, sans-serif; 
+    color: #333333;
+    height : 20px;
+    display : inline-block;
+    vertical-align : top;
+    margin-top : 9px;
+    margin-left : 4px;
+    width: auto;
+    max-width: 120px;
+    text-overflow: ellipsis;
+    overflow-x : hidden;
+    overflow-y: hidden
+}
+
+.viz-controls-mapbuilder-header-expand{
+    background-image: url('../controls/mapbuilder/assets/arrow_expand.png');
+    background-repeat: no-repeat;
+}
+
+.viz-controls-mapbuilder-header-collapse{
+    background-image: url('../controls/mapbuilder/assets/arrow_collapse.png');
+    background-repeat: no-repeat;
+}
+
+.viz-controls-mapbuilder-datapointchooser{
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.viz-controls-mapbuilder-datapointchooser .viz-controls-mapbuilder-section-title{
+    border-style: none;
+}
+
+.viz-controls-mapbuilder-inline-block{
+    display : inline-block;
+    position: relative;
+    top: 2px;
+}
+
+.viz-controls-mapbuilder-viztype{
+    margin-left: 4px;
+    width:  32px;
+    height: 32px; 
+    border-radius: 0px;
+    box-shadow: none;
+    border: 1px solid #BFBFBF;
+    background: #f7f7f7;
+}
+
+.viz-controls-mapbuilder-viztype:hover {
+    border: 1px solid #BFBFBF;
+    background: #eaeaea;
+    cursor: pointer;
+}
+
+.viz-controls-mapbuilder-datapointchooser .viz-controls-mapbuilder-viztype-selected{  
+    border: 1px solid #007cc0;
+    background: #007cc0;
+}
+
+.viz-controls-mapbuilder-viztype-selected:hover{  
+    border: 1px solid #006ca7;
+    background: #006ca7;
+}
+
+.viz-controls-mapbuilder-viztype-icon {
+    width : 16px;
+    height: 16px;
+}
+
+.viz-controls-mapbuilder-viztype-choropleth{
+    background-image: url('../controls/mapbuilder/assets/choropleth.png');
+    background-repeat: no-repeat;
+}
+
+.viz-controls-mapbuilder-viztype-bubble{
+    background-image: url('../controls/mapbuilder/assets/bubble.png');
+    background-repeat: no-repeat;
+}
+
+.viz-controls-mapbuilder-viztype-marker{
+    background-image: url('../controls/mapbuilder/assets/marker.png');
+    background-repeat: no-repeat;
+}
+
+.viz-controls-mapbuilder-viztype-selected{
+    background-color: #007cc0;
+}
+
+.viz-controls-mapbuilder-viztype-selected .viz-controls-mapbuilder-viztype-icon{
+    background-position: -17px 0px;
+}
+
+.viz-controls-mapbuilder-section-container{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100% - 40px);
+}
+
+.viz-controls-mapbuilder-feeding-container {
+    display: inline-block;
+    min-height: 40px;
+    width: 222px;
+}
+
+.viz-controls-mapbuilder-contextmenu-container{
+    background-color: #FFFFFF;
+    width : 120px;
+    height : auto;
+    opacity: 0.9;
+    border: 1px solid #bfbfbf;
+    box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3); 
+}
+
+.viz-controls-mapbuilder-contextmenu{
+    height: auto;
+    width: 100%;
+    background-color: #FFFFFF;
+    list-style : none;
+    padding-left : 0px;
+    padding-top : 12px;
+    margin : 0px;
+}
+
+.viz-controls-mapbuilder-configmenu-container{
+    height: 75px;
+    width: 180px;
+    background-color: #f5f5f5;
+    list-style : none;
+    border-color:#bfbfbf;
+    border-style: solid; 
+    border-width: 1px;
+    padding-left : 2px;
+    padding-top : 12px;
+    margin : 0px;
+    box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+.viz-controls-mapbuilder-contextmenu li:hover{
+   cursor: pointer;
+   background-color: #e5f2f9;
+};
+
+.viz-controls-mapbuilder-menuitem{
+   height: 30px;
+}
+.viz-controls-mapbuilder-contextmenu-moveup{
+    width : 16px;
+    height: 16px;
+    background-image : url('../controls/mapbuilder/assets/moveup.png');
+    background-repeat: no-repeat;
+    display :inline-block;
+    margin-left : 16px;
+    margin-top: 5px;
+}
+.viz-controls-mapbuilder-contextmenu-movedown{
+    width : 16px;
+    height: 16px;
+    background-image : url('../controls/mapbuilder/assets/movedown.png');
+    background-repeat: no-repeat;
+    display :inline-block;
+    margin-left : 16px;
+    margin-top: 5px;
+}
+.viz-controls-mapbuilder-contextmenu-delete{
+    width : 16px;
+    height: 16px;
+    background-image : url('../controls/mapbuilder/assets/delete.png');
+    background-repeat: no-repeat;
+    display :inline-block;
+    margin-left : 16px;
+    margin-top: 5px;
+}
+
+.viz-controls-mapbuilder-contextmenu-hide{
+    width : 16px;
+    height: 16px;
+    background-image : url('../controls/mapbuilder/assets/hide.png');
+    background-repeat: no-repeat;
+    display :inline-block;
+    margin-left : 16px;
+    margin-top: 5px;
+}
+
+.viz-controls-mapbuilder-contextmenu-show{
+    width : 16px;
+    height: 16px;
+    background-image : url('../controls/mapbuilder/assets/show.png');
+    background-repeat: no-repeat;
+    display :inline-block;
+    margin-left : 16px;
+    margin-top: 5px;
+}
+
+.viz-controls-mapbuilder-contextmenu-rename{
+    width : 16px;
+    height: 16px;
+    background-image : url('../controls/mapbuilder/assets/rename.png');
+    background-repeat: no-repeat;
+    display :inline-block;
+    margin-left : 16px;
+    margin-top: 5px;
+}
+
+.viz-controls-mapbuilder-menutext{
+    padding-left: 6px;
+    display :inline-block;
+    vertical-align: middle;
+    font: normal 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #585858;
+    padding-top: 8px;
+    line-height: 0;
+    height: 16px;
+}
+
+.viz-controls-mapbuilder-menuitem:hover .viz-controls-mapbuilder-menutext{
+    color: #585858;     
+}
+
+.viz-controls-mapbuilder-contextmenu-action-name{
+   padding-left: 5px;
+   font: normal 12px "Helvetica Neue", Helvetica, arial, sans-serif;
+}
+
+.viz-controls-mapbuilder-contextmenu-action-title{
+   display :inline-block; 
+   padding-left: 5px;
+}
+
+.viz-controls-mapbuilder-contextmenu-action-warning{
+    position: relative;
+    width : 16px;
+    height: 16px;
+    background-image : url('../controls/mapbuilder/assets/alert.png');
+    background-repeat: no-repeat;
+    display :inline-block;
+    margin-left : 16px;
+    top: 2px;
+}
+
+.viz-controls-mapbuilder-contextmenu-action-layer-name{
+    padding-left: 5px;
+    font: bold 12px "Helvetica Neue", Helvetica, arial, sans-serif; 
+}
+
+.viz-controls-mapbuilder-contextmenu-input{
+   margin-left: 15px;  
+}
+
+.viz-controls-mapbuilder-contextmenu-input input{
+    width : 90%;
+    border-color: #dddddd;
+}
+
+.viz-controls-mapbuilder-contextmenu-action{
+    margin-left: 34px;
+    margin-top: 12px;
+}
+
+
+.viz-controls-mapbuilder-contextmenu-action-ok{
+    display: inline-block;
+    background-color : #f7f7f7;
+    float: right;
+    margin-right: 5px;
+    width:  50px;
+    height: 28px; 
+    border-radius: 0px;
+    box-shadow: none;
+    border: 1px solid #BFBFBF;
+    background-image: url('../controls/mapbuilder/assets/ok.png');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.viz-controls-mapbuilder-contextmenu-action-ok:hover{
+    background-color : #eaeaea;
+    cursor: pointer;
+}
+
+.viz-controls-mapbuilder-contextmenu-action-cancel{
+    display: inline-block;
+    float: right;
+    background-color: #f7f7f7;
+    margin-right: 15px;
+    width:  50px;
+    height: 28px; 
+    border-radius: 0px;
+    box-shadow: none;
+    border: 1px solid #BFBFBF;
+    background-image: url('../controls/mapbuilder/assets/cancel.png');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.viz-controls-mapbuilder-contextmenu-action-cancel:hover{
+    background-color : #eaeaea;
+    cursor: pointer;
+}
+
+.viz-controls-mapbuilder-map-provider {
+    margin-bottom: 12px;    
+}
+
+.viz-controls-mapbuilder-map-style{
+    display : inline-block;
+    width: 105px;
+    height: 95px;
+}
+
+.viz-controls-mapbuilder-map-style-esri-icon{
+    display : inline-block;
+    width: 100px;
+    height: 67px;
+}
+
+.viz-controls-mapbuilder-map-style-esri-topo{
+    
+    background-image : url('../controls/mapbuilder/assets/topo.png');
+    background-repeat: no-repeat;
+}
+
+.viz-controls-mapbuilder-map-style-esri-streets{
+
+    background-image : url('../controls/mapbuilder/assets/streets.png');
+    background-repeat: no-repeat;
+}
+
+.viz-controls-mapbuilder-map-style-esri-national-geographic{
+   
+    background-image : url('../controls/mapbuilder/assets/national-geographic.png');
+    background-repeat: no-repeat;
+}
+
+.viz-controls-mapbuilder-map-style .viz-controls-mapbuilder-map-style-esri-icon-selected{
+    border-color:#0091d9;
+    border-style: solid; 
+    border-width: 1px;
+    box-sizing: border-box; 
+       
+}
+
+.viz-controls-mapbuilder-map-style-esri-satellite{
+   
+    background-image : url('../controls/mapbuilder/assets/satellite.png');
+    background-repeat: no-repeat;
+}
+
+.viz-controls-mapbuilder-property-text{
+    position: relative;
+    height: 13px;
+    font : normal 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #585858;
+    top: 0px;
+}
+
+.viz-controls-mapbuilder-section-sub-title{
+    padding-bottom: 2px;
+}
+
+.viz-controls-mapbuilder-section-sub-title-text{
+    font : normal 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #585858;
+}
+
+.viz-controls-mapbuilder-map-style-title{
+    font : normal 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #585858;
+}
+
+.viz-controls-switchbar-dropDownList {
+    position: absolute;
+    top : 0px;
+    width: auto;
+    z-index: 999999;
+}
+.viz-controls-switchbar-dropDownList-container {
+    position: absolute;
+    transition: opacity .3s ease-out, top .3s ease-out;
+    -moz-transition: opacity .3s ease-out, top .3s ease-out; /* Firefox 4 */
+    -webkit-transition: opacity .3s ease-out, top .3s ease-out; /* Safari and Chrome */
+    -o-transition: opacity .3s ease-out, top .3s ease-out; /* Opera */
+    opacity: 0;
+    top: 0px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #DAD9D9;
+    background-color: #ffffff;
+}
+.viz-controls-switchbar-dropDownList-arrow {
+    top: -6px;
+    height: 24px;
+    width: 24px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #DAD9D9;
+    background-color: #ffffff;
+    position: absolute;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.viz-controls-switchbar-dropDownList-content {
+    background-color: #FFF;
+    box-shadow: 0px 0px 0px 0px rgba(0, 143, 211, 0.15);
+    border: 0px solid #DAD9D9;
+    -webkit-box-shadow: inset 0px 0px 0px 0px rgba(0, 143, 211, 0.15);
+    border-radius: 5px;
+    width: 300px;
+    position: absolute;
+    padding: 2px 7px;
+}
+.viz-controls-switchbar-chart-list-header {
+
+    margin: 2px 8px 2px 2px;
+    padding: 12px 1px 1px 4px;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.viz-controls-switchbar-chart-list-container {
+    padding: 0px;
+    background-color: #ffffff;
+    list-style: none;
+    display: inline-block;
+    margin: 0px;
+}
+.viz-controls-switchbar-dropDownList li {
+    width: auto;
+    white-space: nowrap;
+}
+.viz-controls-switchbar-dropDownList-chart-list {
+    line-height: 32px;
+    cursor: pointer;
+}
+.viz-controls-switchbar-dropDownList-chart-list:hover {
+    background-color: #E5F2F9;
+    color: #585858;
+}
+.viz-controls-switchbar-dropDownList-chart-list-selected {
+    background-color: #007CC0;
+    color: #ffffff;
+}
+.viz-controls-switchbar-dropDownList-chart-text {
+    padding: 12px 1px 1px 12px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.viz-controls-switchbar-chart-list-header {
+    padding: 6px 0px 6px 0px;
+    font-size: 12px;
+    display: inline-block;
+    font-weight: normal;
+    cursor: default;
+}
+.viz-controls-switchbar-chart-list-icon {
+    margin-top: 5px;
+    margin-right: 8px;
+}
+.viz-controls-switchbar-view {
+    width: 100%;
+    height: 100%;
+    min-width: 141px;
+    position: relative;
+}
+.viz-controls-switchbar-switcher-container {
+    position: relative;
+}
+.viz-controls-switchbar-switcher {
+    position: absolute;
+    width: 56px;
+    height: 32px;
+    border-radius: 0px;
+}
+.viz-controls-switchbar-chart {
+    background-color: #ffffff;
+    border: 1px solid #bfbfbf;
+}
+.viz-controls-switchbar-chart:last-child {
+    margin-right: 0px;
+}
+/* Do not replace old class when selected, just add new one*/
+.viz-controls-switchbar-chart-selected {
+    border: 1px solid #007CC0;
+    background-color:#007cc0; 
+}
+.viz-controls-switchbar-chart:hover {
+    border: 1px solid #BFBFBF;
+   
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(8%, #f2f2f2), color-stop(100%, #fafafa));
+}
+.viz-controls-switchbar-chart-text {
+    padding: 12px 1px 1px 12px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.viz-controls-switchbar-chart-icon {
+    background-image: url('../controls/switchbar/assets/UVB_ChartSwitchSprite.png');
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin: 4px 8px 6px 5px;
+}
+.viz-controls-switchbar-chart-icon-column {
+    background-position: 0px 0px;
+}
+.viz-controls-switchbar-chart-icon-stacked-column {
+    background-position: 0px -34px;
+}
+.viz-controls-switchbar-chart-icon-dual-column {
+    background-position: 0px -68px;
+}
+.viz-controls-switchbar-chart-icon-3D-column {
+    background-position: 0px -102px;
+}
+.viz-controls-switchbar-chart-icon-line {
+    background-position: 0px -136px;
+}
+.viz-controls-switchbar-chart-icon-area {
+    background-position: 0px -170px;
+}
+.viz-controls-switchbar-chart-icon-combination {
+    background-position: 0px -204px;
+}
+.viz-controls-switchbar-chart-icon-dual-line {
+    background-position: 0px -238px;
+}
+.viz-controls-switchbar-chart-icon-dual-combination {
+    background-position: 0px -272px;
+}
+.viz-controls-switchbar-chart-icon-pie {
+    background-position: 0px -306px;
+}
+.viz-controls-switchbar-chart-icon-donut {
+    background-position: 0px -340px;
+}
+.viz-controls-switchbar-chart-icon-pie-with-depth {
+    background-position: 0px -374px;
+}
+.viz-controls-switchbar-chart-icon-geo-bubble {
+    background-position: 0px -408px;
+}
+.viz-controls-switchbar-chart-icon-geo-choropleth {
+    background-position: 0px -442px;
+}
+.viz-controls-switchbar-chart-icon-geo-pie {
+    background-position: 0px -476px;
+}
+.viz-controls-switchbar-chart-icon-geo-map {
+    background-position: 0px -510px;
+}
+.viz-controls-switchbar-chart-icon-scatter {
+    background-position: 0px -544px;
+}
+.viz-controls-switchbar-chart-icon-bubble {
+    background-position: 0px -578px;
+}
+.viz-controls-switchbar-chart-icon-scatter-matrix {
+    background-position: 0px -612px;
+}
+.viz-controls-switchbar-chart-icon-heatmap {
+    background-position: 0px -646px;
+}
+.viz-controls-switchbar-chart-icon-treemap {
+    background-position: 0px -680px;
+}
+.viz-controls-switchbar-chart-icon-table {
+    background-position: 0px -714px;
+}
+.viz-controls-switchbar-chart-icon-radar {
+    background-position: 0px -748px;
+}
+.viz-controls-switchbar-chart-icon-boxplot {
+    background-position: 0px -782px;
+}
+.viz-controls-switchbar-chart-icon-waterfall {
+    background-position: 0px -816px;
+}
+.viz-controls-switchbar-chart-icon-tag-cloud {
+    background-position: 0px -850px;
+}
+.viz-controls-switchbar-chart-icon-tree {
+    background-position: 0px -884px;
+}
+.viz-controls-switchbar-chart-icon-network {
+    background-position: 0px -918px;
+}
+.viz-controls-switchbar-chart-icon-funnel {
+    background-position: 0px -952px;
+}
+.viz-controls-switchbar-chart-icon-pc {
+    background-position: 0px -986px;
+}
+.viz-controls-switchbar-chart-icon-extension {
+    background-position: 0px -1020px;
+}
+.viz-controls-switchbar-chart-icon-column-white {
+    background-position: -44px 0px;
+}
+.viz-controls-switchbar-chart-icon-stacked-column-white {
+    background-position: -44px -34px;
+}
+.viz-controls-switchbar-chart-icon-dual-column-white {
+    background-position: -44px -68px;
+}
+.viz-controls-switchbar-chart-icon-3D-column-white {
+    background-position: -44px -102px;
+}
+.viz-controls-switchbar-chart-icon-line-white {
+    background-position: -44px -136px;
+}
+.viz-controls-switchbar-chart-icon-area-white {
+    background-position: -44px -170px;
+}
+.viz-controls-switchbar-chart-icon-combination-white {
+    background-position: -44px -204px;
+}
+.viz-controls-switchbar-chart-icon-dual-line-white {
+    background-position: -44px -238px;
+}
+.viz-controls-switchbar-chart-icon-dual-combination-white {
+    background-position: -44px -272px;
+}
+.viz-controls-switchbar-chart-icon-pie-white {
+    background-position: -44px -306px;
+}
+.viz-controls-switchbar-chart-icon-donut-white {
+    background-position: -44px -340px;
+}
+.viz-controls-switchbar-chart-icon-pie-with-depth-white {
+    background-position: -44px -374px;
+}
+.viz-controls-switchbar-chart-icon-geo-bubble-white {
+    background-position: -44px -408px;
+}
+.viz-controls-switchbar-chart-icon-geo-choropleth-white {
+    background-position: -44px -442px;
+}
+.viz-controls-switchbar-chart-icon-geo-pie-white {
+    background-position: -44px -476px;
+}
+.viz-controls-switchbar-chart-icon-geo-map-white {
+    background-position: -44px -510px;
+}
+.viz-controls-switchbar-chart-icon-scatter-white {
+    background-position: -44px -544px;
+}
+.viz-controls-switchbar-chart-icon-bubble-white {
+    background-position: -44px -578px;
+}
+.viz-controls-switchbar-chart-icon-scatter-matrix-white {
+    background-position: -44px -612px;
+}
+.viz-controls-switchbar-chart-icon-heatmap-white {
+    background-position: -44px -646px;
+}
+.viz-controls-switchbar-chart-icon-treemap-white {
+    background-position: -44px -680px;
+}
+.viz-controls-switchbar-chart-icon-table-white {
+    background-position: -44px -714px;
+}
+.viz-controls-switchbar-chart-icon-radar-white {
+    background-position: -44px -748px;
+}
+.viz-controls-switchbar-chart-icon-boxplot-white {
+    background-position: -44px -782px;
+}
+.viz-controls-switchbar-chart-icon-waterfall-white {
+    background-position: -44px -816px;
+}
+.viz-controls-switchbar-chart-icon-tag-cloud-white {
+    background-position: -44px -850px;
+}
+.viz-controls-switchbar-chart-icon-tree-white {
+    background-position: -44px -884px;
+}
+.viz-controls-switchbar-chart-icon-network-white {
+    background-position: -44px -918px;
+}
+.viz-controls-switchbar-chart-icon-funnel-white {
+    background-position: -44px -952px;
+}
+.viz-controls-switchbar-chart-icon-pc-white {
+    background-position: -44px -986px;
+}
+.viz-controls-switchbar-chart-icon-extension-white {
+    background-position: -44px -1020px;
+}
+.viz-controls-switchbar-chart-icon-column-grey {
+    background-position: -88px 0px;
+}
+.viz-controls-switchbar-chart-icon-stacked-column-grey {
+    background-position: -88px -34px;
+}
+.viz-controls-switchbar-chart-icon-dual-column-grey {
+    background-position: -88px -68px;
+}
+.viz-controls-switchbar-chart-icon-3D-column-grey {
+    background-position: -88px -102px;
+}
+.viz-controls-switchbar-chart-icon-line-grey {
+    background-position: -88px -136px;
+}
+.viz-controls-switchbar-chart-icon-area-grey {
+    background-position: -88px -170px;
+}
+.viz-controls-switchbar-chart-icon-combination-grey {
+    background-position: -88px -204px;
+}
+.viz-controls-switchbar-chart-icon-dual-line-grey {
+    background-position: -88px -238px;
+}
+.viz-controls-switchbar-chart-icon-dual-combination-grey {
+    background-position: -88px -272px;
+}
+.viz-controls-switchbar-chart-icon-pie-grey {
+    background-position: -88px -306px;
+}
+.viz-controls-switchbar-chart-icon-donut-grey {
+    background-position: -88px -340px;
+}
+.viz-controls-switchbar-chart-icon-pie-with-depth-grey {
+    background-position: -88px -374px;
+}
+.viz-controls-switchbar-chart-icon-geo-bubble-grey {
+    background-position: -88px -408px;
+}
+.viz-controls-switchbar-chart-icon-geo-choropleth-grey {
+    background-position: -88px -442px;
+}
+.viz-controls-switchbar-chart-icon-geo-pie-grey {
+    background-position: -88px -476px;
+}
+.viz-controls-switchbar-chart-icon-geo-map-grey {
+    background-position: -88px -510px;
+}
+.viz-controls-switchbar-chart-icon-scatter-grey {
+    background-position: -88px -544px;
+}
+.viz-controls-switchbar-chart-icon-bubble-grey {
+    background-position: -88px -578px;
+}
+.viz-controls-switchbar-chart-icon-scatter-matrix-grey {
+    background-position: -88px -612px;
+}
+.viz-controls-switchbar-chart-icon-heatmap-grey {
+    background-position: -88px -646px;
+}
+.viz-controls-switchbar-chart-icon-treemap-grey {
+    background-position: -88px -680px;
+}
+.viz-controls-switchbar-chart-icon-table-grey {
+    background-position: -88px -714px;
+}
+.viz-controls-switchbar-chart-icon-radar-grey {
+    background-position: -88px -748px;
+}
+.viz-controls-switchbar-chart-icon-boxplot-grey {
+    background-position: -88px -782px;
+}
+.viz-controls-switchbar-chart-icon-waterfall-grey {
+    background-position: -88px -816px;
+}
+.viz-controls-switchbar-chart-icon-tag-cloud-grey {
+    background-position: -88px -850px;
+}
+.viz-controls-switchbar-chart-icon-tree-grey {
+    background-position: -88px -884px;
+}
+.viz-controls-switchbar-chart-icon-network-grey {
+    background-position: -88px -918px;
+}
+.viz-controls-switchbar-chart-icon-funnel-grey {
+    background-position: -88px -952px;
+}
+.viz-controls-switchbar-chart-icon-pc-grey {
+    background-position: -88px -986px;
+}
+.viz-controls-switchbar-chart-icon-extension-grey {
+    background-position: -88px -1020px;
+}
+.viz-controls-switchbar-dropdown-arrow {
+    float: left;
+    background-color: transparent !important;
+}
+.viz-controls-switchbar-dropdown-arrow-icon {
+    background-position: 0px -362px;
+    margin: 8px 2px 10px 3px;
+}
+.viz-controls-switchbar-chart-selected .viz-controls-switchbar-dropdown-arrow-icon {
+    background-position: -17px -362px;
+}
+.viz-controls-switchbar-chart-selected .viz-controls-switchbar-splitter {
+    background-color: #ffffff;
+}
+.viz-controls-switchbar-splitter {
+    height: 74%;
+    width: 1px;
+    position: absolute;
+    background-color: #bfbfbf;
+    left: 38px;
+    top: 13%;
+    visibility: hidden;
+}
+.viz-controls-switchbar-switcher:hover .viz-controls-switchbar-splitter {
+    visibility: visible;
+}
